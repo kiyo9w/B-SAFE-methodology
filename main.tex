@@ -1,0 +1,165 @@
+\documentclass[a4paper]{article}
+
+% Packages
+\usepackage{geometry}
+\geometry{left=1.5cm, right=1.5cm, top=2.54cm, bottom=2.54cm}
+\usepackage{graphicx, hyperref, setspace, amsmath, amssymb, titlesec, fancyhdr, multicol, indentfirst, etoolbox, caption, hyperref, xcolor}
+\usepackage{template/cite, template/parskip}
+
+% Title Formatting
+\titleformat{\section}{\centering\large\scshape}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{1em}{}
+\setstretch{1.0} % Keep single spacing
+\setlength{\parskip}{6pt} % Space between paragraphs
+\titlespacing{\section}{0pt}{6pt}{6pt}
+\titlespacing{\subsection}{0pt}{6pt}{6pt}
+\titlespacing{\subsubsection}{0pt}{6pt}{6pt}
+% Document Title
+\title{
+    \textbf{B-SAFE: Blockchain Security Assessment Framework Enhanced with Machine Learning} 
+    \thanks{
+        \sloppy
+        \textbf{Cite (APA):} Trung N., Dat P., Long D., Duong P., Huy L. (\the\year).
+    }
+}
+
+\date{} % No date
+\captionsetup{labelfont={small,sc}, textfont={small,sc}}
+% Section Numbering
+% Define numbering format
+\renewcommand{\thesection}{\Roman{section}.}
+\renewcommand{\thesubsection}{\textit{\Alph{subsection}.}}
+\renewcommand{\thesubsubsection}{\textit{\arabic{subsubsection}.}}
+\renewcommand{\thetable}{\Roman{table}} % Set table numbering to Roman
+\renewcommand{\thefigure}{\Roman{figure}} % Number figures in Roman numerals
+
+% Make titles italic as well
+
+\titleformat{\subsection}{\normalfont\large\itshape}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\itshape}{\thesubsubsection}{1em}{}
+
+
+\setcounter{page}{5}
+
+% Fancy Header Configuration
+\pagestyle{fancy}
+\fancyhf{} % Clear all header/footer fields
+
+% First Page Header
+% \fancypagestyle{firstpage}{
+%     \fancyhead[C]{
+%         \centering
+%         {\fontsize{14pt}{10pt}\selectfont
+%         \textbf{Journal of Metaverse}\\
+%         \textbf{Research Article}}\\
+%         {\fontsize{8pt}{10pt}\selectfont
+%         \textbf{Received:} 2025-01-01 \textbf{Reviewing:} 2025-01-01 \& 2025-01-01 \textbf{Accepted:} 2025-01-01 \textbf{Online:} 2025-01-01 \textbf{Issue Date:} 2025-01-01}\\
+%         \textbf{Year:} 202Y, \textbf{Volume:} X, \textbf{Issue:} X, \textbf{Pages:} XX-XX, \textbf{Doi:} 10.57019/jmv.XXXXXX
+%     }
+% }
+
+
+\begin{document}
+
+\maketitle
+\vspace{-1.5cm}
+
+% Authors Block
+\begin{multicols}{3}
+    \centering
+    \textbf{Ngo Thanh Trung}\\
+    \textit{Troy University}\\
+    \textit{Hanoi, Viet Nam}\\
+    \textit{tngo220196@troy.edu}
+	\vfill
+
+    \textbf{Pham Tien Dat}\\
+    \textit{Troy University}\\
+    \textit{Hanoi, Viet Nam}\\
+    \textit{dpham220298@troy.edu}
+	\vfill
+
+    \columnbreak
+
+    \textbf{Pham Thai Duong}\\
+    \textit{Troy University}\\
+    \textit{Hanoi, Viet Nam}\\
+    \textit{dpham220299@troy.edu}
+	\vfill
+
+    \textbf{Le Quang Huy}\\
+    \textit{Troy University}\\
+    \textit{Hanoi, Viet Nam}\\
+    \textit{hle....@troy.edu}
+	\vfill
+
+    \columnbreak
+
+    \textbf{Doan Hoang Long}\\
+    \textit{Troy University}\\
+    \textit{Hanoi, Viet Nam}\\
+    \textit{ldoan220279@troy.edu}
+	\vfill
+\end{multicols}
+
+\singlespacing
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0.5cm}
+
+% \begin{multicols}{2} will divide the text into two columns
+% \columnbreak will break the column and start a new one in the samge page
+
+\begin{multicols}{2}
+\setlength{\columnsep}{0.5cm}
+
+
+\noindent \textbf{\textit{Abstract---}The emergence of the metaverse has initiated a paradigm shift in how individuals interact, socialize, and transact within digital environments. This study explores the evolving architecture of decentralized virtual worlds, emphasizing the integration of blockchain technologies, digital asset ownership, and immersive social experiences. Leveraging empirical data from multiple blockchain-based metaverse platforms, we investigate user engagement metrics, asset distribution patterns, and behavioral trends within gamified ecosystems. Our findings reveal that the incorporation of play-to-earn mechanics, virtual real estate, and avatar customization significantly enhances user retention and economic activity. Moreover, decentralized governance and community-driven development are shown to influence both the scalability and perceived legitimacy of these platforms. By synthesizing insights from computer science, economics, and media studies, this paper provides a multidisciplinary perspective on the dynamics shaping the future of the metaverse. Our work lays the foundation for further empirical investigation and policy formulation aimed at fostering transparent, equitable, and sustainable virtual ecosystems.
+}
+
+\small	
+\noindent \textbf{\textit{Keywords---}\textit{Blockchain security, machine learning, security assessment, threat detection, consensus mechanisms, smart contracts}}
+
+\input{inner/introduction.tex}
+\input{inner/literature_review.tex}
+\input{inner/methodology.tex}
+\input{inner/results_and_analysis.tex}
+\input{inner/discussion.tex}
+\input{inner/future_work.tex}
+
+\section{Conclusion}
+Donec eget elit id risus iaculis tristique. Maecenas justo mauris, sagittis id ipsum vitae, elementum consectetur neque. Nam pharetra ultrices sapien, vel semper odio bibendum non. Proin mi quam, mollis a posuere vitae, facilisis pharetra urna. Pellentesque tincidunt mauris et sagittis vestibulum. Curabitur semper suscipit metus, eget cursus lacus faucibus quis. Aliquam fermentum cursus pulvinar. Curabitur posuere felis nisl, a condimentum enim molestie non. Vivamus accumsan porta felis, a hendrerit erat malesuada in. Aliquam aliquam rhoncus mauris in feugiat.
+
+Nullam ligula nisl, interdum id libero ut, aliquam placerat erat. Proin ut lectus vel tellus ornare ultricies. Suspendisse potenti. Sed at dolor bibendum, feugiat turpis accumsan, interdum erat. Sed posuere turpis vel blandit convallis. Fusce ac elit velit. Ut sodales vulputate maximus. Nunc nec nibh in arcu luctus cursus. Sed vulputate accumsan fermentum. Curabitur maximus nec lacus nec posuere. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris congue est nec quam auctor blandit. Proin sit amet maximus nibh. In pharetra sem dolor, eget pharetra mi porttitor in. Suspendisse ac neque lacus.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras finibus ante ut metus vehicula vehicula. Cras justo lacus, efficitur quis odio quis, interdum efficitur libero. Donec sodales lectus vitae libero consectetur, vitae ornare lorem placerat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer a aliquam risus, ullamcorper aliquet velit. Cras vulputate magna augue. Vestibulum bibendum est vel interdum euismod. Fusce finibus nulla ex, non rhoncus lectus malesuada mattis. Duis venenatis nunc vel lacinia rutrum. Proin faucibus sapien nisl, vitae fringilla orci hendrerit a. Quisque condimentum condimentum felis vel ullamcorper. Quisque pharetra tortor quis nisl bibendum accumsan.
+
+Duis auctor semper turpis, vel mollis purus. Proin orci quam, pellentesque tincidunt ultricies eget, dignissim id orci. Maecenas sed fermentum ligula. Mauris facilisis sed dolor sed finibus. Curabitur luctus ultrices tempus. Etiam venenatis feugiat congue. Curabitur id purus purus. Curabitur nec enim tempus, volutpat erat in, auctor ligula. Phasellus rutrum tellus lectus. Aenean imperdiet pharetra nisl quis sodales. Praesent facilisis gravida pretium. Nam eget aliquet risus, nec dictum turpis.
+
+Proin vitae malesuada lectus. Aliquam erat volutpat. Aenean tincidunt consectetur pulvinar. Proin sed dolor magna. Donec in ornare tortor, in lacinia massa. Cras mollis, mi vel facilisis dictum, nisl ipsum egestas urna, sit amet dignissim turpis felis quis massa. Sed vel euismod turpis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+
+Vestibulum ullamcorper ipsum sit amet mi molestie, vel convallis ipsum malesuada. Pellentesque sed lacinia metus. Pellentesque posuere tempor diam eu pretium. Duis aliquam eget felis ac imperdiet. Quisque viverra erat turpis, vel venenatis tortor porttitor quis. Integer tincidunt vel purus a blandit. Mauris sit amet quam vel leo ultrices vulputate a at ante. Maecenas hendrerit maximus orci, eu euismod odio laoreet et. Donec in interdum elit. Praesent sed sollicitudin risus. Donec accumsan purus ut justo accumsan euismod. Sed tincidunt vehicula suscipit. Vestibulum dignissim ultricies dictum. Praesent vel nisi dolor. In at scelerisque mi. Nam malesuada nunc vel tellus convallis, ultrices facilisis dui gravida. 
+
+\section*{Acknowledgement}
+We thank AGH University of Krakow for their support.
+
+\begin{thebibliography}{8}
+\bibitem{1} Chen, C., \& Yao, M. Z. (2022). Strategic use of immersive media and narrative message in virtual marketing: Understanding the roles of telepresence and transportation. \textit{Psychology and Marketing, 39}(3), 524–542. https://doi.org/10.1002/mar.21630
+
+\bibitem{2} Deloitte. (2000). The evolving European model of professional sports finance. Journal of Sports Economics, 1(3), 257–276. https://doi.org/10.1177/152700250000100304
+
+\bibitem{3} Scribbr. (2020, August 20). Develop a theoretical framework in three steps [Video]. YouTube. https://youtu.be/4y1BAqOnhMM
+
+\bibitem{4} Slat, B., \& Worp, C. (2019, April 10). Whales likely impacted by Great Pacific garbage patch. The Ocean Cleanup. https://www.theoceancleanup.com/updates/whales-likely-impacted-by-great-pacific-garbage-patch/
+
+\bibitem{5} Slat, B., Worp, C., \& Holierhoek, L. (n.d.). Whales likely impacted by Great Pacific garbage patch. The Ocean Cleanup. Retrieved February 12, 2025, from https://www.theoceancleanup.com/updates/whales-likely-impacted-by-great-pacific-garbage-patch/
+
+\bibitem{6} Launiainen, P. (2018). A brief history of everything wireless: How invisible waves have changed the world. Springer Cham. https://doi.org/10.1007/978-3-319-78910-1
+
+\bibitem{7} Karataş, E., Adali, B., Aydin, Ö., \& DalkiliÇ, G. (2021, October). Mobile application that detects covid-19 from cough and image using smartphone recordings and machine learning. In 2021 Innovations in Intelligent Systems and Applications Conference (ASYU) (pp. 1-6). IEEE. https://doi.org/10.1109/ASYU52992.2021.95989618
+
+\bibitem{8} Marah, H., Challenger, M. (2023). An Architecture for Intelligent Agent-Based Digital Twin for Cyber-Physical Systems. In: Karaarslan, E., Aydin, Ö., Cali, Ü., Challenger, M. (eds) Digital Twin Driven Intelligent Systems and Emerging Metaverse. Springer, Singapore. https://doi.org/10.1007/978-981-99-0252-13
+
+\end{thebibliography}
+
+\end{multicols}
+\end{document}
