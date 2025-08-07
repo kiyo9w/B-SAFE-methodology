@@ -1,6 +1,6 @@
-PWD d:\Github_Projects\LaTex\Test
+PWD d:\Github_Projects\LaTex\B-SAFE-methodology
 INPUT C:\Users\Os\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT d:\Github_Projects\LaTex\Test\main.tex
+INPUT d:\Github_Projects\LaTex\B-SAFE-methodology\main.tex
 OUTPUT main.log
 INPUT C:\Users\Os\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\Os\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
