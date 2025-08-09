@@ -1,113 +1,108 @@
-# B-SAFE METHODOLOGY
+# B-SAFE Methodology (LaTeX Project)
 
 ## Purpose
-This  repository contains LaTeX sources, figures and supporting materials to write and build a research paper about the "B-SAFE" methodology (a security framework for blockchain). This README explains repository layout, LaTeX build instructions, bibliography handling, recommend tooling, and quick examples so you can produce a final PDF reliably.
+This repository contains LaTeX sources, figures, and supporting materials to build the B-SAFE paper (Blockchain Security Assessment Framework Enhanced with ML). It documents the structure, build instructions (latexmk + BibTeX), a unified bibliography workflow, and contribution guidelines.
 
-## Repository layout (recommend)
+## Repository layout (current)
 ```
 B-SAFE-methodology/
-├─ template/                 # main LaTeX files and class/style files
-│  ├─ main.tex               # main LaTeX entry
-│  ├─ references.bib         # bibliography file
-│  └─ Makefile               # optional build helper
-├─ inner/                    # small .tex files for sections/chapters (easier to maintain)
-│  ├─ 0-title.tex
-│  ├─ 1-intro.tex
-│  ├─ 2-related-work.tex
-│  ├─ 3-method.tex
-│  ├─ 4-experiments.tex
-│  └─ 5-conclusion.tex
-├─ figure/                   # figures, diagrams (PNG, PDF, EPS, SVG)
-├─ code/                     # experiment scripts, notebooks, reproducible artifacts
-├─ output/                   # build artifacts (PDFs), logs
-├─ README.md or READ_ME.md   # this file
-└─ b-safe-research-outline.md # the research outline / notes
+├─ output/                     # Build entrypoint and artifacts
+│  ├─ main.tex                 # Main LaTeX file (compile from this directory)
+│  └─ main.pdf                 # Built PDF
+├─ inner/                      # Section files included by main.tex
+│  ├─ introduction.tex
+│  ├─ literature_review.tex
+│  │  ├─ 01_consensus_attacks.tex
+│  │  ├─ 02_key_management_wallet_security.tex
+│  │  ├─ 03_smart_contract_vulnerabilities.tex
+│  │  ├─ 04_defi_protocol_risks.tex
+│  │  └─ 05_exchange_infrastructure_attacks.tex
+│  ├─ methodology.tex
+│  │  └─ 01_business_readiness.tex
+│  ├─ results_and_analysis.tex
+│  ├─ discussion.tex
+│  └─ future_work.tex
+├─ figure/                     # Figures (optionally grouped per section)
+│  ├─ fig1.png
+│  └─ <section>/fig1.png
+├─ template/                   # Local style helpers used by main.tex
+│  ├─ cite.sty
+│  └─ parskip.sty
+├─ code/                       # Optional code artifacts used in the paper
+├─ references.bib              # Unified bibliography for the whole team
+├─ README.md                   # This file
+└─ sprint_2.md                 # Planning / notes
 ```
 
-Storing each logical section in `inner/` and using `\input{}` from `template/main.tex` helps parallel editing and version control.
+## Quick start
+1) Edit content in `inner/*.tex` and subfiles.
+2) Add citations to `references.bib` and cite with `\cite{key}`.
+3) Build from the `output/` directory:
+   - macOS/Linux:
+     ```bash
+     cd output
+     latexmk -pdf -bibtex main.tex
+     ```
+   - Windows (MiKTeX): open a terminal in `output/` and run the same command.
+4) Open `output/main.pdf`.
 
-## Required software
-- VSCode, MiKTeX and strawberryperl.
-- You can watch this following youtube video to set up: https://www.youtube.com/watch?v=4lyHIQl4VM8&t=337s&ab_channel=FedericoTartarini
+## Build requirements
+- A LaTeX distribution with pdflatex, BibTeX, and `latexmk`:
+  - macOS: MacTeX (or BasicTeX + latexmk)
+  - Linux: TeX Live
+  - Windows: MiKTeX (ensure `latexmk` is installed)
+- Optional editor: VS Code, TeXstudio, or your preferred LaTeX IDE.
 
-## Example `main.tex` skeleton
-Put a small wrapper in `template/main.tex` that inputs section files:
-```tex
-\documentclass[a4paper]{article}
-\usepackage{...}
-...
-% bibliography: choose natbib or biblatex
-\begin{document}
-...
-\input{../inner/introduction.tex}
-\input{../inner/literature_review.tex}
-\input{../inner/methodology.tex}
-\input{../inner/results_and_analysis.tex}
-\input{../inner/discussion.tex}
-\input{../inner/future_work.tex}
-\section{Conclusion}...
-\section{Acknowledgement}...
-\begin{thebibliography}{(#number of references)}
-\bibitem{1} ...
-\bibitem{2} ...
-...
-\end{thebibbliopgraphy}
-
-\end{document}
-```
-
-## Working with figures
-- Put figures (pictures or graphs) in `figures/`. Use relative paths in LaTeX so includes work:
+## Bibliography (unified references.bib)
+- The bibliography is externalized. `output/main.tex` uses:
   ```tex
-  \includegraphics[<custom figure>]{../figure/architecture.pdf}
+  \bibliographystyle{ieeetr}
+  \bibliography{../references}
   ```
-- Use `\ref{fig:<fig_name>}` to reference the figure:
+- Add new entries to `references.bib` using standard BibTeX types (`@article`, `@inproceedings`, `@book`, `@misc`, ...).
+- Cite in text with `\cite{yourKey}`.
+- Keys must be unique and stable (e.g., `AuthorYearShortTitle`).
+- Note: `main.tex` currently includes a temporary `\nocite{...}` list to force-display a few seed entries; remove entries from that list as they become cited in the text.
+
+## Figures
+- Place figures in `figure/` (subfolders per section are fine).
+- Include with a relative path from `output/main.tex` perspective, e.g.:
   ```tex
-  The following figure \ref{fig:gen_1_diagram} and figure  \ref{fig:gen_2_diagram} show theese two main aproaches:
-  
-  \begin{figure}[H]
-  \centering
-  \includegraphics[scale=0.50]{gen_1_diagram.jpg}
-  \caption{\label{fig:gen_1_diagram}GA to increase code coverage}
+  \includegraphics[width=0.9\linewidth]{../figure/methodology/fig1.png}
+  ```
+- Use labels and references:
+  ```tex
+  \begin{figure}[t]
+    \centering
+    \includegraphics[width=0.9\linewidth]{../figure/fig1.png}
+    \caption{System overview}
+    \label{fig:system_overview}
   \end{figure}
-
-  \begin{figure}[H]
-  \centering
-  \includegraphics[scale=0.50]{gen_2_diagram.jpg}
-  \caption{\label{fig:gen_2_diagram}GA to get minimal functional test suite}
-  \end{figure}
+  As shown in Figure~\ref{fig:system_overview} ...
   ```
-  
-## Working with codes
-- Pakage:
-  ```tex
-  \usepackage{listings}
-  \usepackage{xcolor}
-  \lstset{
-    basicstyle=\ttfamily\small,
-    breaklines=true,
-    numbers=none,
-    frame=single,
-    captionpos=b
-  }
-  \usepackage{fancyvrb}
-  ```
-- Input code:
-  ```
-  % Code with bounding box:
-  \section{Comparison of print statements}
 
-  \subsection*{Python}          % this one just for highlight the language in document, you can skip it if you want.
-  \lstinputlisting[language=Python, caption={Python: hello.py}, label={lst:py}]{code/hello.py}
-
-  \subsection*{C++}
-  \lstinputlisting[language=C++, caption={C++: hello.cpp}, label={lst:cpp}]{code/hello.cpp}
-
-  \lstinputlisting[caption={Pseudocode example},label={lst:ps1}]{code/hello.txt}
-
-  % Code without bounding box:
-  \VerbatimInput[fontsize=\small]{code/hello.txt}
-  ```
+## Contribution guidelines
+- Edit section content only in `inner/` and its subfolders.
+- Do not put `thebibliography` environments inside any `.tex` file. Use `references.bib` and `\cite{...}`.
+- Keep figure paths relative to `output/main.tex` (prefix with `../`).
+- Keep BibTeX entries clean and complete (author, title, venue, year, doi/url when available).
+- Prefer small, focused commits. If introducing new figures or code, include sources and update paths in the relevant `inner/` file.
 
 ## Troubleshooting
-- **Images and code not shown: confirm file paths and formats (pdf/png for pdflatex).
+- Missing `../template/cite.sty` or images: run the build from the `output/` directory.
+- Citations show as `?` or bibliography missing:
+  - Run a clean rebuild with BibTeX:
+    ```bash
+    cd output
+    latexmk -g -pdf -bibtex main.tex
+    ```
+  - Check the citation keys match those in `references.bib`.
+- Stale artifacts or strange errors: clean and rebuild:
+  ```bash
+  cd output
+  latexmk -C
+  latexmk -pdf -bibtex main.tex
+  ```
+
+## Notes
+- The `output/` directory is intentionally tracked to keep `main.tex` and the generated `main.pdf` under version control for collaboration.
