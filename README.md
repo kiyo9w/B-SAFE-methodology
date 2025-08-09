@@ -81,6 +81,38 @@ B-SAFE-methodology/
   As shown in Figure~\ref{fig:system_overview} ...
   ```
 
+## Codes
+- Pakage:
+  ```tex
+  \usepackage{listings}
+  \usepackage{xcolor}
+  \lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    numbers=none,
+    frame=single,
+    captionpos=b
+  }
+  \usepackage{fancyvrb}
+  ```
+- Input code:
+  ```
+  % Code with bounding box:
+  \section{Comparison of print statements}
+
+  \subsection*{Python}          % this one just for highlight the language in document, you can skip it if you want.
+  \lstinputlisting[language=Python, caption={Python: hello.py}, label={lst:py}]{code/hello.py}
+
+  \subsection*{C++}
+  \lstinputlisting[language=C++, caption={C++: hello.cpp}, label={lst:cpp}]{code/hello.cpp}
+
+  \lstinputlisting[caption={Pseudocode example},label={lst:ps1}]{code/hello.txt}
+
+  % Code without bounding box:
+  \VerbatimInput[fontsize=\small]{code/hello.txt}
+  ```
+
+
 ## Contribution guidelines
 - Edit section content only in `inner/` and its subfolders.
 - Do not put `thebibliography` environments inside any `.tex` file. Use `references.bib` and `\cite{...}`.
