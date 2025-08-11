@@ -1,4 +1,21 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{zhou2023sok}
+L.~Zhou, X.~Xiong, J.~Ernstberger, S.~Chaliasos, Z.~Wang, Y.~Wang, K.~Qin,
+  R.~Wattenhofer, D.~Song, and A.~Gervais, ``{SoK: Decentralized Finance (DeFi)
+  Attacks},'' in {\em 2023 IEEE Symposium on Security and Privacy (SP)},
+  pp.~2444--2461, IEEE, 2023.
+
+\bibitem{li2022securitydefi}
+W.~Li, J.~Bu, X.~Li, and X.~Chen, ``Security analysis of defi: Vulnerabilities,
+  attacks and advances,'' in {\em Proceedings of the IEEE International
+  Conference on Blockchain (Blockchain 2022)}, pp.~488--493, IEEE, 2022.
+
+\bibitem{liu2024defiscams}
+M.~Liu, J.~H. Huh, H.~Han, J.~Lee, J.~Ahn, F.~Li, H.~Kim, and T.~Kim, ``I
+  experienced more than 10 defi scams: On defi users’ perception of security
+  breaches and countermeasures,'' in {\em Proceedings of the 33rd USENIX
+  Security Symposium}, pp.~6039--6055, USENIX Association, 2024.
 
 \bibitem{ChenYao2022}
 C.~Chen and M.~Z. Yao, ``Strategic use of immersive media and narrative message
