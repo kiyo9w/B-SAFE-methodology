@@ -1,2 +1,197 @@
 \subsection{Auxiliary Layer Security Analysis}
 \label{sec:results_auxiliary}
+
+\subsubsection{Risk Category AUX-WALLET-1: Private Key Compromise via Client-Side Attacks}
+
+\paragraph{Formal Risk Specification}
+
+\begin{itemize}
+    \item \textbf{Preconditions (P):}
+    \begin{itemize}
+        \item \textbf{P1: Unencrypted Credential Persistence:} The wallet application stores sensitive data (private keys, seed phrases) in plaintext or with weak encryption within the host device's file system or memory \cite{houy2023}.
+        \item \textbf{P2: Elevated Privileges on Host OS:} An attacker gains privileged (root) access to the underlying operating system, bypassing standard application sandboxing and allowing direct memory and storage inspection \cite{houy2023}.
+        \item \textbf{P3: User Credential Phishing:} The user is deceived by social engineering tactics into entering their seed phrase or password into a malicious interface that mimics a legitimate wallet or service \cite{yu2024}.
+    \end{itemize}
+
+    \item \textbf{Threatened System Invariants (I):}
+    \begin{itemize}
+        \item \textbf{INV-2 (Value Conservation):} User fund balances decrease without a corresponding authorized transaction signed by the legitimate user.
+        \item \textbf{INV-5 (User Authorization):} The cryptographic capability to authorize transactions is executed by an unauthorized entity.
+    \end{itemize}
+
+    \item \textbf{Canonical Attack Sequence (S):}
+    \begin{enumerate}
+        \item \textbf{Infiltration phase:} compromise the host device via malware or gain physical access.
+        \item \textbf{Credential Extraction phase:} scan memory and storage for wallet artifacts (e.g., \texttt{wallet.dat} files, plaintext keys).
+        \item \textbf{Exfiltration and Exploitation phase:} transfer the stolen credentials to an attacker-controlled machine and broadcast unauthorized transactions to drain the victim's funds.
+    \end{enumerate}
+\end{itemize}
+
+\paragraph{Defense Mechanism Analysis}
+
+\begin{itemize}
+    \item \textbf{Prevention Controls:}
+    \begin{itemize}
+        \item \textbf{C1.1 (Offline Key Storage):}
+            \begin{itemize}
+                \item \textit{Mechanism:} Utilize dedicated, air-gapped hardware devices (e.g., Ledger, Trezor) to generate and store private keys, ensuring they are never exposed to the internet-connected host OS \cite{suratkar2020}.
+                \item \textit{Parameters:} Connection interface (USB, NFC, Bluetooth); supported cryptographic curves (e.g., secp256k1).
+                \item \textit{Trade-offs:} Significantly enhances security against online threats but introduces usability friction, cost, and risks of physical loss or damage \cite{yu2024}.
+            \end{itemize}
+        \item \textbf{C1.2 (Hardware-Backed Encryption):}
+            \begin{itemize}
+                \item \textit{Mechanism:} Leverage Trusted Execution Environments (TEEs) or Secure Enclaves available on modern mobile devices to store and process cryptographic keys within a protected hardware zone \cite{houy2023}.
+                \item \textit{Parameters:} TEE provider (e.g., ARM TrustZone, Apple Secure Enclave).
+                \item \textit{Trade-offs:} High security on supported devices, but offers no protection on desktop systems or older mobile devices.
+            \end{itemize}
+    \end{itemize}
+
+    \item \textbf{Mitigation Controls:}
+    \begin{itemize}
+        \item \textbf{C2.1 (Risk Diversification):}
+            \begin{itemize}
+                \item \textit{Mechanism:} Users distribute assets across multiple wallets (e.g., a "spending" hot wallet with small funds and a "savings" cold wallet with large funds) to limit the potential loss from a single compromise \cite{yu2024}.
+                \item \textit{Effectiveness:} Limits financial impact but does not prevent the compromise of an individual wallet.
+            \end{itemize}
+        \item \textbf{C2.2 (Multi-Signature Schemes):}
+            \begin{itemize}
+                \item \textit{Mechanism:} Configure a wallet to require M-of-N signatures to authorize a transaction. A compromise of a single key is insufficient to move funds.
+                \item \textit{Parameters:} Signature threshold (e.g., 2-of-3, 3-of-5).
+                \item \textit{Trade-offs:} Increases security but adds complexity to transaction signing and key management.
+            \end{itemize}
+    \end{itemize}
+
+    \item \textbf{Detection Controls:}
+    \begin{itemize}
+        \item \textbf{C3.1 (Malicious Contract Simulation):}
+            \begin{itemize}
+                \item \textit{Mechanism:} Utilize third-party browser extensions (e.g., Fire, Revoke.cash) that simulate a transaction's outcome and check the destination address against known blacklists before the user signs it \cite{yu2024}.
+                \item \textit{Parameters:} Blacklist update frequency; simulation accuracy.
+                \item \textit{Effectiveness:} Effective against known scams but may not detect novel or zero-day threats.
+            \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\paragraph{Empirical Incident Analysis}
+
+\begin{itemize}
+    \item \textbf{Case Study AUX-WALLET-1.1: Widespread Credential Leakage in Android Wallets}
+    \begin{itemize}
+        \item \textbf{Incident Classification:}
+            \begin{itemize}
+                \item \textit{Precondition Analysis:} P1\checkmark (A 2021 study of 311 Android wallets found 111 stored key-related information in plaintext \cite{houy2023}), P2\checkmark (The analysis methodology relied on rooted devices, a common scenario for technically advanced users or victims of certain malware), P3\textbf{X} (This specific vulnerability does not rely on deceiving the user).
+                \item \textit{Invariant Violations:} INV-2 and INV-5 were made possible, as extracted keys would grant attackers full authorization to drain funds.
+                \item \textit{Defense Failures:} Absent C1.1 and C1.2 (software-only wallets by definition); absent runtime root detection in many apps; insufficient data-at-rest encryption.
+            \end{itemize}
+        \item \textbf{Quantitative Impact Assessment:}
+            \begin{itemize}
+                \item \textit{Direct Losses:} While difficult to aggregate, individual losses from such compromises range from negligible amounts to life-altering sums. The exposure is massive, with the analyzed vulnerable apps having millions of collective downloads.
+                \item \textit{Systemic Effects:} This systemic weakness erodes user trust in the security of the mobile wallet ecosystem and pushes security-conscious users towards more complex hardware solutions.
+            \end{itemize}
+        \item \textbf{Counterfactual Analysis:}
+            \begin{itemize}
+                \item \textit{Prevention:} Strict enforcement of data-at-rest encryption (using hardware-backed keystores, C1.2) would have rendered the extracted files useless to an attacker.
+                \item \textit{Detection:} Implementation of runtime root detection and alerts would have warned users that their device's security integrity was compromised, prompting them to move funds.
+            \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsection{Risk Category AUX-SERVICE-1: Compromise via Software Supply Chain and Third-Party Dependencies}
+
+\paragraph{Formal Risk Specification}
+
+\begin{itemize}
+    \item \textbf{Preconditions (P):}
+        \begin{itemize}
+            \item \textbf{P1: Reliance on Third-Party Custody:} The user delegates key management to a third-party service, such as a Centralized Exchange (CEX), creating a single point of failure and counterparty risk \cite{yu2024, suratkar2020}.
+            \item \textbf{P2: Vulnerable Upstream Dependencies:} The wallet software incorporates a third-party library that contains an exploitable vulnerability, or is used incorrectly due to ambiguous documentation \cite{houy2023}.
+            \item \textbf{P3: Insecure RPC Interface:} The wallet exposes an open Remote Procedure Call (RPC) interface, allowing other applications on the host machine to potentially issue commands without proper user authentication, enabling impersonation attacks \cite{houy2023}.
+        \end{itemize}
+
+    \item \textbf{Threatened System Invariants (I):}
+        \begin{itemize}
+            \item \textbf{INV-2 (Value Conservation):} User funds are lost due to a catastrophic failure, hack, or fraudulent activity by the custodial service.
+            \item \textbf{INV-7 (Asset Liveness):} User's ability to transact with or withdraw their assets is indefinitely suspended by the third-party service.
+        \end{itemize}
+
+    \item \textbf{Canonical Attack Sequence (S):}
+        \begin{enumerate}
+            \item \textbf{Vulnerability Identification phase:} An attacker audits a widely-used software library for bugs or identifies a custodial service with poor internal security controls.
+            \item \textbf{Exploitation phase:} The attacker exploits the identified flaw to gain unauthorized access to the service's systems or to craft malicious inputs for the vulnerable library.
+            \item \textbf{Impact phase:} The attacker executes mass exfiltration of funds from the service's hot wallets, or the service collapses due to mismanagement, leading to a freeze and eventual loss of all user assets.
+        \end{enumerate}
+\end{itemize}
+
+\paragraph{Defense Mechanism Analysis}
+\begin{itemize}
+    \item \textbf{Prevention Controls:}
+        \begin{itemize}
+            \item \textbf{C1.1 (Self-Custody Adoption):}
+                \begin{itemize}
+                    \item \textit{Mechanism:} Users maintain sole control of private keys using non-custodial wallets, completely eliminating third-party counterparty risk according to the "Not your keys, not your coins" principle \cite{yu2024}.
+                    \item \textit{Parameters:} Wallet type (EOA, Smart Contract).
+                    \item \textit{Trade-offs:} Transfers full security responsibility to the end-user, who may lack the expertise to prevent client-side attacks (see AUX-WALLET-1) \cite{yu2024, houy2023}.
+                \end{itemize}
+            \item \textbf{C1.2 (Formal Verification and Auditing):}
+                \begin{itemize}
+                    \item \textit{Mechanism:} Wallet providers and services undergo rigorous, independent security audits of their code and operational procedures before public launch and after major updates.
+                    \item \textit{Parameters:} Audit firms engaged; scope of the audit (e.g., smart contracts, backend infrastructure).
+                    \item \textit{Trade-offs:} Audits are costly, time-consuming, and do not guarantee the absence of all vulnerabilities, especially internal fraud.
+                \end{itemize}
+        \end{itemize}
+
+    \item \textbf{Mitigation Controls:}
+        \begin{itemize}
+            \item \textbf{C2.1 (Proof of Reserves):}
+                \begin{itemize}
+                    \item \textit{Mechanism:} Custodial services cryptographically prove on-chain that they hold assets equivalent to all user deposits, providing transparency and mitigating risk from commingling of funds.
+                    \item \textit{Parameters:} Audit frequency (e.g., quarterly, real-time); auditor independence.
+                    \item \textit{Trade-offs:} Does not prevent theft from a hack and can be complex to verify for non-technical users.
+                \end{itemize}
+        \end{itemize}
+\end{itemize}
+
+\paragraph{Empirical Incident Analysis}
+\begin{itemize}
+    \item \textbf{Case Study AUX-SERVICE-1.1: The Collapse of the FTX Exchange}
+        \begin{itemize}
+            \item \textbf{Incident Classification:}
+                \begin{itemize}
+                    \item \textit{Precondition Analysis:} P1\checkmark (FTX was a major custodial exchange where millions of users stored their assets), P2\textbf{X}, P3\textbf{X} (The failure was not attributed to a known software library or RPC vulnerability, but to internal fraud).
+                    \item \textit{Invariant Violations:} INV-2 (An estimated \$8-10 billion in user funds were lost or misappropriated), INV-7 (All user withdrawals were halted indefinitely, resulting in a total loss of asset liveness).
+                    \item \textit{Defense Failures:} Catastrophic failure across the board. Users failed to implement C1.1 (Self-Custody). The service itself lacked any verifiable C2.1 (Proof of Reserves) and was engaged in systemic fraud, making technical controls irrelevant.
+                \end{itemize}
+            \item \textbf{Quantitative Impact Assessment:}
+                \begin{itemize}
+                    \item \textit{Direct Losses:} Approximately \$8-10 billion in customer and creditor assets.
+                    \item \textit{Indirect Impact:} Severe contagion across the crypto industry, leading to multiple bankruptcies of related firms. Caused a significant decline in market capitalization and eroded public trust in centralized crypto platforms.
+                \end{itemize}
+            \item \textbf{Counterfactual Analysis:}
+                \begin{itemize}
+                    \item \textit{Prevention:} Users who practiced C1.1 (Self-Custody) were completely immune to the FTX collapse. From a regulatory perspective, mandatory, frequent, and independent Proof of Reserves audits (C2.1) could have exposed the financial deficit much earlier.
+                \end{itemize}
+        \end{itemize}
+\end{itemize}
+
+\subsubsection{Risk Quantification}
+
+Using our systematic scoring framework:
+
+\begin{itemize}
+    \item \textbf{AUX-WALLET-1 (Client-Side Compromise):}
+    \begin{itemize}
+        \item \textbf{Likelihood (L = 4):} High. The underlying vulnerabilities, such as plaintext key storage and the prevalence of mobile malware, are widespread in the ecosystem \cite{houy2023}.
+        \item \textbf{Impact (I = 5):} Critical. A successful attack almost always results in the total and irreversible loss of the user's funds stored in that wallet.
+        \item \textbf{Detectability (D = 2):} Hard. From the victim's perspective, the compromise is often invisible. There is usually no alert or indication of a breach until after the funds have been stolen.
+        \item \textbf{Composite Risk (R = 3.9):} $0.4 \times 4 + 0.5 \times 5 - 0.1 \times 2 = 1.6 + 2.5 - 0.2 = 3.9$ (Critical Priority)
+    \end{itemize}
+    
+    \item \textbf{AUX-SERVICE-1 (Supply Chain Compromise):}
+    \begin{itemize}
+        \item \textbf{Likelihood (L = 3):} Medium. While catastrophic failures like FTX are less frequent than individual compromises, major exchange hacks and service disruptions are a recurring threat pattern in the industry \cite{houy2023}.
+        \item \textbf{Impact (I = 5):} Critical. A single incident can impact millions of users and lead to systemic, industry-wide financial contagion with losses in the billions of dollars.
+        \item \textbf{Detectability (D = 3):} Medium. The internal compromise or mismanagement is extremely difficult for outsiders to detect, but the ultimate consequences (e.g., an exchange halting withdrawals) become publicly and immediately apparent.
+        \item \textbf{Composite Risk (R = 3.4):} $0.4 \times 3 + 0.5 \times 5 - 0.1 \times 3 = 1.2 + 2.5 - 0.3 = 3.4$ (High Priority)
+    \end{itemize}
+\end{itemize}
