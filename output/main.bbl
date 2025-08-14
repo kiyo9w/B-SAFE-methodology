@@ -1,5 +1,72 @@
 \begin{thebibliography}{10}
 
+\bibitem{Casino2019}
+F.~Casino, T.~K. Dasaklis, and C.~Patsakis, ``Blockchain technology in the
+  financial sector: A systematic review,'' {\em International Journal of
+  Production Economics}, vol.~211, pp.~210--224, 2019.
+\newblock Corresponds to [3] in source.
+
+\bibitem{Wang2019}
+W.~Wang {\em et~al.}, ``A survey on consensus mechanisms and mining strategy
+  management in blockchain networks,'' {\em IEEE Access}, vol.~7,
+  pp.~22328--22371, 2019.
+\newblock Corresponds to [1] in source.
+
+\bibitem{Eyal2014}
+I.~Eyal and E.~G. Sirer, ``Majority is not enough: Bitcoin mining is
+  vulnerable,'' in {\em Financial Cryptography and Data Security}, (Berlin,
+  Heidelberg), pp.~436--454, Springer, 2014.
+\newblock Corresponds to [2] in source.
+
+\bibitem{DeAguiar2022}
+M.~K. D. H.~D. Aguiar {\em et~al.}, ``A systematic review of blockchain
+  technology in healthcare: applications, techniques, challenges and
+  opportunities,'' {\em Journal of Network and Computer Applications},
+  vol.~202, p.~103361, 2022.
+\newblock Corresponds to [4] in source.
+
+\bibitem{Khan2022}
+M.~M.~S. Khan, R.~A. Shaikh, and A.~A. Brohi, ``A survey on smart contract
+  security: Attacks, defenses, and future trends,'' {\em IEEE Access}, vol.~10,
+  pp.~78378--78401, 2022.
+\newblock Corresponds to [5] in source.
+
+\bibitem{fumy1993}
+W.~Fumy and P.~Landrock, ``Principles of key management,'' {\em IEEE Journal on
+  Selected Areas in Communications}, vol.~11, no.~5, pp.~785--793, 1993.
+
+\bibitem{yu2024}
+Y.~Yu, T.~Sharma, S.~Das, and Y.~Wang, ``"don't put all your eggs in one
+  basket": How cryptocurrency users choose and secure their wallets,'' in {\em
+  Proceedings of the CHI Conference on Human Factors in Computing Systems (CHI
+  '24)}, (New York, NY, USA), Association for Computing Machinery, 2024.
+
+\bibitem{suratkar2020}
+S.~Suratkar, M.~Shirole, and S.~Bhirud, ``Cryptocurrency wallet: A review,'' in
+  {\em 2020 4th International Conference on Computer, Communication and Signal
+  Processing (ICCCSP)}, pp.~1--7, IEEE, 2020.
+
+\bibitem{houy2023}
+S.~Houy, P.~Schmid, and A.~Bartel, ``Security aspects of cryptocurrency
+  wallets---a systematic literature review,'' {\em ACM Computing Surveys},
+  vol.~56, no.~1, pp.~1--31, 2023.
+
+\bibitem{perez2021analysis}
+D.~Perez and B.~Livshits, ``Analysis of smart contract vulnerabilities and
+  exploitation in ethereum,'' in {\em Proceedings of the 43rd IEEE Symposium on
+  Security and Privacy (SP)}, pp.~603--619, IEEE, 2021.
+
+\bibitem{praitheeshan2019systematic}
+P.~Praitheeshan, L.~Pan, J.~Yu, J.~Liu, and R.~Doss, ``Systematic review of
+  security vulnerabilities in ethereum blockchain smart contracts,'' {\em IEEE
+  Access}, vol.~7, pp.~158530--158545, 2019.
+
+\bibitem{perez2020analysis}
+D.~Perez and B.~Livshits, ``Analysis of smart contract vulnerabilities and
+  exploitation on ethereum,'' in {\em Financial Cryptography and Data Security:
+  24th International Conference, FC 2020}, (Cham), pp.~457--471, Springer,
+  2020.
+
 \bibitem{zhou2023sok}
 L.~Zhou, X.~Xiong, J.~Ernstberger, S.~Chaliasos, Z.~Wang, Y.~Wang, K.~Qin,
   R.~Wattenhofer, D.~Song, and A.~Gervais, ``{SoK: Decentralized Finance (DeFi)
