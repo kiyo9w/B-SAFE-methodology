@@ -1,0 +1,20 @@
+\subsection{Five-Layer Blockchain Security Architecture}
+\label{sec:methodology_architecture}
+
+The B-SAFE framework is built upon a comprehensive five-layer reference architecture that captures the complete attack surface of blockchain systems. This layered approach enables systematic security analysis by organizing threats according to their architectural context and attack vectors.
+
+\subsubsection{Layer Definitions}
+\begin{itemize}
+    \item \textbf{NET (Network Layer):} Encompasses network-level attacks including eclipse attacks, Sybil attacks, and network partitioning vulnerabilities that can disrupt consensus and transaction propagation.
+    
+    \item \textbf{CON (Consensus Layer):} Addresses consensus mechanism vulnerabilities such as 51\% attacks, selfish mining, and consensus rule violations that threaten the fundamental security guarantees of the blockchain.
+    
+    \item \textbf{SC (Smart Contract Layer):} Covers smart contract vulnerabilities including reentrancy attacks, integer overflow, and logic flaws that can lead to unauthorized fund transfers or contract manipulation.
+    
+    \item \textbf{PRO (Protocol Layer):} Encompasses DeFi protocol-specific risks including flash loan attacks, oracle manipulation, and protocol governance vulnerabilities that can exploit economic incentives and protocol mechanics.
+    
+    \item \textbf{AUX (Auxiliary Layer):} Addresses supporting infrastructure risks including wallet security, key management, exchange vulnerabilities, and off-chain dependencies that can compromise user assets and system integrity.
+\end{itemize}
+
+\subsubsection{Cross-Layer Dependencies}
+The layered architecture recognizes that attacks often span multiple layers, with vulnerabilities in one layer enabling or amplifying threats in others. This interdependency is explicitly modeled in our risk assessment framework to provide a holistic view of the attack surface.

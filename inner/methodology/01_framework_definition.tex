@@ -1,0 +1,20 @@
+\subsection{B-SAFE Risk Classification Framework}
+\label{sec:methodology_risk_framework}
+To provide a systematic and reproducible security assessment, we establish a formal risk classification framework. Each identified threat category is specified through a standardized schema that defines its preconditions, the system invariants it threatens, its canonical attack vector, applicable defense mechanisms, and quantitative risk metrics.
+
+\subsubsection{Risk Category Specification Schema}
+Each risk category R is formally defined by the tuple \( (P, I, S, C, M) \) where:
+\begin{itemize}
+    \item \textbf{P = \{p$_1$, p$_2$, ..., p$_n$\}} represents the set of preconditions that must hold for an attack to be feasible.
+    \item \textbf{I = \{inv$_1$, inv$_2$, ..., inv$_m$\}} represents the set of core system invariants threatened by the attack.
+    \item \textbf{S = (s$_1$ → s$_2$ → ... → s$_k$)} represents the canonical sequence of steps in the attack vector.
+    \item \textbf{C = \{Prevention, Mitigation, Detection\}} represents the categories of defense mechanisms and controls.
+    \item \textbf{M = (L, I, D, R)} represents the quantitative risk metrics for the category.
+\end{itemize}
+
+\subsubsection{Quantitative Risk Scoring}
+The composite risk score \( R \) is calculated using a weighted formula based on Likelihood (L), Impact (I), and Detectability (D), each rated on a scale of 1 to 5. The formula is defined as:
+\begin{equation}
+    \text{Risk Score} = (w_L \times L) + (w_I \times I) - (w_D \times D)
+\end{equation}
+For this framework, we use the weights \(w_L=0.4\), \(w_I=0.5\), and \(w_D=0.1\), which prioritizes impact over likelihood while factoring in the difficulty of detection. This schema enables systematic incident classification and comparative analysis across different attack categories.
