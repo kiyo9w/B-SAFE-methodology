@@ -18,3 +18,10 @@ The composite risk score \( R \) is calculated using a weighted formula based on
     \text{Risk Score} = (w_L \times L) + (w_I \times I) - (w_D \times D)
 \end{equation}
 For this framework, we use the weights \(w_L=0.4\), \(w_I=0.5\), and \(w_D=0.1\), which prioritizes impact over likelihood while factoring in the difficulty of detection. This schema enables systematic incident classification and comparative analysis across different attack categories.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{../figure/fig1.png}
+\caption{Visual representation of the (P, I, S, C, M) schema applied to SC-1 Reentrancy Attack, showing how preconditions, invariants, attack sequence, controls, and metrics are systematically mapped to create a comprehensive risk specification.}
+\label{fig:schema_blueprint}
+\end{figure}

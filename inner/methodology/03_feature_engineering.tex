@@ -1,0 +1,60 @@
+\subsection{Feature Engineering}
+\label{sec:feature_engineering}
+
+To enable quantitative analysis and risk assessment, we constructed a comprehensive set of features from our incident dataset. These features capture both technical and economic aspects of each security incident.
+
+\subsubsection{Financial Impact Features}
+\textbf{Loss Normalization:}
+\begin{itemize}
+    \item \textbf{USD Value at Time of Incident:} All financial losses were converted to USD using exchange rates at the time of the incident
+    \item \textbf{Inflation Adjustment:} Historical losses were adjusted for inflation using CPI data
+    \item \textbf{Relative Loss:} Loss as a percentage of total value locked (TVL) or market capitalization
+\end{itemize}
+
+\textbf{Impact Categories:}
+\begin{itemize}
+    \item \textbf{Direct Losses:} Immediate financial impact on users and protocols
+    \item \textbf{Indirect Losses:} Market cap reduction, loss of user confidence, regulatory costs
+    \item \textbf{Recovery Costs:} Expenses related to incident response and remediation
+\end{itemize}
+
+\subsubsection{Technical Features}
+\textbf{Attack Complexity:}
+\begin{itemize}
+    \item \textbf{Technical Sophistication:} Rated on a scale of 1-5 based on required expertise
+    \item \textbf{Resource Requirements:} Computational, financial, or social engineering resources needed
+    \item \textbf{Time to Exploit:} Duration from vulnerability discovery to successful exploitation
+\end{itemize}
+
+\textbf{Defense Effectiveness:}
+\begin{itemize}
+    \item \textbf{Audit Status:} Whether the affected system had undergone security audits
+    \item \textbf{Control Implementation:} Presence and effectiveness of defense mechanisms
+    \item \textbf{Detection Time:} Time between attack initiation and detection
+\end{itemize}
+
+\subsubsection{Temporal and Contextual Features}
+\textbf{Timeline Features:}
+\begin{itemize}
+    \item \textbf{Incident Window:} Duration from attack initiation to resolution
+    \item \textbf{Rescue Window:} Time available for emergency response and fund recovery
+    \item \textbf{Market Conditions:} Cryptocurrency market state at time of incident
+\end{itemize}
+
+\textbf{Protocol Features:}
+\begin{itemize}
+    \item \textbf{Chain Affiliation:} Primary blockchain platform affected
+    \item \textbf{Protocol Type:} DeFi protocol category (DEX, lending, yield farming, etc.)
+    \item \textbf{Development Stage:} Protocol maturity and user adoption level
+\end{itemize}
+
+\subsubsection{Feature Validation}
+To ensure feature quality and consistency:
+\begin{itemize}
+    \item \textbf{Cross-Validation:} Multiple sources were used to verify feature values
+    \item \textbf{Expert Review:} Technical features were validated by security experts
+    \item \textbf{Statistical Checks:} Outliers and anomalies were identified and investigated
+\end{itemize}
+
+% TODO: Add specific feature construction algorithms and data processing pipelines
+

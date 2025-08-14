@@ -1,0 +1,55 @@
+\subsection{Incident Labeling Protocol}
+\label{sec:labeling_protocol}
+
+To ensure consistent and reproducible classification of security incidents, we developed a comprehensive labeling protocol that maps each incident to our formal risk classification framework.
+
+\subsubsection{Annotation Process}
+Our labeling process involved multiple stages to ensure accuracy and consistency:
+
+\begin{enumerate}
+    \item \textbf{Initial Classification:} Each incident was initially classified by a primary annotator
+    \item \textbf{Peer Review:} A second annotator reviewed and validated the classification
+    \item \textbf{Expert Adjudication:} Disagreements were resolved through expert review
+    \item \textbf{Quality Assurance:} Final classifications underwent quality control checks
+\end{enumerate}
+
+\subsubsection{Labeling Schema}
+Each incident was labeled according to the following schema:
+
+\textbf{Layer Classification (L):}
+\begin{itemize}
+    \item \textbf{NET:} Network layer attacks (eclipse, Sybil, partitioning)
+    \item \textbf{CON:} Consensus layer attacks (51\%, selfish mining, rule violations)
+    \item \textbf{SC:} Smart contract layer attacks (reentrancy, overflow, logic flaws)
+    \item \textbf{PRO:} Protocol layer attacks (flash loans, oracle manipulation, governance)
+    \item \textbf{AUX:} Auxiliary layer attacks (wallet security, key management, exchanges)
+\end{itemize}
+
+\textbf{Risk Category (R):} Each incident was assigned a unique risk category identifier (e.g., CON-1, SC-2)
+
+\textbf{Preconditions (P):} Specific conditions that enabled the attack
+
+\textbf{Invariants (I):} System invariants that were violated
+
+\textbf{Controls (C):} Defense mechanisms that were present, absent, or insufficient
+
+\subsubsection{Multi-Label Classification Rules}
+For incidents spanning multiple layers or categories, we applied the following rules:
+\begin{itemize}
+    \item \textbf{Primary Classification:} Based on the initial attack vector
+    \item \textbf{Secondary Classification:} For cascading effects across layers
+    \item \textbf{Impact Weighting:} Consideration of financial and technical impact
+\end{itemize}
+
+\subsubsection{Example: Labeled Incident}
+\textbf{Incident:} The DAO Hack (2016)
+\begin{itemize}
+    \item \textbf{Layer:} SC (Smart Contract)
+    \item \textbf{Risk Category:} SC-1 (Reentrancy Attack)
+    \item \textbf{Preconditions:} P1: Recursive call pattern, P2: State changes after external calls
+    \item \textbf{Invariants:} INV-1: Value Conservation, INV-2: Access Control
+    \item \textbf{Controls:} C1.1: Reentrancy guard (absent), C2.1: Checks-effects-interactions pattern (violated)
+\end{itemize}
+
+% TODO: Add inter-rater agreement statistics and validation procedures
+

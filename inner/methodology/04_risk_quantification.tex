@@ -1,0 +1,75 @@
+\subsection{Risk Quantification Model}
+\label{sec:risk_quantification}
+
+Our risk quantification model provides a systematic approach to assessing the severity and priority of blockchain security threats. The model incorporates multiple dimensions of risk to provide a comprehensive assessment framework.
+
+\subsubsection{Risk Scoring Formula}
+We employ a weighted risk scoring formula that considers three primary dimensions:
+
+\begin{equation}
+    \text{Risk Score} = (w_L \times L) + (w_I \times I) - (w_D \times D)
+\end{equation}
+
+Where:
+\begin{itemize}
+    \item \textbf{L (Likelihood):} Probability of successful attack execution (1-5 scale)
+    \item \textbf{I (Impact):} Potential financial and operational consequences (1-5 scale)
+    \item \textbf{D (Detectability):} Difficulty of detecting the attack (1-5 scale)
+    \item \textbf{w$_L$, w$_I$, w$_D$:} Weight coefficients for each dimension
+\end{itemize}
+
+\subsubsection{Weight Justification}
+Our weight selection prioritizes impact over likelihood while considering detection capabilities:
+
+\begin{itemize}
+    \item \textbf{w$_L$ = 0.4:} Likelihood receives moderate weight, reflecting that even low-probability attacks can be devastating
+    \item \textbf{w$_I$ = 0.5:} Impact receives the highest weight, emphasizing the importance of potential consequences
+    \item \textbf{w$_D$ = 0.1:} Detectability receives lower weight, as detection alone does not prevent damage
+\end{itemize}
+
+This weighting scheme aligns with industry best practices and reflects the asymmetric nature of blockchain security threats.
+
+\subsubsection{Scoring Criteria}
+\textbf{Likelihood (L) Scale:}
+\begin{itemize}
+    \item \textbf{1 (Very Low):} Theoretical attack, no known instances
+    \item \textbf{2 (Low):} Rare occurrences, significant technical barriers
+    \item \textbf{3 (Medium):} Occasional incidents, moderate technical requirements
+    \item \textbf{4 (High):} Frequent occurrences, minimal technical barriers
+    \item \textbf{5 (Very High):} Widespread exploitation, automated tools available
+\end{itemize}
+
+\textbf{Impact (I) Scale:}
+\begin{itemize}
+    \item \textbf{1 (Minimal):} < \$100K loss, no service disruption
+    \item \textbf{2 (Minor):} \$100K-\$1M loss, temporary service issues
+    \item \textbf{3 (Moderate):} \$1M-\$10M loss, significant service disruption
+    \item \textbf{4 (Major):} \$10M-\$100M loss, protocol failure
+    \item \textbf{5 (Critical):} > \$100M loss, systemic failure
+\end{itemize}
+
+\textbf{Detectability (D) Scale:}
+\begin{itemize}
+    \item \textbf{1 (Very Easy):} Immediate detection, clear indicators
+    \item \textbf{2 (Easy):} Quick detection, obvious symptoms
+    \item \textbf{3 (Moderate):} Detectable with monitoring, some ambiguity
+    \item \textbf{4 (Difficult):} Requires specialized tools, subtle indicators
+    \item \textbf{5 (Very Difficult):} Stealth attacks, minimal indicators
+\end{itemize}
+
+\subsubsection{Sensitivity Analysis}
+To validate our risk model, we conducted sensitivity analysis on:
+\begin{itemize}
+    \item \textbf{Weight Variations:} Testing different weight combinations
+    \item \textbf{Scale Sensitivity:} Analyzing the impact of scoring scale changes
+    \item \textbf{Threshold Effects:} Examining how risk thresholds affect prioritization
+\end{itemize}
+
+% TODO: Add specific sensitivity analysis results and validation metrics
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{../figure/fig3.png}
+\caption{Sensitivity analysis of risk scoring model to weight variations. The analysis demonstrates that impact weight (wI) has the highest influence on risk scores, while detectability weight (wD) has minimal effect, validating our weight selection strategy.}
+\label{fig:sensitivity_analysis}
+\end{figure}
