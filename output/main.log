@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.11)  14 AUG 2025 23:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.11)  14 AUG 2025 23:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -429,7 +429,11 @@ Package: parskip 2001/04/09 non-zero parskip adjustments
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count306
 \l__pdf_internal_box=\box104
-) (main.aux)
+) (main.aux
+
+LaTeX Warning: Label `fig:smart_contract_pareto' multiply defined.
+
+)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
@@ -523,13 +527,13 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 LaTeX Warning: No \author given.
 
-<../figure/fig1.png, id=231, 575.19pt x 547.47pt>
+<../figure/fig1.png, id=243, 575.19pt x 547.47pt>
 File: ../figure/fig1.png Graphic file (type png)
 <use ../figure/fig1.png>
 Package pdftex.def Info: ../figure/fig1.png  used on input line 124.
 (pdftex.def)             Requested size: 204.85672pt x 194.9839pt.
 (../inner/introduction.tex
-<../figure/fig2.png, id=232, 511.10536pt x 287.58989pt>
+<../figure/fig2.png, id=244, 511.10536pt x 287.58989pt>
 File: ../figure/fig2.png Graphic file (type png)
 <use ../figure/fig2.png>
 Package pdftex.def Info: ../figure/fig2.png  used on input line 8.
@@ -574,7 +578,7 @@ File: ../figure/fig2.png Graphic file (type png)
 Package pdftex.def Info: ../figure/fig2.png  used on input line 49.
 (pdftex.def)             Requested size: 204.85672pt x 115.27087pt.
 ) (../inner/methodology/02_labeling_protocol.tex [11]) (../inner/methodology/03_feature_engineering.tex) (../inner/methodology/04_risk_quantification.tex [12]
-<../figure/fig3.png, id=379, 547.04375pt x 631.35875pt>
+<../figure/fig3.png, id=391, 547.04375pt x 631.35875pt>
 File: ../figure/fig3.png Graphic file (type png)
 <use ../figure/fig3.png>
 Package pdftex.def Info: ../figure/fig3.png  used on input line 72.
@@ -588,12 +592,37 @@ File: ../figure/fig3.png Graphic file (type png)
 <use ../figure/fig3.png>
 Package pdftex.def Info: ../figure/fig3.png  used on input line 15.
 (pdftex.def)             Requested size: 204.85672pt x 236.4314pt.
- (../inner/incident_analysis/01_consensus_layer_analysis.tex) (../inner/incident_analysis/02_network_layer_analysis.tex) (../inner/incident_analysis/03_smart_contract_layer_analysis.tex [15] [16]
+ (../inner/incident_analysis/01_consensus_layer_analysis.tex) (../inner/incident_analysis/02_network_layer_analysis.tex) (../inner/incident_analysis/03_smart_contract_layer_analysis.tex
 File: ../figure/fig2.png Graphic file (type png)
 <use ../figure/fig2.png>
-Package pdftex.def Info: ../figure/fig2.png  used on input line 38.
+Package pdftex.def Info: ../figure/fig2.png  used on input line 8.
 (pdftex.def)             Requested size: 204.85672pt x 115.27087pt.
-) (../inner/incident_analysis/04_auxiliary_layer_analysis.tex [17] [18] [19]) (../inner/incident_analysis/05_defi_protocol_analysis.tex
+ [15] [16]
+Underfull \hbox (badness 10000) in paragraph at lines 157--158
+[]\OT1/cmr/bx/n/9 Boundary cal-cu-la-tion phase: \OT1/cmr/m/n/9 At-tacker
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 157--158
+\OT1/cmr/m/n/9 de-ter-mines spe-cific in-put val-ues that will
+ []
+
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 171--172
+[]\OT1/cmr/bx/n/9 Parameters: \OT1/cmr/m/n/9 Li-brary im-ple-men-ta-tion
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 263--264
+[]\OT1/cmr/bx/n/9 P1: Specification-Implementation Mis-
+ []
+
+[18] [19]
+File: ../figure/fig2.png Graphic file (type png)
+<use ../figure/fig2.png>
+Package pdftex.def Info: ../figure/fig2.png  used on input line 395.
+(pdftex.def)             Requested size: 204.85672pt x 115.27087pt.
+) (../inner/incident_analysis/04_auxiliary_layer_analysis.tex [20] [21] [22]) (../inner/incident_analysis/05_defi_protocol_analysis.tex
 File: ../figure/fig3.png Graphic file (type png)
 <use ../figure/fig3.png>
 Package pdftex.def Info: ../figure/fig3.png  used on input line 12.
@@ -603,26 +632,30 @@ File: ../figure/fig1.png Graphic file (type png)
 <use ../figure/fig1.png>
 Package pdftex.def Info: ../figure/fig1.png  used on input line 28.
 (pdftex.def)             Requested size: 204.85672pt x 194.9839pt.
-) (../inner/discussion.tex) [20] (main.bbl [21]) [22] (main.aux)
+) (../inner/discussion.tex) [23] (main.bbl [24]) [25] (main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 214D5F7893F1EE263183A007B1B7F98F;11421.
+(rerunfilecheck)             Checksum: E7C2E2B512EED20AA1165204D80783D0;12344.
  ) 
 Here is how much of TeX's memory you used:
- 13501 strings out of 474486
- 214723 string characters out of 5760170
+ 13525 strings out of 474486
+ 214990 string characters out of 5760170
  1952542 words of memory out of 5000000
- 35386 multiletter control sequences out of 15000+600000
+ 35390 multiletter control sequences out of 15000+600000
  572870 words of font info for 91 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,12n,79p,2604b,1115s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,12n,79p,1682b,1151s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcbx0900.pk> <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm0900.pk> <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm0600.pk> <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><D:/MikTex/fonts/type1/public/amsfonts/cmextra/cmbsy9.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmbx8.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmbx9.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmmi6.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmmi9.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmr6.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmr8.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmr9.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmsy9.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmti10.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmti12.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmti9.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmtt9.pfb><D:/MikTex/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on main.pdf (18 pages, 4085118 bytes).
+Output written on main.pdf (21 pages, 4100492 bytes).
 PDF statistics:
- 620 PDF objects out of 1000 (max. 8388607)
- 126 named destinations out of 1000 (max. 500000)
- 472 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 654 PDF objects out of 1000 (max. 8388607)
+ 146 named destinations out of 1000 (max. 500000)
+ 496 words of extra memory for PDF output out of 10000 (max. 10000000)
 

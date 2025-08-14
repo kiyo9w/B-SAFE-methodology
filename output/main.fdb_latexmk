@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1755189835.34583 "main.aux" "main.bbl" "main" 1755189838.2954 0
+["bibtex main"] 1755190547.85225 "main.aux" "main.bbl" "main" 1755190551.06386 0
   "../references.bib" 1755188398 8932 e41a0cccce4332debe9ee3d4057b20ab ""
   "D:/MikTex/bibtex/bst/bibtex/ieeetr.bst" 1291864344 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "main.aux" 1755189837 21457 56feba9651246df2c3ddb3fe2304e904 "pdflatex"
+  "main.aux" 1755190549 23797 50bb6dfa4b7f42fd357f089a31f1332b "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1755189835.78997 "d:/Codebase/CS372-Project/B-SAFE-methodology/output/main.tex" "main.pdf" "main" 1755189838.29654 0
+["pdflatex"] 1755190548.23215 "d:/Codebase/CS372-Project/B-SAFE-methodology/output/main.tex" "main.pdf" "main" 1755190551.06548 0
   "../figure/fig1.png" 1755188398 239196 b55aa01da0888e8c45ebba35e36d0604 ""
   "../figure/fig2.png" 1755188398 351909 5cbecb3a15fc3e79135a02cd373563e1 ""
   "../figure/fig3.png" 1755188398 2126953 9e8390ad5e39bdf9fc085a0677572a96 ""
@@ -15,7 +15,7 @@
   "../inner/incident_analysis.tex" 1755188398 2036 36f52f4334919f84d11c2f999060e8ce ""
   "../inner/incident_analysis/01_consensus_layer_analysis.tex" 1755188398 79 1a38b9741caf2d382878fc60b7044002 ""
   "../inner/incident_analysis/02_network_layer_analysis.tex" 1755188398 75 46c4d185c6268ea03194ad88b111c282 ""
-  "../inner/incident_analysis/03_smart_contract_layer_analysis.tex" 1755189831 14695 0385ac4eae961b2e62146a7adb94c7d7 ""
+  "../inner/incident_analysis/03_smart_contract_layer_analysis.tex" 1755190544 28794 46b5eefa14c1fe6dbaeb22bf98afed9c ""
   "../inner/incident_analysis/04_auxiliary_layer_analysis.tex" 1755188398 15603 5ec2718292b127b754f823626ae9a2d5 ""
   "../inner/incident_analysis/05_defi_protocol_analysis.tex" 1755188398 734 72d456fc787071909b95a3b0ccab2c39 ""
   "../inner/introduction.tex" 1755188398 1434 f88f81f4c4d214857fa853f8017bb9a6 ""
@@ -171,9 +171,9 @@
   "D:/MikTex/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "D:/MikTex/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
   "d:/Codebase/CS372-Project/B-SAFE-methodology/output/main.tex" 1755188398 6406 4df1ce3e8310bbf2687b743ae84b5a7e ""
-  "main.aux" 1755189837 21457 56feba9651246df2c3ddb3fe2304e904 "pdflatex"
-  "main.bbl" 1755189835 5653 45f4b8a0572894eb862c243dfdc6ec83 "bibtex main"
-  "main.out" 1755189837 11421 214d5f7893f1ee263183a007b1b7f98f "pdflatex"
+  "main.aux" 1755190549 23797 50bb6dfa4b7f42fd357f089a31f1332b "pdflatex"
+  "main.bbl" 1755190548 5653 45f4b8a0572894eb862c243dfdc6ec83 "bibtex main"
+  "main.out" 1755190549 12344 e7c2e2b512eed20aa1165204d80783d0 "pdflatex"
   "main.tex" 1755188398 6406 4df1ce3e8310bbf2687b743ae84b5a7e ""
   (generated)
   "main.aux"
