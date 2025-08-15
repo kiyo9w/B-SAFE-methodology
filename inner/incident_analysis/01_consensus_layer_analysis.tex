@@ -1,2 +1,281 @@
-\subsection{Consensus Layer Security Analysis}
-\label{sec:results_consensus}
+\subsection{Security Analysis of Consensus and Network Layers}
+\label{sec:results_consensus_network}
+
+\subsubsection{Risk Category CON-1: 51\% Majority Attack}
+
+\paragraph{Formal Risk Specification}
+
+\begin{itemize}
+    \item \textbf{Preconditions (P):}
+    \begin{itemize}
+        \item \textbf{P1: Hash Rate Concentration:} An attacker or coalition acquires control over 50\% of the network's total mining hashrate \cite{wang2019, eyal2014}.
+        \item \textbf{P2: Economic Viability:} The cost of acquiring the necessary hashrate, often rented from public markets like NiceHash, is lower than the potential financial gain from executing the attack \cite{casino2019}. This is particularly true for smaller-cap blockchains.
+    \end{itemize}
+
+    \item \textbf{Threatened System Invariants (I):}
+    \begin{itemize}
+        \item \textbf{INV-1 (Ledger Immutability):} The core guarantee that past transactions are permanent is violated, as the attacker can forcibly rewrite the ledger's history \cite{wang2019}.
+        \item \textbf{INV-2 (Value Conservation):} The attacker can reverse their own transactions after they have been confirmed, leading to successful double-spends and the creation of fraudulent value \cite{eyal2014}.
+    \end{itemize}
+
+    \item \textbf{Canonical Attack Sequence (S):}
+    \begin{enumerate}
+        \item \textbf{Preparation Phase:} The attacker sends cryptocurrency to a third party (e.g., an exchange) on the public chain \cite{casino2019}.
+        \item \textbf{Private Mining Phase:} Simultaneously, the attacker uses their majority hashrate to secretly mine an alternate, private version of the blockchain where the initial transaction never occurred \cite{eyal2014}.
+        \item \textbf{Reorganization Phase:} After the public transaction is confirmed and the attacker has withdrawn the exchanged assets, they release their longer private chain to the network. Following the "longest chain" rule, the rest of the network discards the original public chain and adopts the attacker's version \cite{wang2019}.
+        \item \textbf{Exploitation Phase:} The attacker's initial transaction is erased, yet they retain the assets from the exchange, completing the double-spend \cite{casino2019}.
+    \end{enumerate}
+\end{itemize}
+
+\paragraph{Defense Mechanism Analysis}
+
+\begin{itemize}
+    \item \textbf{Prevention Controls:}
+    \begin{itemize}
+        \item \textbf{C1.1 (Economic Security):}
+            \begin{itemize}
+                \item \textit{Mechanism:} Grow the network's total hash rate to a level where acquiring 51\% becomes prohibitively expensive \cite{wang2019}.
+                \item \textit{Trade-offs:} This defense is an emergent property of a chain's value and community size, making it difficult to "engineer" directly, especially for minority chains \cite{eyal2014}.
+            \end{itemize}
+    \end{itemize}
+    \item \textbf{Mitigation Controls:}
+    \begin{itemize}
+        \item \textbf{C2.1 (Increased Confirmation Requirements):}
+            \begin{itemize}
+                \item \textit{Mechanism:} Services, particularly exchanges, can wait for a much larger number of blocks to be mined on top of a deposit before crediting it \cite{casino2019}. This forces an attacker to maintain the costly majority hashrate for a longer period.
+                \item \textit{Trade-offs:} Significantly increases transaction settlement times and reduces usability \cite{casino2019}.
+            \end{itemize}
+    \end{itemize}
+    \item \textbf{Detection Controls:}
+    \begin{itemize}
+        \item \textbf{C3.1 (Hashrate Distribution Monitoring):}
+            \begin{itemize}
+                \item \textit{Mechanism:} Monitor the distribution of hashrate on public markets and be alerted to large, sudden accumulations of mining power pointed at specific chains \cite{wang2019}. A successful reorganization is immediately detectable after the fact.
+            \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\paragraph{Empirical Incident Analysis}
+
+\begin{itemize}
+    \item \textbf{Case Study CON-1.1: Attacks on Ethereum Classic (ETC) and Bitcoin Gold (BTG)}
+    \begin{itemize}
+        \item \textbf{Incident Classification:}
+            \begin{itemize}
+                \item \textit{Precondition Analysis:} P1 and P2 were met as these are minority chains, and the necessary hashrate was readily and cheaply available for rent on public markets like NiceHash \cite{casino2019, eyal2014}.
+                \item \textit{Invariant Violations:} Both INV-1 and INV-2 were catastrophically violated, allowing attackers to rewrite chain history and execute double-spends against exchanges, leading to tens of millions of dollars in fraudulent transactions \cite{casino2019}.
+                \item \textit{Defense Failures:} The targeted exchanges had insufficient C2.1 confirmation thresholds, underestimating the practical risk posed by the commodification of hashrate \cite{eyal2014}.
+            \end{itemize}
+        \item \textbf{Quantitative Impact Assessment:}
+            \begin{itemize}
+                \item \textit{Direct Losses:} Tens of millions of dollars in fraudulent transactions across multiple incidents \cite{casino2019}.
+                \item \textit{Systemic Effects:} The events severely eroded trust in the security of smaller Proof-of-Work chains, leading to market cap decline and delistings from major exchanges \cite{casino2019, wang2019}.
+            \end{itemize}
+        \item \textbf{Counterfactual Analysis:}
+            \begin{itemize}
+                \item \textit{Prevention:} Had the exchanges implemented drastically higher C2.1 confirmation requirements tailored to the specific economic security level of these chains, the cost and duration of the attack would have likely become unprofitable, deterring the attacker \cite{eyal2014}.
+            \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Risk Category CON-2: Selfish Mining}
+
+\paragraph{Formal Risk Specification}
+
+\begin{itemize}
+    \item \textbf{Preconditions (P):}
+    \begin{itemize}
+        \item \textbf{P1: Significant Hashrate Control:} An attacker, typically a large mining pool, controls a significant, though not necessarily majority, portion of the hashrate (e.g., >25\%) \cite{eyal2014}.
+        \item \textbf{P2: Network Latency Exploitation:} The attack relies on the unavoidable latencies of a global P2P network, which give the attacker a time advantage when strategically releasing their hidden blocks \cite{eyal2014, wang2019}.
+    \end{itemize}
+
+    \item \textbf{Threatened System Invariants (I):}
+    \begin{itemize}
+        \item \textbf{INV-3 (Fair Reward Distribution):} The invariant that a miner's expected rewards are proportional to their share of the total hashrate is violated, as the attacker earns a disproportionate share \cite{eyal2014}.
+        \item \textbf{INV-4 (Network Decentralization):} The increased profitability of selfish mining incentivizes more miners to join the selfish pool, further centralizing the network's power and making it more vulnerable \cite{eyal2014}.
+    \end{itemize}
+
+    \item \textbf{Canonical Attack Sequence (S):}
+    \begin{enumerate}
+        \item \textbf{Find \& Withhold:} The selfish pool finds a new block but does not broadcast it, starting a private chain \cite{eyal2014}.
+        \item \textbf{Secret Mining:} The pool continues to mine on its secret chain. Meanwhile, the rest of the network mines on the public chain, unaware of the new block \cite{eyal2014}.
+        \item \textbf{Strategic Race:} If an honest miner finds and broadcasts a competing block, the selfish miner immediately releases their secret block. The network is now split, creating a race \cite{eyal2014, wang2019}.
+        \item \textbf{Gain Advantage:} If the selfish pool finds a second secret block before anyone else, their private chain gains a definitive lead. They can then release their longer chain at a strategic moment, invalidating and orphaning all the work done by honest miners in the interim \cite{eyal2014}.
+    \end{enumerate}
+\end{itemize}
+
+\paragraph{Defense Mechanism Analysis}
+
+\begin{itemize}
+    \item \textbf{Prevention Controls:}
+    \begin{itemize}
+        \item \textbf{C1.1 (Consensus Rule Modification):}
+            \begin{itemize}
+                \item \textit{Mechanism:} Implement changes to the consensus protocol to make selfish mining less profitable, such as penalizing miners for contributing to blocks that are later orphaned or adjusting block timestamp policies to detect withholding behavior \cite{eyal2014, wang2019}.
+            \end{itemize}
+    \end{itemize}
+    \item \textbf{Detection Controls:}
+    \begin{itemize}
+        \item \textbf{C3.1 (Orphan Block Rate Analysis):}
+            \begin{itemize}
+                \item \textit{Mechanism:} Monitor the network for pools with anomalously high orphan block rates, which can be an indicator of selfish mining activity \cite{wang2019}.
+            \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\paragraph{Empirical Incident Analysis}
+
+\begin{itemize}
+    \item \textbf{Case Study CON-2.1: Game-Theoretic Viability}
+    \begin{itemize}
+        \item \textbf{Incident Classification:}
+            \begin{itemize}
+                \item \textit{Precondition Analysis:} P1 is the key precondition, with academic analysis showing viability for pools controlling over 25\% of the network hashrate \cite{eyal2014}.
+                \item \textit{Invariant Violations:} INV-3 and INV-4 are the primary invariants threatened by this strategy \cite{eyal2014}.
+                \item \textit{Defense Failures:} This is a behavioral, game-theoretic attack, making it difficult to prevent without altering the core protocol incentives \cite{eyal2014, wang2019}.
+            \end{itemize}
+        \item \textbf{Quantitative Impact Assessment:}
+            \begin{itemize}
+                \item \textit{Direct Losses:} No direct theft of funds, but a redistribution of future mining rewards to the attacker \cite{eyal2014}.
+                \item \textit{Systemic Effects:} If widely adopted, it could lead to extreme centralization of mining power, undermining the security of the entire network \cite{eyal2014, wang2019}.
+            \end{itemize}
+        \item \textbf{Counterfactual Analysis:}
+            \begin{itemize}
+                \item \textit{Prevention:} The most effective prevention would be a modification to the core consensus rules that neutralizes the profitability of the selfish mining strategy \cite{eyal2014}.
+            \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Risk Category CON-3: Proof-of-Stake Long-Range Attack}
+
+\paragraph{Formal Risk Specification}
+
+\begin{itemize}
+    \item \textbf{Preconditions (P):}
+    \begin{itemize}
+        \item \textbf{P1: Acquisition of Old Keys:} The attacker must possess the private keys of a significant coalition of former validators from an early period of the chain's history \cite{wang2019}.
+        \item \textbf{P2: No Slashing Risk:} These validators must have already unbonded their stake, meaning they no longer have any "skin in the game" and cannot be penalized for misbehavior \cite{wang2019}.
+        \item \textbf{P3: Lack of Trusted Checkpoints:} The attack relies on a new or returning node having no trusted way to distinguish the legitimate chain from the attacker's forged version \cite{wang2019}.
+    \end{itemize}
+
+    \item \textbf{Threatened System Invariants (I):}
+    \begin{itemize}
+        \item \textbf{INV-5 (Transaction Finality):} This attack represents a catastrophic violation of finality. Unlike a PoW 51\% attack that revises recent history, a long-range attack can theoretically rewrite the entire history of the blockchain \cite{wang2019}.
+        \item \textbf{INV-6 (Ledger Integrity):} The attack fundamentally undermines the integrity and trustworthiness of the PoS ledger, as it suggests that no transaction can ever be considered fully and permanently settled \cite{wang2019}.
+    \end{itemize}
+
+    \item \textbf{Canonical Attack Sequence (S):}
+    \begin{enumerate}
+        \item \textbf{Acquire Keys:} The attacker gathers the private keys of a set of validators who were active long ago \cite{wang2019}.
+        \item \textbf{Forge History:} Starting from an early block, the attacker uses these keys to create a new, alternate blockchain. Since signing blocks in PoS is computationally cheap, this forged chain can be created quickly \cite{wang2019}.
+        \item \textbf{Ambush New Nodes:} The attacker presents this long, valid-looking (but forged) chain to new nodes joining the network, which may accept it as the legitimate history \cite{wang2019}.
+    \end{enumerate}
+\end{itemize}
+
+\paragraph{Defense Mechanism Analysis}
+
+\begin{itemize}
+    \item \textbf{Prevention Controls:}
+    \begin{itemize}
+        \item \textbf{C1.1 (Weak Subjectivity):}
+            \begin{itemize}
+                \item \textit{Mechanism:} Instead of validating a chain from its genesis block, new or returning nodes are required to fetch a recent, trusted "checkpoint" block hash from a reliable source (e.g., developers, exchanges, community forums). This prevents them from being fooled by a long-range forged history \cite{wang2019}.
+            \end{itemize}
+    \end{itemize}
+    \item \textbf{Mitigation Controls:}
+    \begin{itemize}
+        \item \textbf{C2.1 (Checkpoint Redundancy):}
+            \begin{itemize}
+                \item \textit{Mechanism:} Publicize and widely distribute trusted checkpoint hashes through multiple, redundant channels to make it harder for an attacker to trick a large number of nodes \cite{wang2019}.
+            \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Risk Category NET-1: Eclipse Attack}
+
+\paragraph{Formal Risk Specification}
+
+\begin{itemize}
+    \item \textbf{Preconditions (P):}
+    \begin{itemize}
+        \item \textbf{P1: Sybil Attack Capability:} The adversary is able to generate numerous pseudonymous identities to control a large number of IP addresses on the network \cite{wang2019}.
+        \item \textbf{P2: Peer-Discovery Monopolization:} The attacker can exploit the victim node's peer discovery mechanism to ensure that all of its network connections are exclusively with adversary-controlled nodes \cite{wang2019}.
+    \end{itemize}
+
+    \item \textbf{Threatened System Invariants (I):}
+    \begin{itemize}
+        \item \textbf{INV-7 (Network View Integrity):} The victim's perception of the blockchain is completely dictated by the attacker; they are severed from the honest network and fed a fabricated reality \cite{wang2019}.
+        \item \textbf{INV-8 (Permissionless Propagation):} The victim cannot propagate its own transactions or blocks to the honest network, and it does not receive legitimate updates from it \cite{wang2019}.
+    \end{itemize}
+
+    \item \textbf{Canonical Attack Sequence (S):}
+    \begin{enumerate}
+        \item \textbf{Infiltration:} The attacker floods the victim's peer-discovery mechanism with their Sybil identities, often when the victim's node restarts \cite{wang2019}.
+        \item \textbf{Isolation:} The attacker successfully monopolizes all of the victim's available connection slots, effectively "eclipsing" it from the rest of the P2P network \cite{wang2019}.
+        \item \textbf{Exploitation:} Once isolated, the attacker can co-opt the victim's mining power onto a fake chain or trick the victim into accepting fraudulent transactions by presenting a false version of the blockchain ledger \cite{wang2019, eyal2014}.
+    \end{enumerate}
+\end{itemize}
+
+\paragraph{Defense Mechanism Analysis}
+
+\begin{itemize}
+    \item \textbf{Prevention Controls:}
+    \begin{itemize}
+        \item \textbf{C1.1 (Hardened Peer-Discovery):}
+            \begin{itemize}
+                \item \textit{Mechanism:} Modern blockchain clients have hardened their peer-discovery logic. This includes randomizing peer storage in the database and diversifying connections across different IP address ranges \cite{wang2019}.
+            \end{itemize}
+    \end{itemize}
+    \item \textbf{Mitigation Controls:}
+    \begin{itemize}
+        \item \textbf{C2.1 (Trusted Node Anchoring):}
+            \begin{itemize}
+                \item \textit{Mechanism:} Allow nodes to maintain a persistent, prioritized connection to a set of pre-configured, known-good nodes. This ensures that even if all random connection slots are compromised, the node retains a lifeline to the honest network, preventing total isolation \cite{wang2019}.
+            \end{itemize}
+    \end{itemize}
+    \item \textbf{Detection Controls:}
+    \begin{itemize}
+        \item \textbf{C3.1 (Out-of-Band Checks):}
+            \begin{itemize}
+                \item \textit{Mechanism:} The node operator must perform out-of-band checks, such as comparing their perceived latest block hash against the hash shown on a public, trusted block explorer. A mismatch would indicate a potential network-level attack.
+            \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Risk Quantification}
+
+Using our systematic scoring framework:
+
+\begin{itemize}
+    \item \textbf{CON-1 (51\% Attack):}
+    \begin{itemize}
+        \item \textbf{Likelihood (L=2):} Low. Difficult on major chains but a demonstrated threat to smaller ones \cite{eyal2014, casino2019}.
+        \item \textbf{Impact (I=5):} Critical. Violates the core promise of blockchain and leads to massive financial loss \cite{casino2019}.
+        \item \textbf{Detectability (D=3):} Moderate. A reorg is obvious after the fact, but predicting the hashrate accumulation is difficult \cite{wang2019}.
+        \item \textbf{Composite Risk (R=3.0):} $0.4 \times 2 + 0.5 \times 5 - 0.1 \times 3 = 0.8 + 2.5 - 0.3 = 3.0$ (High Priority)
+    \end{itemize}
+    
+    \item \textbf{CON-2 (Selfish Mining):}
+    \begin{itemize}
+        \item \textbf{Likelihood (L=3):} Medium. A rational strategy for any large mining pool \cite{eyal2014}.
+        \item \textbf{Impact (I=3):} Moderate. Does not steal past funds but undermines the future economic security and decentralization of the network \cite{eyal2014, wang2019}.
+        \item \textbf{Detectability (D=4):} Hard. Difficult to distinguish from normal network conditions like high orphan rates due to latency \cite{wang2019}.
+        \item \textbf{Composite Risk (R=2.3):} $0.4 \times 3 + 0.5 \times 3 - 0.1 \times 4 = 1.2 + 1.5 - 0.4 = 2.3$ (Medium Priority)
+    \end{itemize}
+
+    \item \textbf{CON-3 (PoS Long-Range Attack):}
+    \begin{itemize}
+        \item \textbf{Likelihood (L=1):} Very Low. A complex, theoretical attack that requires significant coordination and access to old keys \cite{wang2019}.
+        \item \textbf{Impact (I=5):} Critical. Has the potential to rewrite the entire chain history, destroying trust completely \cite{wang2019}.
+        \item \textbf{Detectability (D=5):} Very Hard. An isolated new node cannot detect this attack on its own \cite{wang2019}.
+        \item \textbf{Composite Risk (R=2.4):} $0.4 \times 1 + 0.5 \times 5 - 0.1 \times 5 = 0.4 + 2.5 - 0.5 = 2.4$ (Medium Priority)
+    \end{itemize}
+
+    \item \textbf{NET-1 (Eclipse Attack):}
+    \begin{itemize}
+        \item \textbf{Likelihood (L=3):} Medium. A known vector for targeted attacks, though modern clients are more resilient \cite{wang2019}.
+        \item \textbf{Impact (I=4):} High. For the victim, the consequences (theft, wasted mining) are severe \cite{eyal2014}.
+        \item \textbf{Detectability (D=4):} Hard. From the victim's perspective, the network appears normal, making detection nearly impossible without external tools.
+        \item \textbf{Composite Risk (R=2.8):} $0.4 \times 3 + 0.5 \times 4 - 0.1 \times 4 = 1.2 + 2.0 - 0.4 = 2.8$ (High Priority)
+    \end{itemize}
+\end{itemize}
