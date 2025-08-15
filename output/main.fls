@@ -151,14 +151,8 @@ INPUT D:\MikTex\tex\latex\epstopdf-pkg\epstopdf-base.sty
 INPUT D:\MikTex\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT D:\MikTex\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT D:\MikTex\tex\latex\00miktex\epstopdf-sys.cfg
-INPUT .\main.out
-INPUT .\main.out
-INPUT main.out
-INPUT main.out
-OUTPUT main.pdf
-INPUT .\main.out
-INPUT .\main.out
 OUTPUT main.out
+OUTPUT main.pdf
 INPUT D:\MikTex\fonts\tfm\public\cm\cmr17.tfm
 INPUT D:\MikTex\fonts\tfm\public\cm\cmbx12.tfm
 INPUT D:\MikTex\fonts\tfm\public\cm\cmr12.tfm
