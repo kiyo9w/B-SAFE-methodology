@@ -1,24 +1,27 @@
 # Fdb version 4
-["bibtex main"] 1755340872.30958 "main.aux" "main.bbl" "main" 1755340872.69 2
+["bibtex main"] 1755361813.54298 "main.aux" "main.bbl" "main" 1755361813.89577 2
   "../references.bib" 1755339372 9636 508920d9ce9cc6dda5550a95129cf81b ""
   "D:/MikTex/bibtex/bst/bibtex/ieeetr.bst" 1291864344 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "main.aux" 1755340871 27213 c43bfcc6721f946b0f780f793948850d "pdflatex"
+  "main.aux" 1755361812 27213 521c934931c77371095c30e3f89701b2 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1755340866.58504 "d:/Codebase/CS372-Project/B-SAFE-methodology/output/main.tex" "main.pdf" "main" 1755340872.69061 0
+["pdflatex"] 1755361807.71328 "d:/Codebase/CS372-Project/B-SAFE-methodology/output/main.tex" "main.pdf" "main" 1755361813.89637 0
+  "../figure/Fig10.png" 1755360531 81714 095c1a631cd600bd759c6557fc88a652 ""
+  "../figure/Fig11.png" 1755360836 95302 7b8263a2dcc173c103db925350478eff ""
+  "../figure/Fig9.png" 1755360170 125197 3fed8f350ed5455e44d4736622d90b5f ""
   "../figure/fig1.png" 1755340184 864755 319ab9d1df7fd4bc6cbc5ebe95631a4b ""
   "../figure/fig2.png" 1755339372 63797 69412617a4046aa9021b1a65f3c772cf ""
   "../figure/fig3.png" 1755339372 123241 ca7e40d3b191465ee5069118c614e216 ""
   "../figure/methodology/fig4.png" 1755340191 405642 4d186b14932455ecdb5ecf9c81371875 ""
   "../inner/discussion.tex" 1755188398 1397 54457b2191cc769e2bfeda4a23cab365 ""
-  "../inner/incident_analysis.tex" 1755188398 2036 36f52f4334919f84d11c2f999060e8ce ""
+  "../inner/incident_analysis.tex" 1755361806 2037 f74d79924b2bf3f96df210da015cd5e1 ""
   "../inner/incident_analysis/01_consensus_layer_analysis.tex" 1755277931 20087 cee62e8a651376c79165e47a056e0792 ""
   "../inner/incident_analysis/02_network_layer_analysis.tex" 1755188398 75 46c4d185c6268ea03194ad88b111c282 ""
-  "../inner/incident_analysis/03_smart_contract_layer_analysis.tex" 1755190544 28794 46b5eefa14c1fe6dbaeb22bf98afed9c ""
+  "../inner/incident_analysis/03_smart_contract_layer_analysis.tex" 1755361281 28794 72d4fd8327050940b1576c21be1e364d ""
   "../inner/incident_analysis/04_auxiliary_layer_analysis.tex" 1755188398 15603 5ec2718292b127b754f823626ae9a2d5 ""
-  "../inner/incident_analysis/05_defi_protocol_analysis.tex" 1755188398 734 72d456fc787071909b95a3b0ccab2c39 ""
+  "../inner/incident_analysis/05_defi_protocol_analysis.tex" 1755361504 735 8a9614c0e68fa4b1c3f18cd55787f4e7 ""
   "../inner/introduction.tex" 1755340865 1434 b095f7aec705e2c0871dc206694c50d3 ""
   "../inner/literature_review.tex" 1755188398 662 8ba170249c3e5744e47261e26400ae59 ""
   "../inner/literature_review/01_consensus_attacks.tex" 1755188398 8375 f193ccd7e18838883e4e8c946f9e699b ""
@@ -172,9 +175,9 @@
   "D:/MikTex/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "D:/MikTex/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
   "d:/Codebase/CS372-Project/B-SAFE-methodology/output/main.tex" 1755278639 6406 4df1ce3e8310bbf2687b743ae84b5a7e ""
-  "main.aux" 1755340871 27213 c43bfcc6721f946b0f780f793948850d "pdflatex"
-  "main.bbl" 1755340872 5653 45f4b8a0572894eb862c243dfdc6ec83 "bibtex main"
-  "main.out" 1755340871 13743 95965af5dbade1de56bac80adeff717e "pdflatex"
+  "main.aux" 1755361812 27213 521c934931c77371095c30e3f89701b2 "pdflatex"
+  "main.bbl" 1755361813 5653 45f4b8a0572894eb862c243dfdc6ec83 "bibtex main"
+  "main.out" 1755361812 13743 95965af5dbade1de56bac80adeff717e "pdflatex"
   "main.tex" 1755278639 6406 4df1ce3e8310bbf2687b743ae84b5a7e ""
   (generated)
   "main.aux"
