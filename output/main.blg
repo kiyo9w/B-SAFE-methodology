@@ -2,42 +2,42 @@ This is BibTeX, Version 0.99d
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 Case mismatch error between cite keys wang2019 and Wang2019
----line 119 of file main.aux
+---line 121 of file main.aux
  : \citation{wang2019
  :                   ,eyal2014}
 I'm skipping whatever remains of this command
 Case mismatch error between cite keys casino2019 and Casino2019
----line 120 of file main.aux
+---line 122 of file main.aux
  : \citation{casino2019
  :                     }
 I'm skipping whatever remains of this command
 Case mismatch error between cite keys wang2019 and Wang2019
----line 134 of file main.aux
+---line 123 of file main.aux
  : \citation{wang2019
  :                   }
 I'm skipping whatever remains of this command
 Case mismatch error between cite keys eyal2014 and Eyal2014
----line 135 of file main.aux
+---line 124 of file main.aux
  : \citation{eyal2014
  :                   }
 I'm skipping whatever remains of this command
 Case mismatch error between cite keys casino2019 and Casino2019
----line 136 of file main.aux
+---line 125 of file main.aux
  : \citation{casino2019
  :                     }
 I'm skipping whatever remains of this command
 Case mismatch error between cite keys eyal2014 and Eyal2014
----line 137 of file main.aux
+---line 126 of file main.aux
  : \citation{eyal2014
  :                   }
 I'm skipping whatever remains of this command
 Case mismatch error between cite keys wang2019 and Wang2019
----line 138 of file main.aux
+---line 127 of file main.aux
  : \citation{wang2019
  :                   }
 I'm skipping whatever remains of this command
 Case mismatch error between cite keys casino2019 and Casino2019
----line 139 of file main.aux
+---line 128 of file main.aux
  : \citation{casino2019
  :                     }
 I'm skipping whatever remains of this command
@@ -122,17 +122,17 @@ Case mismatch error between cite keys eyal2014 and Eyal2014
  :                   }
 I'm skipping whatever remains of this command
 Case mismatch error between cite keys eyal2014 and Eyal2014
----line 160 of file main.aux
+---line 156 of file main.aux
  : \citation{eyal2014
  :                   }
 I'm skipping whatever remains of this command
 Case mismatch error between cite keys eyal2014 and Eyal2014
----line 161 of file main.aux
+---line 157 of file main.aux
  : \citation{eyal2014
  :                   ,wang2019}
 I'm skipping whatever remains of this command
 Case mismatch error between cite keys eyal2014 and Eyal2014
----line 162 of file main.aux
+---line 158 of file main.aux
  : \citation{eyal2014
  :                   }
 I'm skipping whatever remains of this command
@@ -222,12 +222,12 @@ Case mismatch error between cite keys wang2019 and Wang2019
  :                   }
 I'm skipping whatever remains of this command
 Case mismatch error between cite keys wang2019 and Wang2019
----line 185 of file main.aux
+---line 180 of file main.aux
  : \citation{wang2019
  :                   }
 I'm skipping whatever remains of this command
 Case mismatch error between cite keys wang2019 and Wang2019
----line 186 of file main.aux
+---line 181 of file main.aux
  : \citation{wang2019
  :                   }
 I'm skipping whatever remains of this command
@@ -335,10 +335,6 @@ Repeated entry---line 469 of file ../references.bib
  :                    ,
 I'm skipping whatever remains of this entry
 Repeated entry---line 489 of file ../references.bib
- : @article{Wang2019
- :                  ,
-I'm skipping whatever remains of this entry
-Repeated entry---line 509 of file ../references.bib
  : @inproceedings{Eyal2014
  :                        ,
 I'm skipping whatever remains of this entry
@@ -383,4 +379,4 @@ warning$ -- 0
 while$ -- 73
 width$ -- 25
 write$ -- 243
-(There were 68 error messages)
+(There were 67 error messages)
