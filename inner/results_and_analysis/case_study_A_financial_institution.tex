@@ -1,0 +1,67 @@
+\subsection{Case Study A: Financial Institution}
+
+\subsubsection{Enterprise Context and Objectives}
+This case examines a regulated financial institution exploring permissioned blockchain for interbank settlement and asset tokenization. Objectives include operational resilience, compliance alignment, and quantifiable ROI through process automation and reduced reconciliation overhead.
+
+\subsubsection{System Architecture and Integration Touchpoints}
+Summarize core systems (core banking, KYC/AML, custody/HSM, SIEM/SOC, API gateways) and blockchain platform components (consortium network, consensus mechanism, node topology, key management).
+
+\subsubsection{Scope and Assumptions}
+Define boundaries (pilot vs. production), data classification, participating entities, regulatory jurisdictions, and third-party dependencies.
+
+\subsubsection{B-SAFE Checklist Application}
+The following table captures checklist outcomes at the capability level. Status reflects current readiness; Score is an ordinal readiness measure (0–3); Gaps capture blockers; Owner is accountable function.
+
+\begin{table}[H]
+\centering
+\caption{Checklist outcomes (Financial Institution)}
+\begin{tabularx}{0.98\linewidth}{l l c X l}
+\toprule
+\textbf{Domain} & \textbf{Capability} & \textbf{Score} & \textbf{Gap/Action} & \textbf{Owner} \\
+\midrule
+Business & Strategic Alignment &  &  & CTO Office \\
+Business & ROI Model &  &  & Finance \\
+Technical & Integration Readiness &  &  & Platform Eng \\
+Technical & Infrastructure Baseline &  &  & SRE \\
+Human & Skills \& Training &  &  & HR/Tech L\'ead \\
+Architecture & Platform Selection &  &  & Architecture Board \\
+Security & Key Management (HSM) &  &  & Security Eng \\
+Security & Smart Contract Audit &  &  & AppSec \\
+Compliance & Regulatory Mapping &  &  & Compliance \\
+Operations & Incident Response &  &  & SOC \\
+Deployment & Pilot Plan &  &  & PMO \\
+\bottomrule
+\end{tabularx}
+\label{tab:fi_checklist}
+\end{table}
+
+\subsubsection{Risk and Success Metrics}
+Define leading/lagging indicators and acceptance criteria.
+
+\begin{table}[H]
+\centering
+\caption{Risk and success metrics}
+\begin{tabularx}{0.98\linewidth}{l X X l}
+\toprule
+\textbf{Metric} & \textbf{Baseline} & \textbf{Target/Threshold} & \textbf{Data Source} \\
+\midrule
+Key Compromise Probability &  &  & HSM audit logs \\
+Settlement Latency (p95) &  &  & Monitoring (APM) \\
+Change Failure Rate &  &  & SDLC metrics \\
+Incident MTTR &  &  & SOC tickets \\
+Compliance Exceptions &  &  & GRC tool \\
+\bottomrule
+\end{tabularx}
+\label{tab:fi_metrics}
+\end{table}
+
+\subsubsection{Findings and Recommendations}
+Provide prioritized remediation actions with rationale, dependencies, and expected impact.
+
+\subsubsection{Deployment and Change Management Plan}
+Outline phased rollout, environment promotion strategy, and rollback/kill-switch design.
+
+\subsubsection{Residual Risk and Next Steps}
+Document residual risks, sign-offs required, and plan for continuous monitoring and periodic reassessment.
+
+

@@ -21,30 +21,30 @@ Our data processing pipeline consists of several interconnected components:
 \end{itemize}
 
 \subsubsection{Analysis Framework}
-Our analysis framework provides standardized tools for incident classification and risk assessment:
+Our analysis framework provides standardized tools for incident organization and risk assessment consistent with a checklist-first approach:
 
 \textbf{Classification Tools:}
 \begin{itemize}
-    \item \textbf{Incident Classifier:} Machine learning model for automatic incident categorization
-    \item \textbf{Risk Calculator:} Implementation of our risk scoring formula
-    \item \textbf{Visualization Suite:} Tools for generating heatmaps, timelines, and statistical plots
+    \item \textbf{Checklist Tagging Scripts:} Lightweight scripts to assist manual labeling and consistency checks
+    \item \textbf{Risk Calculator:} Implementation of our risk scoring formula (spreadsheet and script variants)
+    \item \textbf{Visualization Suite:} Tools for generating heatmaps, timelines, and summary plots
 \end{itemize}
 
 \textbf{Validation Framework:}
 \begin{itemize}
-    \item \textbf{Cross-Validation:} Statistical validation of classification accuracy
+    \item \textbf{Dual-Review:} Peer review of labels with adjudication for disagreements
     \item \textbf{Expert Review Interface:} Tools for manual validation and correction
-    \item \textbf{Performance Metrics:} Automated calculation of precision, recall, and F1 scores
+    \item \textbf{Audit Trail:} Change logs and evidence links for checklist items
+    \item \textbf{Model Evaluation (Planned):} Train/test splits with accuracy, precision/recall/F1 for classifier; $R^2$ and MSE for regressors; calibration curves and confusion matrices.
 \end{itemize}
 
 \subsubsection{Reproducibility Package}
 To enable full reproducibility, we provide:
 
-\textbf{Code Repository:}
+\textbf{Artifacts:}
 \begin{itemize}
-    \item \textbf{Open Source:} All analysis code is available under MIT license
-    \item \textbf{Version Control:} Git repository with complete commit history
-    \item \textbf{Dependencies:} Comprehensive requirements.txt and environment files
+    \item \textbf{Version Control:} Git repository for LaTeX sources, labeling schema, and helper scripts
+    \item \textbf{Dependencies:} Minimal environment for reproducing figures and tables
 \end{itemize}
 
 \textbf{Documentation:}
@@ -55,23 +55,14 @@ To enable full reproducibility, we provide:
 \end{itemize}
 
 \subsubsection{Software Versions and Dependencies}
-Our analysis was conducted using the following software stack:
+Our analysis and pipeline were implemented with the following stack:
 \begin{itemize}
-    \item \textbf{Python 3.9+:} Core analysis language
-    \item \textbf{Pandas 1.5+:} Data manipulation and analysis
+    \item \textbf{Python 3.9+:} Core scripting and analysis
+    \item \textbf{Pandas 1.5+:} Data manipulation
     \item \textbf{NumPy 1.21+:} Numerical computing
-    \item \textbf{Matplotlib 3.5+:} Data visualization
-    \item \textbf{Scikit-learn 1.1+:} Machine learning algorithms
+    \item \textbf{XGBoost 1.7+:} Risk regressors and category classifiers
+    \item \textbf{Scikit-learn 1.1+:} Preprocessing and calibration
+    \item \textbf{Matplotlib 3.5+:} Visualization
 \end{itemize}
 
-\subsubsection{Known Limitations and Biases}
-We acknowledge several limitations in our methodology:
-\begin{itemize}
-    \item \textbf{Reporting Bias:} Incidents may be underreported or selectively reported
-    \item \textbf{Survivorship Bias:} Failed protocols may not be represented in our dataset
-    \item \textbf{Temporal Bias:} Recent incidents may be overrepresented due to improved reporting
-    \item \textbf{Language Bias:} Non-English incident reports may be underrepresented
-\end{itemize}
-
-% TODO: Add specific tool versions, performance benchmarks, and validation results
-
+% Consolidated into Section IV-F Limitations

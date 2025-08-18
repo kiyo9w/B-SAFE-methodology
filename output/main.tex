@@ -113,8 +113,7 @@
 \setlength{\columnsep}{0.5cm}
 
 
-\noindent \textbf{\textit{Abstract---}This paper presents B-SAFE, a systematic framework for blockchain security assessment that provides a comprehensive taxonomy of vulnerabilities across five architectural layers. We analyze 1,247 security incidents from 2017-2024, applying a formal risk classification schema (P, I, S, C, M) to quantify threats and evaluate defense mechanisms. Our methodology enables reproducible security analysis through standardized data collection, incident labeling, and risk quantification. The framework reveals critical gaps in current security practices and provides actionable insights for improving blockchain system resilience. This systematization of knowledge contributes to the field by establishing a unified approach to blockchain security assessment and enabling comparative analysis across different attack vectors and defense strategies.
-}
+\noindent \textbf{\textit{Abstract---}This paper presents B-SAFE, an empirically grounded systematization of blockchain security risks organized across five architectural layers. We analyze 647 incident entries spanning 2016--2025, applying a formal specification schema (P, I, S, C, M) to classify threats and map defenses. We provide an enterprise-relevant taxonomy with rigorous incident analyses and a practical assessment checklist. We conclude by proposing a prototype LLM-assisted pipeline (LLM→XGBoost→LLM) to accelerate future assessments, positioning its quantitative evaluation as a key direction for subsequent research. This work aims to standardize terminology, surface consistent invariants and controls, and support reproducible, practitioner-focused security assessments.}
 
 \small	
 \noindent \textbf{\textit{Keywords---}\textit{Blockchain security, machine learning, security assessment, threat detection, consensus mechanisms, smart contracts}}
@@ -136,15 +135,22 @@
 % Chapter III: Methodology
 \input{../inner/methodology.tex}
 
-% Chapter IV: Incident Analysis
+% Chapter IV: Related Work
+\input{../inner/related_work.tex}
+
+% Chapter V: Incident Analysis
 \input{../inner/incident_analysis.tex}
 
-% Chapter V: Discussion
+\input{../inner/future_work.tex}
+
+% Chapter VII: Discussion
 \input{../inner/discussion.tex}
 
+% Chapter VIII: Conclusion
 \section{Conclusion}
-This paper presented B-SAFE, a comprehensive framework for systematic blockchain security assessment. Through our analysis of 1,247 security incidents across five architectural layers, we established a formal risk classification schema that enables reproducible security analysis and comparative threat assessment. Our findings reveal critical gaps in current defense mechanisms and provide actionable insights for improving blockchain system resilience. The framework's modular structure allows for ongoing updates as new attack vectors emerge, making it a valuable tool for researchers, practitioners, and policymakers in the blockchain security domain. Future work will focus on expanding the dataset, refining the risk quantification model, and developing automated tools for real-time security assessment. 
+This paper presented B-SAFE, a comprehensive framework for systematic blockchain security assessment. Through our analysis of 647 security incident entries across five architectural layers, we established a formal risk classification schema that enables reproducible security analysis and comparative threat assessment. Our findings reveal critical gaps in current defense mechanisms and provide actionable insights for improving blockchain system resilience. The framework's modular structure allows for ongoing updates as new attack vectors emerge, making it a valuable tool for researchers, practitioners, and policymakers in the blockchain security domain. Future work will focus on expanding the dataset, refining the risk prioritization approach, and developing automated tools for real-time security assessment. 
 
+% Chapter VIII: Acknowledgement
 \section*{Acknowledgement}
 
 % Unified bibliography managed via BibTeX

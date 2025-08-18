@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.11)  16 AUG 2025 00:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.11)  16 AUG 2025 23:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -429,7 +429,11 @@ Package: parskip 2001/04/09 non-zero parskip adjustments
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count306
 \l__pdf_internal_box=\box104
-) (main.aux)
+) (main.aux
+
+LaTeX Warning: Label `fig:smart_contract_pareto' multiply defined.
+
+)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
@@ -505,6 +509,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 Package hyperref Info: Link coloring OFF on input line 62.
+ (main.out) (main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
@@ -522,17 +527,16 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 LaTeX Warning: No \author given.
 
-<../figure/fig1.png, id=3, 575.19pt x 547.47pt>
+<../figure/fig1.png, id=263, 861.2175pt x 1417.9374pt>
 File: ../figure/fig1.png Graphic file (type png)
 <use ../figure/fig1.png>
 Package pdftex.def Info: ../figure/fig1.png  used on input line 124.
-(pdftex.def)             Requested size: 204.85672pt x 194.9839pt.
+(pdftex.def)             Requested size: 204.85672pt x 337.2829pt.
 (../inner/introduction.tex
-<../figure/fig2.png, id=4, 511.10536pt x 287.58989pt>
-File: ../figure/fig2.png Graphic file (type png)
-<use ../figure/fig2.png>
-Package pdftex.def Info: ../figure/fig2.png  used on input line 8.
-(pdftex.def)             Requested size: 204.85672pt x 115.27087pt.
+File: ../figure/fig1.png Graphic file (type png)
+<use ../figure/fig1.png>
+Package pdftex.def Info: ../figure/fig1.png  used on input line 8.
+(pdftex.def)             Requested size: 204.85672pt x 337.2829pt.
 ) (../inner/literature_review.tex
 
 Package multicol Warning: I moved some lines to the next page.
@@ -540,252 +544,66 @@ Package multicol Warning: I moved some lines to the next page.
 
 [5
 
-{C:/Users/Admin/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <../figure/fig1.png (PNG copy)>] (../inner/literature_review/01_consensus_attacks.tex
-
-LaTeX Warning: Citation `Casino2019' on page 6 undefined on input line 4.
-
-
-LaTeX Warning: Citation `Wang2019' on page 6 undefined on input line 6.
-
-
-LaTeX Warning: Citation `Eyal2014' on page 6 undefined on input line 6.
-
-
-LaTeX Warning: Citation `Wang2019' on page 6 undefined on input line 6.
-
-
-LaTeX Warning: Citation `Casino2019' on page 6 undefined on input line 12.
-
-
-LaTeX Warning: Citation `DeAguiar2022' on page 6 undefined on input line 12.
-
-
-LaTeX Warning: Citation `DeAguiar2022' on page 6 undefined on input line 12.
-
-[6 <../figure/fig2.png (PNG copy)>]
-
-LaTeX Warning: Citation `Khan2022' on page 7 undefined on input line 14.
-
-) (../inner/literature_review/02_key_management_wallet_security.tex
-
-LaTeX Warning: Citation `fumy1993' on page 7 undefined on input line 2.
-
-
-LaTeX Warning: Citation `yu2024' on page 7 undefined on input line 2.
-
-
-LaTeX Warning: Citation `suratkar2020' on page 7 undefined on input line 2.
-
-
-LaTeX Warning: Citation `yu2024' on page 7 undefined on input line 2.
-
-
-LaTeX Warning: Citation `suratkar2020' on page 7 undefined on input line 4.
-
-
-LaTeX Warning: Citation `yu2024' on page 7 undefined on input line 4.
-
-
-LaTeX Warning: Citation `suratkar2020' on page 7 undefined on input line 4.
-
-
-LaTeX Warning: Citation `houy2023' on page 7 undefined on input line 6.
-
-
-LaTeX Warning: Citation `houy2023' on page 7 undefined on input line 6.
-
-
-LaTeX Warning: Citation `houy2023' on page 7 undefined on input line 6.
-
-
-LaTeX Warning: Citation `yu2024' on page 7 undefined on input line 6.
-
-
-LaTeX Warning: Citation `yu2024' on page 7 undefined on input line 6.
-
-
-LaTeX Warning: Citation `suratkar2020' on page 7 undefined on input line 8.
-
-
-LaTeX Warning: Citation `yu2024' on page 7 undefined on input line 8.
-
-
-LaTeX Warning: Citation `yu2024' on page 7 undefined on input line 8.
-
-
-LaTeX Warning: Citation `yu2024' on page 7 undefined on input line 8.
-
-
-LaTeX Warning: Citation `yu2024' on page 7 undefined on input line 10.
-
-
-LaTeX Warning: Citation `yu2024' on page 7 undefined on input line 10.
-
-
-LaTeX Warning: Citation `yu2024' on page 7 undefined on input line 10.
-
-) (../inner/literature_review/03_smart_contract_vulnerabilities.tex [7]
-
-LaTeX Warning: Citation `perez2021analysis' on page 8 undefined on input line 2.
-
-
-LaTeX Warning: Citation `praitheeshan2019systematic' on page 8 undefined on input line 2.
-
-
-LaTeX Warning: Citation `perez2021analysis' on page 8 undefined on input line 3.
-
-
-LaTeX Warning: Citation `perez2021analysis' on page 8 undefined on input line 5.
-
-
-LaTeX Warning: Citation `perez2020analysis' on page 8 undefined on input line 5.
-
-
-LaTeX Warning: Citation `praitheeshan2019systematic' on page 8 undefined on input line 7.
-
-
-LaTeX Warning: Citation `praitheeshan2019systematic' on page 8 undefined on input line 9.
-
-
-LaTeX Warning: Citation `perez2020analysis' on page 8 undefined on input line 9.
-
-
-LaTeX Warning: Citation `perez2021analysis' on page 8 undefined on input line 11.
-
-
-LaTeX Warning: Citation `praitheeshan2019systematic' on page 8 undefined on input line 11.
-
-
-LaTeX Warning: Citation `praitheeshan2019systematic' on page 8 undefined on input line 13.
-
-
-LaTeX Warning: Citation `perez2021analysis' on page 8 undefined on input line 17.
-
-
-LaTeX Warning: Citation `perez2020analysis' on page 8 undefined on input line 17.
-
-
+{C:/Users/Admin/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <../figure/fig1.png>] (../inner/literature_review/01_consensus_attacks.tex [6]) (../inner/literature_review/02_key_management_wallet_security.tex [7]) (../inner/literature_review/03_smart_contract_vulnerabilities.tex
 Overfull \hbox (152.64328pt too wide) in paragraph at lines 21--30
  [][] 
  []
 
+[8]
 
 Package multicol Warning: Floats and marginpars not allowed inside `multicols' environment!.
 
 
 Package multicol Warning: Floats and marginpars not allowed inside `multicols' environment!.
 
-
-LaTeX Warning: Citation `praitheeshan2019systematic' on page 8 undefined on input line 32.
-
-
-LaTeX Warning: Citation `praitheeshan2019systematic' on page 8 undefined on input line 34.
-
-
-LaTeX Warning: Citation `perez2021analysis' on page 8 undefined on input line 36.
-
-
-LaTeX Warning: Citation `praitheeshan2019systematic' on page 8 undefined on input line 36.
-
-
-LaTeX Warning: Citation `perez2021analysis' on page 8 undefined on input line 37.
-
-
-LaTeX Warning: Citation `perez2020analysis' on page 8 undefined on input line 37.
-
-[8]) (../inner/literature_review/04_defi_protocol_risks.tex
-
-LaTeX Warning: Citation `zhou2023sok' on page 9 undefined on input line 4.
-
-
-LaTeX Warning: Citation `zhou2023sok' on page 9 undefined on input line 4.
-
-
-LaTeX Warning: Citation `zhou2023sok' on page 9 undefined on input line 6.
-
-
-LaTeX Warning: Citation `li2022securitydefi' on page 9 undefined on input line 6.
-
-
-LaTeX Warning: Citation `li2022securitydefi' on page 9 undefined on input line 6.
-
-
-LaTeX Warning: Citation `zhou2023sok' on page 9 undefined on input line 6.
-
-
-LaTeX Warning: Citation `li2022securitydefi' on page 9 undefined on input line 6.
-
-
-LaTeX Warning: Citation `zhou2023sok' on page 9 undefined on input line 8.
-
-
-LaTeX Warning: Citation `li2022securitydefi' on page 9 undefined on input line 8.
-
-
-LaTeX Warning: Citation `liu2024defiscams' on page 9 undefined on input line 8.
-
-
+) (../inner/literature_review/04_defi_protocol_risks.tex
 Underfull \hbox (badness 10000) in paragraph at lines 8--9
 []\OT1/cmr/m/n/9 In ad-di-tion, trans-ac-tion or-der-ing and MEV
  []
 
-
-LaTeX Warning: Citation `zhou2023sok' on page 9 undefined on input line 10.
-
-
-LaTeX Warning: Citation `li2022securitydefi' on page 9 undefined on input line 10.
-
-
-LaTeX Warning: Citation `zhou2023sok' on page 9 undefined on input line 10.
-
-
-LaTeX Warning: Citation `zhou2023sok' on page 9 undefined on input line 10.
-
-
-LaTeX Warning: Citation `li2022securitydefi' on page 9 undefined on input line 10.
-
-) (../inner/literature_review/05_exchange_infrastructure_attacks.tex)) (../inner/reference_frame.tex (../inner/reference_frame/00_system_architecture.tex [9]) (../inner/reference_frame/01_framework_definition.tex
+) (../inner/literature_review/05_exchange_infrastructure_attacks.tex [9])) (../inner/reference_frame.tex (../inner/reference_frame/00_system_architecture.tex) (../inner/reference_frame/01_framework_definition.tex
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 8.
  (D:\MikTex\tex/latex/base\omscmr.fd
 File: omscmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/bx/n' in size <9> not available
 (Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 8.
-File: ../figure/fig1.png Graphic file (type png)
-<use ../figure/fig1.png>
-Package pdftex.def Info: ../figure/fig1.png  used on input line 24.
-(pdftex.def)             Requested size: 204.85672pt x 194.9839pt.
-)) (../inner/methodology.tex (../inner/methodology/01_data_collection.tex [10]
-File: ../figure/fig2.png Graphic file (type png)
-<use ../figure/fig2.png>
-Package pdftex.def Info: ../figure/fig2.png  used on input line 49.
-(pdftex.def)             Requested size: 204.85672pt x 115.27087pt.
-) (../inner/methodology/02_labeling_protocol.tex [11]) (../inner/methodology/03_feature_engineering.tex) (../inner/methodology/04_risk_quantification.tex [12]
-<../figure/fig3.png, id=107, 547.04375pt x 631.35875pt>
+<../figure/fig3.png, id=377, 729.927pt x 1019.7297pt>
+File: ../figure/fig3.png Graphic file (type png)
+<use ../figure/fig3.png>
+Package pdftex.def Info: ../figure/fig3.png  used on input line 24.
+(pdftex.def)             Requested size: 204.85672pt x 286.19144pt.
+)) [10] (../inner/methodology.tex (../inner/methodology/01_data_collection.tex
+<../figure/methodology/fig4.png, id=392, 1000.2168pt x 851.3406pt>
+File: ../figure/methodology/fig4.png Graphic file (type png)
+<use ../figure/methodology/fig4.png>
+Package pdftex.def Info: ../figure/methodology/fig4.png  used on input line 49.
+(pdftex.def)             Requested size: 204.85672pt x 174.35707pt.
+) (../inner/methodology/02_labeling_protocol.tex [11 <../figure/fig3.png>]) (../inner/methodology/03_feature_engineering.tex [12 <../figure/methodology/fig4.png>]) (../inner/methodology/04_risk_quantification.tex [13]
 File: ../figure/fig3.png Graphic file (type png)
 <use ../figure/fig3.png>
 Package pdftex.def Info: ../figure/fig3.png  used on input line 72.
-(pdftex.def)             Requested size: 204.85672pt x 236.4314pt.
-) (../inner/methodology/05_tools_and_reproducibility.tex [13 <../figure/fig3.png>]) (../inner/methodology/06_limitations.tex [14])) (../inner/incident_analysis.tex
+(pdftex.def)             Requested size: 204.85672pt x 286.19144pt.
+) (../inner/methodology/05_tools_and_reproducibility.tex [14]) (../inner/methodology/06_limitations.tex [15])) (../inner/incident_analysis.tex
+<../figure/fig2.png, id=429, 474.0912pt x 500.1084pt>
 File: ../figure/fig2.png Graphic file (type png)
 <use ../figure/fig2.png>
 Package pdftex.def Info: ../figure/fig2.png  used on input line 8.
-(pdftex.def)             Requested size: 204.85672pt x 115.27087pt.
+(pdftex.def)             Requested size: 204.85672pt x 216.10313pt.
 File: ../figure/fig3.png Graphic file (type png)
 <use ../figure/fig3.png>
 Package pdftex.def Info: ../figure/fig3.png  used on input line 15.
-(pdftex.def)             Requested size: 204.85672pt x 236.4314pt.
+(pdftex.def)             Requested size: 204.85672pt x 286.19144pt.
  (../inner/incident_analysis/01_consensus_layer_analysis.tex
 
-LaTeX Warning: Citation `wang2019' on page 15 undefined on input line 11.
+LaTeX Warning: Citation `wang2019' on page 16 undefined on input line 11.
 
 
-LaTeX Warning: Citation `eyal2014' on page 15 undefined on input line 11.
+LaTeX Warning: Citation `eyal2014' on page 16 undefined on input line 11.
 
 
-LaTeX Warning: Citation `casino2019' on page 15 undefined on input line 12.
+LaTeX Warning: Citation `casino2019' on page 16 undefined on input line 12.
 
-[15]
 
 LaTeX Warning: Citation `wang2019' on page 16 undefined on input line 17.
 
@@ -804,11 +622,12 @@ LaTeX Warning: Citation `wang2019' on page 16 undefined on input line 25.
 
 LaTeX Warning: Citation `casino2019' on page 16 undefined on input line 26.
 
+[16 <../figure/fig2.png>]
 
-LaTeX Warning: Citation `wang2019' on page 16 undefined on input line 37.
+LaTeX Warning: Citation `wang2019' on page 17 undefined on input line 37.
 
 
-LaTeX Warning: Citation `eyal2014' on page 16 undefined on input line 38.
+LaTeX Warning: Citation `eyal2014' on page 17 undefined on input line 38.
 
 
 Underfull \hbox (badness 7064) in paragraph at lines 43--44
@@ -816,57 +635,56 @@ Underfull \hbox (badness 7064) in paragraph at lines 43--44
  []
 
 
-LaTeX Warning: Citation `casino2019' on page 16 undefined on input line 45.
+LaTeX Warning: Citation `casino2019' on page 17 undefined on input line 45.
 
 
-LaTeX Warning: Citation `casino2019' on page 16 undefined on input line 46.
+LaTeX Warning: Citation `casino2019' on page 17 undefined on input line 46.
 
 
-LaTeX Warning: Citation `wang2019' on page 16 undefined on input line 53.
+LaTeX Warning: Citation `wang2019' on page 17 undefined on input line 53.
 
 
-LaTeX Warning: Citation `casino2019' on page 16 undefined on input line 65.
+LaTeX Warning: Citation `casino2019' on page 17 undefined on input line 65.
 
 
-LaTeX Warning: Citation `eyal2014' on page 16 undefined on input line 65.
+LaTeX Warning: Citation `eyal2014' on page 17 undefined on input line 65.
 
 
-LaTeX Warning: Citation `casino2019' on page 16 undefined on input line 66.
+LaTeX Warning: Citation `casino2019' on page 17 undefined on input line 66.
 
 
-LaTeX Warning: Citation `eyal2014' on page 16 undefined on input line 67.
+LaTeX Warning: Citation `eyal2014' on page 17 undefined on input line 67.
 
 
-LaTeX Warning: Citation `casino2019' on page 16 undefined on input line 71.
+LaTeX Warning: Citation `casino2019' on page 17 undefined on input line 71.
 
 
-LaTeX Warning: Citation `casino2019' on page 16 undefined on input line 72.
+LaTeX Warning: Citation `casino2019' on page 17 undefined on input line 72.
 
 
-LaTeX Warning: Citation `wang2019' on page 16 undefined on input line 72.
+LaTeX Warning: Citation `wang2019' on page 17 undefined on input line 72.
 
 
-LaTeX Warning: Citation `eyal2014' on page 16 undefined on input line 76.
+LaTeX Warning: Citation `eyal2014' on page 17 undefined on input line 76.
 
 
-LaTeX Warning: Citation `eyal2014' on page 16 undefined on input line 88.
+LaTeX Warning: Citation `eyal2014' on page 17 undefined on input line 88.
 
 
-LaTeX Warning: Citation `eyal2014' on page 16 undefined on input line 89.
+LaTeX Warning: Citation `eyal2014' on page 17 undefined on input line 89.
 
 
-LaTeX Warning: Citation `wang2019' on page 16 undefined on input line 89.
+LaTeX Warning: Citation `wang2019' on page 17 undefined on input line 89.
 
 
-LaTeX Warning: Citation `eyal2014' on page 16 undefined on input line 94.
+LaTeX Warning: Citation `eyal2014' on page 17 undefined on input line 94.
 
 
-LaTeX Warning: Citation `eyal2014' on page 16 undefined on input line 95.
+LaTeX Warning: Citation `eyal2014' on page 17 undefined on input line 95.
 
 
-LaTeX Warning: Citation `eyal2014' on page 16 undefined on input line 100.
+LaTeX Warning: Citation `eyal2014' on page 17 undefined on input line 100.
 
-[16]
 
 LaTeX Warning: Citation `eyal2014' on page 17 undefined on input line 101.
 
@@ -879,187 +697,146 @@ LaTeX Warning: Citation `wang2019' on page 17 undefined on input line 102.
 
 LaTeX Warning: Citation `eyal2014' on page 17 undefined on input line 103.
 
-
-LaTeX Warning: Citation `eyal2014' on page 17 undefined on input line 114.
-
-
-LaTeX Warning: Citation `wang2019' on page 17 undefined on input line 114.
-
-
-LaTeX Warning: Citation `wang2019' on page 17 undefined on input line 121.
-
-
-LaTeX Warning: Citation `eyal2014' on page 17 undefined on input line 133.
-
-
-LaTeX Warning: Citation `eyal2014' on page 17 undefined on input line 134.
-
-
-LaTeX Warning: Citation `eyal2014' on page 17 undefined on input line 135.
-
-
-LaTeX Warning: Citation `wang2019' on page 17 undefined on input line 135.
-
-
-LaTeX Warning: Citation `eyal2014' on page 17 undefined on input line 139.
-
-
-LaTeX Warning: Citation `eyal2014' on page 17 undefined on input line 140.
-
-
-LaTeX Warning: Citation `wang2019' on page 17 undefined on input line 140.
-
-
-LaTeX Warning: Citation `eyal2014' on page 17 undefined on input line 144.
-
-
-LaTeX Warning: Citation `wang2019' on page 17 undefined on input line 156.
-
-
-LaTeX Warning: Citation `wang2019' on page 17 undefined on input line 157.
-
-
-LaTeX Warning: Citation `wang2019' on page 17 undefined on input line 158.
-
-
-LaTeX Warning: Citation `wang2019' on page 17 undefined on input line 163.
-
-
-LaTeX Warning: Citation `wang2019' on page 17 undefined on input line 164.
-
-
-LaTeX Warning: Citation `wang2019' on page 17 undefined on input line 169.
-
-
-LaTeX Warning: Citation `wang2019' on page 17 undefined on input line 170.
-
-
-LaTeX Warning: Citation `wang2019' on page 17 undefined on input line 171.
-
-
-LaTeX Warning: Citation `wang2019' on page 17 undefined on input line 182.
-
 [17]
+
+LaTeX Warning: Citation `eyal2014' on page 18 undefined on input line 114.
+
+
+LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 114.
+
+
+LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 121.
+
+
+LaTeX Warning: Citation `eyal2014' on page 18 undefined on input line 133.
+
+
+LaTeX Warning: Citation `eyal2014' on page 18 undefined on input line 134.
+
+
+LaTeX Warning: Citation `eyal2014' on page 18 undefined on input line 135.
+
+
+LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 135.
+
+
+LaTeX Warning: Citation `eyal2014' on page 18 undefined on input line 139.
+
+
+LaTeX Warning: Citation `eyal2014' on page 18 undefined on input line 140.
+
+
+LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 140.
+
+
+LaTeX Warning: Citation `eyal2014' on page 18 undefined on input line 144.
+
+
+LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 156.
+
+
+LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 157.
+
+
+LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 158.
+
+
+LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 163.
+
+
+LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 164.
+
+
+LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 169.
+
+
+LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 170.
+
+
+LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 171.
+
+
+LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 182.
+
 
 LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 189.
 
 
 LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 201.
 
-
-LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 202.
-
-
-LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 207.
-
-
-LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 208.
-
-
-LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 213.
-
-
-LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 214.
-
-
-LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 215.
-
-
-LaTeX Warning: Citation `eyal2014' on page 18 undefined on input line 215.
-
-
-LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 226.
-
-
-LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 233.
-
-
-LaTeX Warning: Citation `eyal2014' on page 18 undefined on input line 252.
-
-
-LaTeX Warning: Citation `casino2019' on page 18 undefined on input line 252.
-
-
-LaTeX Warning: Citation `casino2019' on page 18 undefined on input line 253.
-
-
-LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 254.
-
-
-LaTeX Warning: Citation `eyal2014' on page 18 undefined on input line 260.
-
-
-LaTeX Warning: Citation `eyal2014' on page 18 undefined on input line 261.
-
-
-LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 261.
-
-
-LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 262.
-
-
-LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 268.
-
-
-LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 269.
-
-
-LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 270.
-
-
-LaTeX Warning: Citation `wang2019' on page 18 undefined on input line 276.
-
-
-LaTeX Warning: Citation `eyal2014' on page 18 undefined on input line 277.
-
-) (../inner/incident_analysis/02_network_layer_analysis.tex) (../inner/incident_analysis/03_smart_contract_layer_analysis.tex
-
-LaTeX Warning: Citation `perez2021analysis' on page 18 undefined on input line 4.
-
-
-LaTeX Warning: Reference `fig:smart_contract_pareto' on page 18 undefined on input line 4.
-
-
-LaTeX Warning: Citation `zhou2023sok' on page 18 undefined on input line 4.
-
 [18]
+
+LaTeX Warning: Citation `wang2019' on page 19 undefined on input line 202.
+
+
+LaTeX Warning: Citation `wang2019' on page 19 undefined on input line 207.
+
+
+LaTeX Warning: Citation `wang2019' on page 19 undefined on input line 208.
+
+
+LaTeX Warning: Citation `wang2019' on page 19 undefined on input line 213.
+
+
+LaTeX Warning: Citation `wang2019' on page 19 undefined on input line 214.
+
+
+LaTeX Warning: Citation `wang2019' on page 19 undefined on input line 215.
+
+
+LaTeX Warning: Citation `eyal2014' on page 19 undefined on input line 215.
+
+
+LaTeX Warning: Citation `wang2019' on page 19 undefined on input line 226.
+
+
+LaTeX Warning: Citation `wang2019' on page 19 undefined on input line 233.
+
+
+LaTeX Warning: Citation `eyal2014' on page 19 undefined on input line 252.
+
+
+LaTeX Warning: Citation `casino2019' on page 19 undefined on input line 252.
+
+
+LaTeX Warning: Citation `casino2019' on page 19 undefined on input line 253.
+
+
+LaTeX Warning: Citation `wang2019' on page 19 undefined on input line 254.
+
+
+LaTeX Warning: Citation `eyal2014' on page 19 undefined on input line 260.
+
+
+LaTeX Warning: Citation `eyal2014' on page 19 undefined on input line 261.
+
+
+LaTeX Warning: Citation `wang2019' on page 19 undefined on input line 261.
+
+
+LaTeX Warning: Citation `wang2019' on page 19 undefined on input line 262.
+
+
+LaTeX Warning: Citation `wang2019' on page 19 undefined on input line 268.
+
+
+LaTeX Warning: Citation `wang2019' on page 19 undefined on input line 269.
+
+
+LaTeX Warning: Citation `wang2019' on page 19 undefined on input line 270.
+
+
+LaTeX Warning: Citation `wang2019' on page 19 undefined on input line 276.
+
+
+LaTeX Warning: Citation `eyal2014' on page 19 undefined on input line 277.
+
+) (../inner/incident_analysis/02_network_layer_analysis.tex) (../inner/incident_analysis/03_smart_contract_layer_analysis.tex [19]
 File: ../figure/fig2.png Graphic file (type png)
 <use ../figure/fig2.png>
 Package pdftex.def Info: ../figure/fig2.png  used on input line 8.
-(pdftex.def)             Requested size: 204.85672pt x 115.27087pt.
-
-
-LaTeX Warning: Citation `perez2021analysis' on page 19 undefined on input line 20.
-
-
-LaTeX Warning: Citation `praitheeshan2019systematic' on page 19 undefined on input line 21.
-
-
-LaTeX Warning: Citation `zhou2023sok' on page 19 undefined on input line 22.
-
-
-LaTeX Warning: Citation `praitheeshan2019systematic' on page 19 undefined on input line 49.
-
-[19]
-
-LaTeX Warning: Citation `praitheeshan2019systematic' on page 20 undefined on input line 85.
-
-
-LaTeX Warning: Citation `zhou2023sok' on page 20 undefined on input line 92.
-
-
-LaTeX Warning: Citation `perez2021analysis' on page 20 undefined on input line 126.
-
-
-LaTeX Warning: Citation `praitheeshan2019systematic' on page 20 undefined on input line 142.
-
-
-LaTeX Warning: Citation `perez2021analysis' on page 20 undefined on input line 143.
-
-
-LaTeX Warning: Citation `zhou2023sok' on page 20 undefined on input line 144.
-
-
+(pdftex.def)             Requested size: 204.85672pt x 216.10313pt.
+ [20]
 Underfull \hbox (badness 10000) in paragraph at lines 157--158
 []\OT1/cmr/bx/n/9 Boundary cal-cu-la-tion phase: \OT1/cmr/m/n/9 At-tacker
  []
@@ -1069,178 +846,58 @@ Underfull \hbox (badness 10000) in paragraph at lines 157--158
 \OT1/cmr/m/n/9 de-ter-mines spe-cific in-put val-ues that will
  []
 
-[20]
+[21]
 Underfull \hbox (badness 10000) in paragraph at lines 171--172
 []\OT1/cmr/bx/n/9 Parameters: \OT1/cmr/m/n/9 Li-brary im-ple-men-ta-tion
  []
 
-
-LaTeX Warning: Citation `praitheeshan2019systematic' on page 21 undefined on input line 213.
-
-
-LaTeX Warning: Citation `perez2021analysis' on page 21 undefined on input line 247.
-
-[21]
-
-LaTeX Warning: Citation `zhou2023sok' on page 22 undefined on input line 263.
-
-
+[22]
 Underfull \hbox (badness 10000) in paragraph at lines 263--264
 []\OT1/cmr/bx/n/9 P1: Specification-Implementation Mis-
  []
 
-
-LaTeX Warning: Citation `perez2021analysis' on page 22 undefined on input line 264.
-
-
-LaTeX Warning: Citation `praitheeshan2019systematic' on page 22 undefined on input line 265.
-
-
-LaTeX Warning: Citation `praitheeshan2019systematic' on page 22 undefined on input line 327.
-
-
-LaTeX Warning: Citation `zhou2023sok' on page 22 undefined on input line 334.
-
-[22]
-
-LaTeX Warning: Citation `zhou2023sok' on page 23 undefined on input line 368.
-
-
-LaTeX Warning: Citation `praitheeshan2019systematic' on page 23 undefined on input line 384.
-
-
-LaTeX Warning: Citation `perez2021analysis' on page 23 undefined on input line 384.
-
-File: ../figure/fig2.png Graphic file (type png)
-<use ../figure/fig2.png>
-Package pdftex.def Info: ../figure/fig2.png  used on input line 395.
-(pdftex.def)             Requested size: 204.85672pt x 115.27087pt.
-) (../inner/incident_analysis/04_auxiliary_layer_analysis.tex
-
-LaTeX Warning: Citation `houy2023' on page 23 undefined on input line 11.
-
 [23]
-
-LaTeX Warning: Citation `houy2023' on page 24 undefined on input line 12.
-
-
-LaTeX Warning: Citation `yu2024' on page 24 undefined on input line 13.
-
-
-LaTeX Warning: Citation `suratkar2020' on page 24 undefined on input line 37.
-
-
-LaTeX Warning: Citation `yu2024' on page 24 undefined on input line 39.
-
-
-LaTeX Warning: Citation `houy2023' on page 24 undefined on input line 43.
-
-
-LaTeX Warning: Citation `yu2024' on page 24 undefined on input line 53.
-
-
-LaTeX Warning: Citation `yu2024' on page 24 undefined on input line 68.
-
-
-LaTeX Warning: Citation `houy2023' on page 24 undefined on input line 82.
-
-[24]
-
-LaTeX Warning: Citation `yu2024' on page 25 undefined on input line 107.
-
-
-LaTeX Warning: Citation `suratkar2020' on page 25 undefined on input line 107.
-
-
-LaTeX Warning: Citation `houy2023' on page 25 undefined on input line 108.
-
-
-LaTeX Warning: Citation `houy2023' on page 25 undefined on input line 109.
-
-
-LaTeX Warning: Citation `yu2024' on page 25 undefined on input line 132.
-
-
-LaTeX Warning: Citation `yu2024' on page 25 undefined on input line 134.
-
-
-LaTeX Warning: Citation `houy2023' on page 25 undefined on input line 134.
-
-[25]
-
-LaTeX Warning: Citation `houy2023' on page 26 undefined on input line 184.
-
-
-LaTeX Warning: Citation `houy2023' on page 26 undefined on input line 192.
-
-) (../inner/incident_analysis/05_defi_protocol_analysis.tex
-File: ../figure/fig3.png Graphic file (type png)
-<use ../figure/fig3.png>
-Package pdftex.def Info: ../figure/fig3.png  used on input line 12.
-(pdftex.def)             Requested size: 204.85672pt x 236.4314pt.
+<../figure/Fig9.png, id=521, 1437.4503pt x 711.1368pt>
+File: ../figure/Fig9.png Graphic file (type png)
+<use ../figure/Fig9.png>
+Package pdftex.def Info: ../figure/Fig9.png  used on input line 395.
+(pdftex.def)             Requested size: 204.85672pt x 101.33804pt.
+) (../inner/incident_analysis/04_auxiliary_layer_analysis.tex [24 <../figure/Fig9.png>] [25] [26]) (../inner/incident_analysis/05_defi_protocol_analysis.tex
+<../figure/Fig10.png, id=559, 1148.3703pt x 859.2903pt>
+File: ../figure/Fig10.png Graphic file (type png)
+<use ../figure/Fig10.png>
+Package pdftex.def Info: ../figure/Fig10.png  used on input line 12.
+(pdftex.def)             Requested size: 204.85672pt x 153.28885pt.
 )
-File: ../figure/fig1.png Graphic file (type png)
-<use ../figure/fig1.png>
-Package pdftex.def Info: ../figure/fig1.png  used on input line 28.
-(pdftex.def)             Requested size: 204.85672pt x 194.9839pt.
-) (../inner/discussion.tex) [26]
-
-LaTeX Warning: Citation `ChenYao2022' undefined on input line 152.
-
-
-LaTeX Warning: Citation `Deloitte2000' undefined on input line 152.
-
-
-LaTeX Warning: Citation `Scribbr2020' undefined on input line 152.
-
-
-LaTeX Warning: Citation `SlatWorp2019' undefined on input line 152.
-
-
-LaTeX Warning: Citation `SlatWorpHolierhoekND' undefined on input line 152.
-
-
-LaTeX Warning: Citation `Launiainen2018' undefined on input line 152.
-
-
-LaTeX Warning: Citation `Karatas2021' undefined on input line 152.
-
-
-LaTeX Warning: Citation `MarahChallenger2023' undefined on input line 152.
-
-(main.bbl) [27] (main.aux)
+<../figure/Fig11.png, id=560, 961.9137pt x 852.786pt>
+File: ../figure/Fig11.png Graphic file (type png)
+<use ../figure/Fig11.png>
+Package pdftex.def Info: ../figure/Fig11.png  used on input line 28.
+(pdftex.def)             Requested size: 204.85672pt x 181.61476pt.
+) (../inner/discussion.tex) [27 <../figure/Fig10.png> <../figure/Fig11.png>] (main.bbl [28]) [29] (main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
 
 
-LaTeX Warning: There were undefined references.
+LaTeX Warning: There were multiply-defined labels.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  95965AF5DBADE1DE56BAC80ADEFF717E;13743.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 95965AF5DBADE1DE56BAC80ADEFF717E;13743.
  ) 
 Here is how much of TeX's memory you used:
- 13450 strings out of 474486
- 213368 string characters out of 5760170
- 1955542 words of memory out of 5000000
- 35321 multiletter control sequences out of 15000+600000
+ 13584 strings out of 474486
+ 216150 string characters out of 5760170
+ 1954542 words of memory out of 5000000
+ 35426 multiletter control sequences out of 15000+600000
  572870 words of font info for 91 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,12n,79p,1691b,1220s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,12n,79p,1682b,1223s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcbx0900.pk> <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm0900.pk> <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm0600.pk> <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><D:/MikTex/fonts/type1/public/amsfonts/cmextra/cmbsy9.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmbx8.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmbx9.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmmi6.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmmi9.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmr6.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmr8.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmr9.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmsy9.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmti10.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmti12.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmti9.pfb><D:/MikTex/fonts/type1/public/amsfonts/cm/cmtt9.pfb><D:/MikTex/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on main.pdf (23 pages, 4069311 bytes).
+Output written on main.pdf (25 pages, 1828322 bytes).
 PDF statistics:
- 373 PDF objects out of 1000 (max. 8388607)
- 144 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 719 PDF objects out of 1000 (max. 8388607)
+ 169 named destinations out of 1000 (max. 500000)
+ 556 words of extra memory for PDF output out of 10000 (max. 10000000)
 
