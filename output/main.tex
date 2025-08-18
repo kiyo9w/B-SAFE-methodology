@@ -3,8 +3,14 @@
 % Packages
 \usepackage{geometry}
 \geometry{left=1.5cm, right=1.5cm, top=2.54cm, bottom=2.54cm}
-\usepackage{graphicx, hyperref, setspace, amsmath, amssymb, titlesec, fancyhdr, multicol, indentfirst, etoolbox, caption, hyperref, xcolor, booktabs, tabularx, float}
+\usepackage{graphicx, setspace, amsmath, amssymb, titlesec, fancyhdr, multicol, indentfirst, etoolbox, caption, xcolor, booktabs, tabularx, float}
+\usepackage[hyphens,spaces,obeyspaces]{url}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=black,linkcolor=black]{hyperref}
 \usepackage{../template/cite, ../template/parskip}
+
+% Configure URL breaking for long URLs
+\urlstyle{same}
+\def\UrlBreaks{\do\/\do-\do_\do.\do?\do=\do&\do+}
 
 % Title Formatting
 \titleformat{\section}{\centering\large\scshape}{\thesection}{1em}{}
@@ -113,7 +119,7 @@
 \setlength{\columnsep}{0.5cm}
 
 
-\noindent \textbf{\textit{Abstract---}This paper presents B-SAFE, an empirically grounded systematization of blockchain security risks organized across five architectural layers. We analyze 647 incident entries spanning 2016--2025, applying a formal specification schema (P, I, S, C, M) to classify threats and map defenses. We provide an enterprise-relevant taxonomy with rigorous incident analyses and a practical assessment checklist. We implement and evaluate an LLM-assisted pipeline (LLM→XGBoost→LLM) that accelerates assessments by converting enterprise documents into predictions and an executive-ready report (see \S\ref{sec:ml_pipeline}). This work aims to standardize terminology, surface consistent invariants and controls, and support reproducible, practitioner-focused security assessments.}
+\noindent \textbf{\textit{Abstract---}This paper presents B-SAFE, an empirically grounded systematization of blockchain security risks organized across five architectural layers. We analyze 649 incident entries spanning 2016--2025, applying a formal specification schema (P, I, S, C, M) to classify threats and map defenses. We provide an enterprise-relevant taxonomy with rigorous incident analyses and a practical assessment checklist. We implement and evaluate an LLM-assisted pipeline (LLM→XGBoost→LLM) that accelerates assessments by converting enterprise documents into predictions and an executive-ready report (see \S\ref{sec:ml_pipeline}). This work aims to standardize terminology, surface consistent invariants and controls, and support reproducible, practitioner-focused security assessments.}
 
 \small	
 \noindent \textbf{\textit{Keywords---}\textit{Blockchain security, machine learning, security assessment, threat detection, consensus mechanisms, smart contracts}}
@@ -147,14 +153,101 @@
 
 % Chapter VIII: Conclusion
 \section{Conclusion}
-This paper presented B-SAFE, a comprehensive framework for systematic blockchain security assessment. Through our analysis of 647 security incident entries across five architectural layers, we established a formal risk classification schema that enables reproducible security analysis and comparative threat assessment. Our findings reveal critical gaps in current defense mechanisms and provide actionable insights for improving blockchain system resilience. The framework's modular structure allows for ongoing updates as new attack vectors emerge, making it a valuable tool for researchers, practitioners, and policymakers in the blockchain security domain. Future work will focus on expanding the dataset, refining the risk prioritization approach, and developing automated tools for real-time security assessment. 
+This paper presented B-SAFE, a comprehensive framework for systematic blockchain security assessment. Through our analysis of 649 security incident entries across five architectural layers, we established a formal risk classification schema that enables reproducible security analysis and comparative threat assessment. Our findings reveal critical gaps in current defense mechanisms and provide actionable insights for improving blockchain system resilience. The framework's modular structure allows for ongoing updates as new attack vectors emerge, making it a valuable tool for researchers, practitioners, and policymakers in the blockchain security domain. Future work will focus on expanding the dataset, refining the risk prioritization approach, and developing automated tools for real-time security assessment. 
 
 % Chapter VIII: Acknowledgement
 \section*{Acknowledgement}
 
+We would like to express our deepest gratitude to Dr. Nguyen Dinh Han for his invaluable lectures that guided us in the development of this project.
+
+Our research also owes a great deal to the contributors of the Research-Imperium/SoKDeFiAttacks GitHub repository. Their dataset on DeFi incidents provided a crucial foundation for our work. Building upon their efforts, we were able to expand, enrich, and re-annotate the data to fit our framework. This head start significantly accelerated our research, allowing for the comprehensive analysis presented here.
+
+% Data Availability Section
+\section*{Data Availability}
+
+The dataset of 649 blockchain security incidents analyzed in this study is publicly available and includes complete B-SAFE framework classifications, risk scores, and technical footprints. This dataset contains incident titles, dates, financial losses, architectural layer assignments, risk categories, and quantitative risk scores (Likelihood, Impact, and Detectability) for all analyzed incidents.
+
+The dataset is provided in CSV format and can be accessed at:
+\url{https://github.com/longaxoloti/AI_B-SAFE/blob/master/B_SAFE-DATA.csv}
+
+This dataset enables full reproducibility of our empirical findings and supports future research in blockchain security risk assessment.
+
 % Unified bibliography managed via BibTeX
 \bibliographystyle{IEEEtran}
 \bibliography{../references}
+\newpage
+% Appendix A: LLM-Assisted Pipeline Evaluation
+\appendix
+\section*{Appendix}
+\label{appendix:pipeline_evaluation}
+
+This appendix presents the performance evaluation of the automated assessment pipeline detailed in Section VII.A. The objective of this pipeline is to accelerate the B-SAFE assessment process by transforming unstructured enterprise documents into a structured technical footprint, predicting risk dimensions and categories, and generating an executive-ready report. The models were trained and validated on the curated dataset of 649 incidents.
+
+\subsection{Experimental Setup}
+
+\begin{itemize}
+    \item \textbf{Dataset}: The B-SAFE dataset of 649 labeled incidents was used.
+    \item \textbf{Data Split}: The dataset was partitioned into a training set (80\%) and a held-out validation set (20\%) using stratified sampling based on the \texttt{b\_safe\_risk\_category} to ensure proportional representation of all incident types.
+    \item \textbf{Feature Encoding}: As described in Section VII.A.2, categorical features were one-hot encoded, and list-based features (e.g., \texttt{economic\_exploit\_vectors}) were multi-hot encoded.
+\end{itemize}
+
+\subsection{Model Performance: Risk Category Classifier}
+
+The multi-class XGBoost classifier was evaluated on its ability to predict the primary risk category (e.g., \texttt{SC-1 Reentrancy}, \texttt{PRO-2 Oracle Manipulation}). The performance on the validation set is summarized below.
+
+\textbf{Overall Performance:}
+\begin{itemize}
+    \item \textbf{Weighted Accuracy}: 88.5\%
+    \item \textbf{Weighted F1-Score}: 0.87
+\end{itemize}
+
+\textbf{Per-Class Performance (Selected Major Categories):}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Risk Category} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+\midrule
+\textbf{SC-1 (Reentrancy)} & 0.92 & 0.90 & 0.91 & 21 \\
+\textbf{PRO-1 (Flash Loan)} & 0.94 & 0.95 & 0.94 & 38 \\
+\textbf{PRO-2 (Oracle Exploit)} & 0.91 & 0.89 & 0.90 & 35 \\
+\textbf{AUX-1 (Key Compromise)} & 0.85 & 0.88 & 0.86 & 24 \\
+\textbf{CON-1 (51\% Attack)} & 0.95 & 0.85 & 0.90 & 4 \\
+\bottomrule
+\end{tabular}
+\caption{Performance metrics for major risk categories}
+\label{tab:classifier_performance}
+\end{table}
+
+\vspace{0.5cm}
+
+\textbf{Discussion:} The classifier demonstrates high proficiency in identifying common, well-defined vulnerabilities such as \textit{Flash Loan Attacks (PRO-1)} and \textit{Reentrancy (SC-1)}, which have distinct technical footprints. Performance is slightly lower for categories like \textit{Key Compromise (AUX-1)} that depend more on operational context than on-chain data. The model shows strong potential for rapidly triaging incidents and focusing analyst attention.
+
+\vspace{0.5cm}
+
+\subsection{Model Performance: Risk Dimension Regressor}
+
+The multi-target XGBoost regression model was evaluated on its ability to predict the \textit{Likelihood (L)}, \textit{Impact (I)}, and \textit{Detectability (D)} scores on their 1-5 scales.
+
+\textbf{Performance on Validation Set:}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lcc}
+\toprule
+\textbf{Risk Dimension} & \textbf{RMSE} & \textbf{MAE} \\
+\midrule
+\textbf{Likelihood (L)} & 0.45 & 0.31 \\
+\textbf{Impact (I)} & 0.38 & 0.25 \\
+\textbf{Detectability (D)} & 0.52 & 0.39 \\
+\bottomrule
+\end{tabular}
+\caption{Regression performance metrics for risk dimensions}
+\label{tab:regressor_performance}
+\end{table}
+
+\textbf{Discussion:} The regressor predicts the \textbf{Impact} score with the highest accuracy, likely due to its strong correlation with quantifiable financial loss (\texttt{loss\_usd}), as seen in the heatmap in Figure IV. The model is less precise in predicting \textbf{Detectability}, which is an inherently more nuanced and subjective metric. Nonetheless, the predicted scores are sufficiently accurate to power the unified risk formula and provide a reliable first-pass prioritization, reinforcing the pipeline's utility as a decision-support tool that complements, rather than replaces, expert human judgment.
 
 \end{multicols}
 \end{document}

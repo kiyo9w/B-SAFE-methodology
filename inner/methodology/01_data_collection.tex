@@ -1,7 +1,7 @@
 \subsection{Data Collection and Sources}
 \label{sec:data_collection}
 
-Our dataset comprises 647 blockchain security incident entries collected from multiple sources spanning 2016--early 2025. We employed a systematic approach to ensure comprehensive coverage while maintaining data quality and verifiability.
+Our dataset comprises 649 blockchain security incident entries collected from multiple sources spanning 2016--early 2025. We employed a systematic approach to ensure comprehensive coverage while maintaining data quality and verifiability.
 
 \subsubsection{Primary Data Sources}
 We collected incident data from the following primary sources:
@@ -42,7 +42,32 @@ Our data collection process followed a standardized protocol:
     \item \textbf{Quality Control:} Review by multiple team members for consistency
 \end{enumerate}
 
-% TODO: Add specific details about date ranges, chains covered, and verification procedures
+\subsubsection{Dataset Schema and Dictionary}
+
+The curated incident dataset contains 649 entries structured with 18 columns. Each row corresponds to a single classified incident with complete B-SAFE framework annotations:
+
+\begin{itemize}
+    \item \textbf{incident\_id}: Unique integer identifier for the security event
+    \item \textbf{incident\_title}: Concise, descriptive title for the incident
+    \item \textbf{incident\_date}: Date when the incident occurred or was first reported (MM/DD/YYYY format)
+    \item \textbf{paused\_at}: Timestamp when a protocol was paused, if applicable
+    \item \textbf{incident\_description}: Detailed text summary of the incident
+    \item \textbf{loss\_usd}: Estimated financial loss in USD at the time of the incident
+    \item \textbf{chain}: Primary blockchain or ecosystem affected (e.g., Ethereum, BNB Chain)
+    \item \textbf{source\_link}: URL to a primary report or analysis of the incident
+    \item \textbf{b\_safe\_layer}: Assigned B-SAFE architectural layer (NET, CON, SC, PRO, AUX)
+    \item \textbf{b\_safe\_risk\_category}: Specific risk category identifier within the B-SAFE framework (e.g., SC-1, PRO-2)
+    \item \textbf{technical\_footprint}: JSON object containing structured technical details of the affected protocol, used for feature engineering
+    \item \textbf{attacker\_type}: Classification of the adversary (e.g., Insider, External)
+    \item \textbf{recovery\_status}: Status of the lost funds (e.g., Funds Lost, Funds Recovered)
+    \item \textbf{time\_to\_discovery\_days}: Estimated time in days from exploit to public discovery
+    \item \textbf{impact\_score}: Assigned Impact (I) score on a 1-5 scale, as defined in Section IV.D
+    \item \textbf{likelihood\_score}: Assigned Likelihood (L) score on a 1-5 scale, as defined in Section IV.D
+    \item \textbf{detectability\_score}: Assigned Detectability (D) score on a 1-5 scale, as defined in Section IV.D
+    \item \textbf{composite\_risk\_score}: Calculated priority ranking based on our formula
+\end{itemize}
+
+The dataset includes complete risk scoring for all 649 incidents, with 100\% coverage for impact, likelihood, and detectability scores, enabling comprehensive statistical analysis and validation of our risk quantification approach.
 
 \begin{figure}[H]
 \centering

@@ -28,7 +28,7 @@ We train two XGBoost models using the labeled incident dataset and the extracted
 Categorical features are one-hot encoded; list features are multi-hot encoded; numeric features remain numeric. We stratify by category for training/validation to prevent leakage.
 
 \subsubsection{Stage 3: LLM Reporting}
-Predictions are combined with checklist outcomes to generate a concise executive report: unified risk score priority, primary/secondary predicted vulnerabilities with confidence, and prioritized recommendations tied to actionable controls. The end-to-end pipeline output is demonstrated in the worked example below.
+Predictions are combined with checklist outcomes to generate a concise executive report: priority ranking (Critical/High/Medium/Low), primary/secondary predicted vulnerabilities with confidence, and prioritized recommendations tied to actionable controls. The end-to-end pipeline output is demonstrated in the worked example below.
 
 \paragraph{Worked Example: ``Project Equinox''}
 \textbf{Input excerpt} (enterprise whitepaper): Avalanche C-Chain; decentralized lending; PoS; oracle: spot price from DEX (Trader Joe); flash loans supported; admin via 3-of-5 multisig; audited by CertiK; reentrancy guards present.
@@ -42,7 +42,7 @@ Predictions are combined with checklist outcomes to generate a concise executive
     \item vulnerability\_source (training-only): Economic Design Flaw
 \end{itemize}
 
-\textbf{Model outputs} (illustrative): High unified risk score priority; \textit{Primary} category: PRO-2 Oracle Manipulation (high confidence); \textit{Secondary} category: AUX-2 Governance Attack (moderate confidence). L, I, and D predicted by the regressor support the unified risk score calculation.
+\textbf{Model outputs} (illustrative): Critical Priority ranking; \textit{Primary} category: PRO-2 Oracle Manipulation (high confidence); \textit{Secondary} category: AUX-2 Governance Attack (moderate confidence). L, I, and D predicted by the regressor support the priority ranking calculation.
 
 \textbf{Recommendations}: Replace spot DEX price with manipulation-resistant oracles (e.g., TWAP or Chainlink feeds), and harden key management SOP for multisig participants (HSM-backed storage, break-glass procedures, periodic access reviews).
 

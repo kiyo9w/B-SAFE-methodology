@@ -194,7 +194,7 @@ Using our systematic scoring framework:
         \item \textbf{Likelihood (L = 4):} High. The underlying vulnerabilities, such as plaintext key storage and the prevalence of mobile malware, are widespread in the ecosystem \cite{houy2023}.
         \item \textbf{Impact (I = 5):} Critical. A successful attack almost always results in the total and irreversible loss of the user's funds stored in that wallet.
         \item \textbf{Detectability (D = 2):} Hard. From the victim's perspective, the compromise is often invisible. There is usually no alert or indication of a breach until after the funds have been stolen.
-        \item \textbf{Risk Score = 4.2}: $0.4 \times 4 + 0.5 \times 5 - 0.1 \times 2 = 1.6 + 2.5 - 0.2 = 3.9$ (Unified risk score accounting for detectability)
+        \item \textbf{Risk Score = 4.2}: $0.4 \times 4 + 0.5 \times 5 - 0.1 \times 2 = 1.6 + 2.5 - 0.2 = 3.9$ (Critical Priority)
     \end{itemize}
     
     \item \textbf{AUX-SERVICE-1 (Supply Chain Compromise):}
@@ -202,6 +202,6 @@ Using our systematic scoring framework:
         \item \textbf{Likelihood (L = 3):} Medium. While catastrophic failures like FTX are less frequent than individual compromises, major exchange hacks and service disruptions are a recurring threat pattern in the industry \cite{houy2023}.
         \item \textbf{Impact (I = 5):} Critical. A single incident can impact millions of users and lead to systemic, industry-wide financial contagion with losses in the billions of dollars.
         \item \textbf{Detectability (D = 3):} Medium. The internal compromise or mismanagement is extremely difficult for outsiders to detect, but the ultimate consequences (e.g., an exchange halting withdrawals) become publicly and immediately apparent.
-        \item \textbf{Risk Score = 3.7}: $0.4 \times 3 + 0.5 \times 5 - 0.1 \times 3 = 1.2 + 2.5 - 0.3 = 3.4$ (Unified risk score accounting for detectability)
+        \item \textbf{Risk Score = 3.7}: $0.4 \times 3 + 0.5 \times 5 - 0.1 \times 3 = 1.2 + 2.5 - 0.3 = 3.4$ (High Priority)
     \end{itemize}
 \end{itemize}

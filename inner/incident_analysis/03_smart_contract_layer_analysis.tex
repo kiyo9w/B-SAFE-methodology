@@ -139,7 +139,7 @@ Our analysis of smart contract vulnerabilities follows the systematic five-step 
 
 \item \textbf{Detectability (D = 2):} Easy. Static analysis tools can identify potential vulnerabilities with reasonable accuracy, though recognizing active exploitation requires monitoring that is not always implemented.
 
-\item \textbf{Risk Score = 3.7}: $0.4 \times 3 + 0.5 \times 5 - 0.1 \times 2 = 1.2 + 2.5 - 0.2 = 3.5$ (Unified risk score accounting for detectability)
+\item \textbf{Risk Score = 3.7}: $0.4 \times 3 + 0.5 \times 5 - 0.1 \times 2 = 1.2 + 2.5 - 0.2 = 3.5$ (High Priority)
 \end{itemize}
 
 \subsubsection{Risk Category SC-2: Integer Overflow/Underflow}
@@ -260,7 +260,7 @@ Our analysis of smart contract vulnerabilities follows the systematic five-step 
 
 \item \textbf{Detectability (D = 3):} Medium. Modern development tools and compilers make these vulnerabilities relatively easy to detect before deployment, but legacy contracts remain at risk.
 
-\item \textbf{Risk Score = 3.7}: $0.4 \times 4 + 0.5 \times 4 - 0.1 \times 3 = 1.6 + 2.0 - 0.3 = 3.3$ (Unified risk score accounting for detectability)
+\item \textbf{Risk Score = 3.7}: $0.4 \times 4 + 0.5 \times 4 - 0.1 \times 3 = 1.6 + 2.0 - 0.3 = 3.3$ (High Priority)
 \end{itemize}
 
 \subsubsection{Risk Category SC-3: Logic Flaw Vulnerabilities}
@@ -381,7 +381,7 @@ Our analysis of smart contract vulnerabilities follows the systematic five-step 
 
 \item \textbf{Detectability (D = 1):} Very Hard. Logic flaws are the most challenging vulnerability class to detect as they require deep understanding of intended business logic versus implemented behavior.
 
-\item \textbf{Risk Score = 3.7}: $0.4 \times 3 + 0.5 \times 5 - 0.1 \times 1 = 1.2 + 2.5 - 0.1 = 3.6$ (Unified risk score accounting for detectability)
+\item \textbf{Risk Score = 3.7}: $0.4 \times 3 + 0.5 \times 5 - 0.1 \times 1 = 1.2 + 2.5 - 0.1 = 3.6$ (High Priority)
 \end{itemize}
 \begin{itemize}
 \item \textbf{Preconditions (P)}: Necessary conditions for vulnerability exploitation, including vulnerable contract logic, deployment exposure, value criticality, and absence of security controls.

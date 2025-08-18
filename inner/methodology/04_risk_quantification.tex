@@ -3,12 +3,20 @@
 
 We prioritize threats using a risk scoring approach that combines \textbf{Likelihood (L)}, \textbf{Impact (I)}, and \textbf{Detectability (D)} on 1--5 scales. The unified formula accounts for detectability as a risk modifier, recognizing that harder-to-detect threats pose greater risk. This approach balances traditional risk management principles with the unique challenges of blockchain security.
 
-\subsubsection{Unified Risk Score}
-Where a single numeric priority is helpful, we use the unified risk score formula:
+\subsubsection{Priority Ranking}
+Where a single numeric priority is helpful, we use the priority ranking formula:
 \begin{equation}
     \text{Risk Score} = (w_L \times L) + (w_I \times I) - (w_D \times D)
 \end{equation}
 with default weights $w_L=0.4$, $w_I=0.5$, $w_D=0.1$ to balance impact and likelihood while accounting for detectability as a risk modifier.
+
+The calculated risk score is then mapped to priority levels as follows:
+\begin{itemize}
+    \item \textbf{Critical Priority} ($\geq$3.9): Immediate attention required, highest risk level
+    \item \textbf{High Priority} (3.0-3.8): Significant risk requiring prompt mitigation
+    \item \textbf{Medium Priority} (2.0-2.9): Moderate risk requiring planned response
+    \item \textbf{Low Priority} (<2.0): Lower risk, routine monitoring sufficient
+\end{itemize}
 
 \paragraph{Methodological backing} Subtracting detectability is consistent with FMEA-style Risk Priority Number schemes, where harder-to-detect failures increase risk (inverse detectability) \cite{WestgardDetectability,PQRI2015FMEA}. Using a weighted linear combination is standard in cybersecurity risk scoring (e.g., OWASP Risk Rating; ISACA enhanced risk formula; NIST-inspired programmatic scoring) \cite{OWASPRiskRating,ISACA2014EnhancedRisk,ZengRCNIST}. Our impact-centric weighting reflects asymmetric loss considerations common in enterprise risk. Calibration is supported by established practices such as sensitivity analysis and expert elicitation (FAIR calibrated estimation), with optional Monte Carlo/Expected Monetary Value checks for robustness \cite{FAIRCalibratedEstimation,RosemetQRA}.
 
