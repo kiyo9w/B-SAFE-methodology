@@ -75,7 +75,7 @@ Our analysis of smart contract vulnerabilities follows the systematic five-step 
         \begin{itemize}
         \item \textbf{Mechanism:} Specify gas limits when making external calls to limit the computation available to potentially malicious contracts.
         \item \textbf{Parameters:} Gas limit value; forward gas amount.
-        \item \textbf{Trade-offs:} May break legitimate functionality if gas requirements change; offers partial protection only.
+        \item \textbf{Trade-offs:} May break legitimate functionality if gas requirements change; offers partial protection only\cite{atzei2017survey}.
         \end{itemize}
     
     \item \textbf{C2.2 (Pull Payment Pattern):}
@@ -179,7 +179,7 @@ Our analysis of smart contract vulnerabilities follows the systematic five-step 
         \begin{itemize}
         \item \textbf{Mechanism:} Implement libraries that perform checked arithmetic operations and revert transactions on overflow/underflow conditions.
         \item \textbf{Parameters:} Library implementation (OpenZeppelin SafeMath, custom); Solidity version (0.8.x with built-in checks).
-        \item \textbf{Trade-offs:} Small gas overhead; eliminates entire vulnerability class with minimal implementation effort.
+        \item \textbf{Trade-offs:} Small gas overhead; eliminates entire vulnerability class with minimal implementation effort\cite{chen2020state}.
         \end{itemize}
     
     \item \textbf{C1.2 (Input Validation):}

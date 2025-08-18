@@ -65,7 +65,7 @@ Auxiliary risks (wallets, exchanges, CI/CD, frontends) dominate end-user losses 
             \end{itemize}
         \item \textbf{C2.2 (Multi-Signature Schemes):}
             \begin{itemize}
-                \item \textit{Mechanism:} Configure a wallet to require M-of-N signatures to authorize a transaction. A compromise of a single key is insufficient to move funds.
+                \item \textit{Mechanism:} Configure a wallet to require M-of-N signatures to authorize a transaction. A compromise of a single key is insufficient to move funds\cite{bitz2018multi}.
                 \item \textit{Parameters:} Signature threshold (e.g., 2-of-3, 3-of-5).
                 \item \textit{Trade-offs:} Increases security but adds complexity to transaction signing and key management.
             \end{itemize}
@@ -145,7 +145,7 @@ Auxiliary risks (wallets, exchanges, CI/CD, frontends) dominate end-user losses 
                 \end{itemize}
             \item \textbf{C1.2 (Formal Verification and Auditing):}
                 \begin{itemize}
-                    \item \textit{Mechanism:} Wallet providers and services undergo rigorous, independent security audits of their code and operational procedures before public launch and after major updates.
+                    \item \textit{Mechanism:} Wallet providers and services undergo rigorous, independent security audits of their code and operational procedures before public launch and after major updates\cite{durieux2020empirical}.
                     \item \textit{Parameters:} Audit firms engaged; scope of the audit (e.g., smart contracts, backend infrastructure).
                     \item \textit{Trade-offs:} Audits are costly, time-consuming, and do not guarantee the absence of all vulnerabilities, especially internal fraud.
                 \end{itemize}
@@ -155,7 +155,7 @@ Auxiliary risks (wallets, exchanges, CI/CD, frontends) dominate end-user losses 
         \begin{itemize}
             \item \textbf{C2.1 (Proof of Reserves):}
                 \begin{itemize}
-                    \item \textit{Mechanism:} Custodial services cryptographically prove on-chain that they hold assets equivalent to all user deposits, providing transparency and mitigating risk from commingling of funds.
+                    \item \textit{Mechanism:} Custodial services cryptographically prove on-chain that they hold assets equivalent to all user deposits, providing transparency and mitigating risk from commingling of funds\cite{dakhlallah2023proof}.
                     \item \textit{Parameters:} Audit frequency (e.g., quarterly, real-time); auditor independence.
                     \item \textit{Trade-offs:} Does not prevent theft from a hack and can be complex to verify for non-technical users.
                 \end{itemize}
