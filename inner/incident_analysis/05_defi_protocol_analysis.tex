@@ -305,7 +305,7 @@ Using our systematic scoring framework:
         \item \textbf{Likelihood (L = 4):} High. Flash loans are popular and many protocols still use spot price / lack temporal guards; many real world exploits. \cite{werapun2023faa, werner2022sok}
         \item \textbf{Impact (I = 4):} High. Losses range from several hundred thousand to tens of millions of dollars; can destroy the protocol's TVL. 
         \item \textbf{Detectability (D = 2):} Difficult. Atomic exploits are single-tx, difficult to detect before the tx is mined; detection usually happens post-process or requires a dedicated detection system. \cite{werapun2023faa}
-        \item \textbf{Composite Risk (R = 3.4):} $0.4 \times 4 + 0.5 \times 4 - 0.1 \times 2 = 1.6 + 2.0 - 0.2 = 3.4$ (High Priority)
+        \item \textbf{Risk Score = 3.4}: $0.4 \times 4 + 0.5 \times 4 - 0.1 \times 2 = 1.6 + 2.0 - 0.2 = 3.4$ (High Priority)
     \end{itemize}
     
     \item \textbf{PRO-ORACLE/PRICE-FEED}
@@ -313,6 +313,6 @@ Using our systematic scoring framework:
         \item \textbf{Likelihood (L = 4):} High. Oracle manipulation incidents are frequent where protocols rely on manipulable feeds; industry reports show a rise in oracle manipulation cases.\cite{chainalysis2023oracle}
         \item \textbf{Impact (I = 5):} High. Historical incidents (Mango $\approx$\$116M, aggregate hundreds of millions across events) demonstrate systemic potential for catastrophic loss. \cite{akartuna2022mango}
         \item \textbf{Detectability (D = 2):} Difficult. Manipulation can be rapid and precede detection; cross-market surveillance helps but may still be too late for instantaneous exploits. \cite{solidus2022mango}
-        \item \textbf{Composite Risk (R = 3.9):} $0.4 \times 4 + 0.5 \times 5 - 0.1 \times 2 = 1.6 + 2.5 - 0.2 = 3.9$ (Critical Priority)
+        \item \textbf{Risk Score = 3.9}: $0.4 \times 4 + 0.5 \times 5 - 0.1 \times 2 = 1.6 + 2.5 - 0.2 = 3.9$ (Critical Priority)
     \end{itemize}
 \end{itemize}

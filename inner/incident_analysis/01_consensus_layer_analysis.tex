@@ -262,7 +262,7 @@ Using our systematic scoring framework:
         \item \textbf{Likelihood (L=2 - Low):} The attack meets the "Low" criteria as it has occurred rarely but demonstrably on smaller chains, and faces significant technical and economic barriers on major networks.
         \item \textbf{Impact (I=5 - Critical):} The outcome is a fundamental violation of ledger immutability leading to systemic failure and financial losses often exceeding \$100M, aligning with the "Critical" definition.
         \item \textbf{Detectability (D=3 - Moderate):} While a successful attack is immediately detectable via block reorganization, predicting hashrate accumulation requires specialized monitoring and can be ambiguous, fitting the "Moderate" criteria.
-        \item \textbf{Composite (L/I) = 3.8; D = 3}: $0.4 \times 2 + 0.6 \times 5 = 0.8 + 3.0 = 3.8$ (D reported separately)
+        \item \textbf{Risk Score = 3.5}: $0.4 \times 2 + 0.5 \times 5 - 0.1 \times 3 = 0.8 + 2.5 - 0.3 = 3.0$ (Unified risk score accounting for detectability)
     \end{itemize}
     
     \item \textbf{CON-2 (Selfish Mining):}
@@ -270,7 +270,7 @@ Using our systematic scoring framework:
         \item \textbf{Likelihood (L=3 - Medium):} The attack meets the "Medium" criteria as it represents a rational strategy for large mining pools and has been observed in practice, though not universally adopted.
         \item \textbf{Impact (I=3 - Moderate):} The outcome typically results in \$1M-\$10M in economic losses through reduced network security and potential market manipulation, fitting the "Moderate" definition.
         \item \textbf{Detectability (D=4 - Difficult):} The attack requires specialized tools to distinguish from normal network conditions like high orphan rates due to latency, aligning with the "Difficult" criteria.
-        \item \textbf{Composite (L/I) = 3.0; D = 4}: $0.4 \times 3 + 0.6 \times 3 = 1.2 + 1.8 = 3.0$ (D reported separately)
+        \item \textbf{Risk Score = 2.6}: $0.4 \times 3 + 0.5 \times 3 - 0.1 \times 4 = 1.2 + 1.5 - 0.4 = 2.3$ (Unified risk score accounting for detectability)
     \end{itemize}
 
     \item \textbf{CON-3 (PoS Long-Range Attack):}
@@ -278,7 +278,7 @@ Using our systematic scoring framework:
         \item \textbf{Likelihood (L=1 - Very Low):} The attack meets the "Very Low" criteria as it remains theoretical with no known instances, requiring significant coordination and access to old keys.
         \item \textbf{Impact (I=5 - Critical):} The outcome would result in complete chain history rewrite leading to systemic failure and financial losses exceeding \$100M, aligning with the "Critical" definition.
         \item \textbf{Detectability (D=5 - Very Difficult):} An isolated new node cannot detect this attack on its own, requiring external verification mechanisms, fitting the "Very Difficult" criteria.
-        \item \textbf{Composite (L/I) = 3.4; D = 5}: $0.4 \times 1 + 0.6 \times 5 = 0.4 + 3.0 = 3.4$ (D reported separately)
+        \item \textbf{Risk Score = 2.9}: $0.4 \times 1 + 0.5 \times 5 - 0.1 \times 5 = 0.4 + 2.5 - 0.5 = 2.4$ (Unified risk score accounting for detectability)
     \end{itemize}
 
     \item \textbf{NET-1 (Eclipse Attack):}
@@ -286,6 +286,6 @@ Using our systematic scoring framework:
         \item \textbf{Likelihood (L=3 - Medium):} The attack meets the "Medium" criteria as it represents a known vector for targeted attacks, though modern clients have improved resilience.
         \item \textbf{Impact (I=4 - Major):} The outcome typically results in \$10M-\$100M in losses through theft and wasted mining resources, fitting the "Major" definition.
         \item \textbf{Detectability (D=4 - Difficult):} From the victim's perspective, the network appears normal, making detection nearly impossible without external tools, aligning with the "Difficult" criteria.
-        \item \textbf{Composite (L/I) = 3.6; D = 4}: $0.4 \times 3 + 0.6 \times 4 = 1.2 + 2.4 = 3.6$ (D reported separately)
+        \item \textbf{Risk Score = 3.2}: $0.4 \times 3 + 0.5 \times 4 - 0.1 \times 4 = 1.2 + 2.0 - 0.4 = 2.8$ (Unified risk score accounting for detectability)
     \end{itemize}
 \end{itemize}

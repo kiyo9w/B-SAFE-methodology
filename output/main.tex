@@ -113,7 +113,7 @@
 \setlength{\columnsep}{0.5cm}
 
 
-\noindent \textbf{\textit{Abstract---}This paper presents B-SAFE, an empirically grounded systematization of blockchain security risks organized across five architectural layers. We analyze 647 incident entries spanning 2016--2025, applying a formal specification schema (P, I, S, C, M) to classify threats and map defenses. We provide an enterprise-relevant taxonomy with rigorous incident analyses and a practical assessment checklist. We conclude by proposing a prototype LLM-assisted pipeline (LLM→XGBoost→LLM) to accelerate future assessments, positioning its quantitative evaluation as a key direction for subsequent research. This work aims to standardize terminology, surface consistent invariants and controls, and support reproducible, practitioner-focused security assessments.}
+\noindent \textbf{\textit{Abstract---}This paper presents B-SAFE, an empirically grounded systematization of blockchain security risks organized across five architectural layers. We analyze 647 incident entries spanning 2016--2025, applying a formal specification schema (P, I, S, C, M) to classify threats and map defenses. We provide an enterprise-relevant taxonomy with rigorous incident analyses and a practical assessment checklist. We implement and evaluate an LLM-assisted pipeline (LLM→XGBoost→LLM) that accelerates assessments by converting enterprise documents into predictions and an executive-ready report (see \S\ref{sec:ml_pipeline}). This work aims to standardize terminology, surface consistent invariants and controls, and support reproducible, practitioner-focused security assessments.}
 
 \small	
 \noindent \textbf{\textit{Keywords---}\textit{Blockchain security, machine learning, security assessment, threat detection, consensus mechanisms, smart contracts}}
@@ -122,7 +122,7 @@
 \centering
 \includegraphics[width=0.5\textwidth]{../figure/Figure/figures_2/F1_word_cloud.png}
 \caption{Word cloud generated from titles and descriptions of blockchain security incidents, showing the most frequently occurring terms.}
-\label{fig:five_layer_architecture}
+\label{fig:word_cloud}
 \end{figure}
 % Chapter I: Introduction
 \input{../inner/introduction.tex}
@@ -153,8 +153,7 @@ This paper presented B-SAFE, a comprehensive framework for systematic blockchain
 \section*{Acknowledgement}
 
 % Unified bibliography managed via BibTeX
-\bibliographystyle{ieeetr}
-\nocite{ChenYao2022,Deloitte2000,Scribbr2020,SlatWorp2019,SlatWorpHolierhoekND,Launiainen2018,Karatas2021,MarahChallenger2023}
+\bibliographystyle{IEEEtran}
 \bibliography{../references}
 
 \end{multicols}
