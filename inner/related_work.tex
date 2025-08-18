@@ -1,0 +1,24 @@
+\section{Related Work}
+\label{sec:related_work}
+
+Prior work proposes layered taxonomies and vulnerability surveys for blockchain systems, as well as domain-specific security analyses for smart contracts and DeFi.
+
+\subsection*{Layered Models and Surveys}
+Surveys frequently adopt layered decompositions of blockchain threats, typically distinguishing peer-to-peer networking, consensus, contract logic, and application or protocol concerns \cite{zhou2023sok, perez2021analysis}. These works provide valuable taxonomies and incident narratives but generally stop short of offering an enterprise-practical assessment framework that unifies controls, quantitative scoring, and operational guidance.
+
+\subsection*{Smart Contracts and DeFi Security}
+Research on smart contract security has cataloged common vulnerability classes and tooling efficacy \cite{perez2021analysis, praitheeshan2019systematic}. DeFi-specific systematizations (SoK) highlight economic exploit vectors, oracle fragility, and composability risks across protocol stacks \cite{zhou2023sok}. These analyses underscore the need for robust invariants, time-weighted pricing, and multi-source oracles, but they do not prescribe a holistic, enterprise-ready checklist or a risk quantification pipeline integrated with organizational processes.
+
+\subsection*{B-SAFE: Distinct Contributions}
+\textbf{What is novel in B-SAFE} relative to prior art:
+\begin{itemize}
+    \item \textbf{Enterprise-Oriented Five-Layer Frame}: B-SAFE formalizes a five-layer architecture (NET, CON, SC, PRO, AUX) with explicit linkage to enterprise controls (key management, SOC, CI/CD, governance). Prior models often omit operational/auxiliary dependencies or treat them informally.
+    \item \textbf{Formal P–I–S–C–M Schema}: Each risk category is specified by Preconditions, threatened Invariants, canonical attack Sequence, Controls, and Metrics. This bridges academic rigor (formalization of invariants and sequences) with practitioner usability (direct mapping to controls).
+    \item \textbf{Quantitative Risk Model with Detectability Treatment}: A simple, calibrated scoring function prioritizes impact while subtracting detectability, aligning triage to asymmetric, fast-moving blockchain incidents (see \S\ref{sec:risk_quantification}). \textit{Sensitivity analysis} demonstrates stability of rankings under weight variations.
+    \item \textbf{Checklist-First with Automated Pipeline}: A practical checklist is primary. To accelerate assessments, B-SAFE adds an LLM→XGBoost→LLM pipeline that converts enterprise documents into predictions and an executive-ready report (see \S\ref{sec:ml_pipeline}). We are not aware of prior frameworks that integrate LLM extraction, trained incident-informed models, and actionable reporting while maintaining human-in-the-loop governance.
+    \item \textbf{Empirical Grounding}: Risk categories and guidance are informed by a multi-year corpus of incidents through 2024, with a consistent labeling schema that supports both qualitative checklists and quantitative modeling.
+\end{itemize}
+
+In summary, B-SAFE advances from descriptive taxonomies toward an \textit{operational} framework that enterprises can adopt: formalized specifications, quantitative prioritization, explicit control mapping, and an optional automation layer that preserves human oversight.
+
+

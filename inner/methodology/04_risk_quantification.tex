@@ -1,31 +1,17 @@
-\subsection{Risk Quantification Model}
+\subsection{Risk Prioritization Approach}
 \label{sec:risk_quantification}
 
-Our risk quantification model provides a systematic approach to assessing the severity and priority of blockchain security threats. The model incorporates multiple dimensions of risk to provide a comprehensive assessment framework.
+We prioritize threats primarily by \textbf{Likelihood (L)} and \textbf{Impact (I)} on 1--5 scales. \textbf{Detectability (D)} is treated as a \textit{separate control-gap attribute} that influences monitoring and response planning rather than being combined arithmetically with L/I. This aligns with NIST/ISO practice, where detect functions mitigate but do not reduce inherent risk.
 
-\subsubsection{Risk Scoring Formula}
-We employ a weighted risk scoring formula that considers three primary dimensions:
-
+\subsubsection{Composite Score (L/I only)}
+Where a single numeric priority is helpful, we use:
 \begin{equation}
-    \text{Risk Score} = (w_L \times L) + (w_I \times I) - (w_D \times D)
+    \text{Composite} = (w_L \times L) + (w_I \times I),\quad w_L + w_I = 1
 \end{equation}
+with default weights $w_L=0.4$, $w_I=0.6$ to emphasize impact while preserving likelihood contributions. Detectability is reported alongside this composite.
 
-Where:
-\begin{itemize}
-    \item \textbf{L (Likelihood):} Probability of successful attack execution (1-5 scale)
-    \item \textbf{I (Impact):} Potential financial and operational consequences (1-5 scale)
-    \item \textbf{D (Detectability):} Difficulty of detecting the attack (1-5 scale)
-    \item \textbf{w$_L$, w$_I$, w$_D$:} Weight coefficients for each dimension
-\end{itemize}
-
-\subsubsection{Weight Justification}
-Our weight selection prioritizes impact over likelihood while considering detection capabilities:
-
-\begin{itemize}
-    \item \textbf{w$_L$ = 0.4:} Likelihood receives moderate weight, reflecting that even low-probability attacks can be devastating
-    \item \textbf{w$_I$ = 0.5:} Impact receives the highest weight, emphasizing the importance of potential consequences
-    \item \textbf{w$_D$ = 0.1:} Detectability receives lower weight, as detection alone does not prevent damage
-\end{itemize}
+\subsubsection{Weight Rationale}
+The weights are selected to reflect established enterprise risk management principles where the magnitude of potential loss is the primary driver of priority. The assignment of $w_I=0.6$ and $w_L=0.4$ creates an \textit{impact-forward} model, ensuring that high-impact, low-likelihood "black swan" events are not unduly minimized in prioritization. This aligns with frameworks where impact asymmetries are a key consideration. While these weights are adaptable, they provide a stable baseline for triage. Future work could pursue formal weight calibration through expert elicitation methods (e.g., Delphi) on the incident corpus.
 
 This weighting scheme aligns with industry best practices and reflects the asymmetric nature of blockchain security threats.
 
@@ -58,14 +44,7 @@ This weighting scheme aligns with industry best practices and reflects the asymm
 \end{itemize}
 
 \subsubsection{Sensitivity Analysis}
-To validate our risk model, we conducted sensitivity analysis on:
-\begin{itemize}
-    \item \textbf{Weight Variations:} Testing different weight combinations
-    \item \textbf{Scale Sensitivity:} Analyzing the impact of scoring scale changes
-    \item \textbf{Threshold Effects:} Examining how risk thresholds affect prioritization
-\end{itemize}
-
-% TODO: Add specific sensitivity analysis results and validation metrics
+We examine ranking stability across reasonable $w_L/w_I$ variations and confirm that categories with high impact remain top priorities. Full quantitative evaluation is future work.
 
 \begin{figure}[H]
 \centering

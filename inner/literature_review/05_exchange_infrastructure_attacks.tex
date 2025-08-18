@@ -1,5 +1,4 @@
 \subsection{Exchange and Infrastructure Attacks}
 This subsection covers centralized exchange compromise patterns, API key abuse, withdrawal bypasses, hot/cold wallet segregation failures, and infrastructure supply-chain risks. We incorporate regulatory and compliance impacts for enterprises.
 
-
-
+In enterprise contexts, the most material risks arise from operational lapses and supply-chain exposures rather than protocol breaks. Common vectors include cloud credential leakage leading to hot-wallet drains, CI/CD pipeline tampering that injects malicious front-end code, and API key over-permissions enabling withdrawal bypasses. Controls that consistently reduce risk include hardware-backed key custody (HSMs with quorum policies), strict withdrawal allowlists and velocity limits, just-in-time API credentials, and continuous integrity monitoring of frontend artifacts. From a compliance perspective, incident containment and audit-ready evidence (tamper-evident logs, key ceremony records) are as critical as technical remediation.

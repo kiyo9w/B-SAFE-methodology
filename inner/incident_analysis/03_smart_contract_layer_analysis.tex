@@ -1,6 +1,9 @@
 \subsection{Smart Contract Layer Security Analysis}
 \label{sec:results_smart_contract}
 
+\paragraph{Executive Summary}
+Smart-contract threats concentrate economic risk: a few categories (reentrancy, logic flaws, price/oracle dependencies) drive most losses. Enterprise-grade posture: enforce secure coding patterns, multiple independent audits, formalize invariants where high value is at stake, and integrate runtime monitoring with emergency controls.
+
 Our analysis of smart contract vulnerabilities follows the systematic five-step threat assessment framework: Precondition (P), Invariant (I), Sequence (S), Controls (C), and Metrics (M). Using empirical data from over 23,000 Ethereum smart contracts \cite{perez2021analysis}, we've identified that while vulnerabilities are widespread, actual exploitation is rare—only 2\% of vulnerable contracts experience attacks, with less than 0.3\% of at-risk value being compromised. As shown in Figure \ref{fig:smart_contract_pareto}, exploitation follows a Pareto distribution, with 80\% of losses concentrated in just 10 major incidents between 2016 and 2021 \cite{zhou2023sok}.
 
 \begin{figure}[H]
@@ -37,6 +40,13 @@ Our analysis of smart contract vulnerabilities follows the systematic five-step 
     \item \textbf{Exploitation phase:} When the target contract makes an external call to the attacker's contract, the fallback function executes, recursively calling back into the vulnerable function before state updates occur.
     \item \textbf{Repetition phase:} The recursive calls continue until gas limits are reached or funds are depleted, allowing multiple withdrawals against the same balance.
     \end{enumerate}
+\end{itemize}
+
+\paragraph{Enterprise Checklist Mapping}
+\begin{itemize}
+    \item \textbf{Security}: Enforce CEI pattern, reentrancy guards, SafeMath/0.8.x checks; multi-audit requirement for high-value contracts.
+    \item \textbf{Operations}: Emergency pause and value-limiting controls; monitoring for exploit signatures.
+    \item \textbf{Compliance}: Evidence-backed audit trails and change management for contract upgrades.
 \end{itemize}
 
 \paragraph{Defense Mechanism Analysis}
@@ -127,9 +137,9 @@ Our analysis of smart contract vulnerabilities follows the systematic five-step 
 
 \item \textbf{Impact (I = 5):} Critical. When successfully exploited, reentrancy attacks typically result in complete drainage of contract funds and potentially catastrophic ecosystem-wide impacts, as demonstrated by The DAO attack.
 
-\item \textbf{Detectability (D = 2):} Hard. While static analysis tools can identify potential vulnerabilities with reasonable accuracy, recognizing active exploitation requires sophisticated monitoring that is not widely implemented.
+\item \textbf{Detectability (D = 2):} Easy. Static analysis tools can identify potential vulnerabilities with reasonable accuracy, though recognizing active exploitation requires monitoring that is not always implemented.
 
-\item \textbf{Composite Risk (R = 3.6):} $0.4 \times 3 + 0.5 \times 5 - 0.1 \times 2 = 1.2 + 2.5 - 0.2 = 3.5$ (Critical Priority)
+\item \textbf{Composite (L/I) = 4.3; Detectability D = 2}: $0.4 \times 3 + 0.6 \times 5 = 1.2 + 3.0 = 4.2$ (Impact-forward priority; D reported separately)
 \end{itemize}
 
 \subsubsection{Risk Category SC-2: Integer Overflow/Underflow}
@@ -250,7 +260,7 @@ Our analysis of smart contract vulnerabilities follows the systematic five-step 
 
 \item \textbf{Detectability (D = 3):} Medium. Modern development tools and compilers make these vulnerabilities relatively easy to detect before deployment, but legacy contracts remain at risk.
 
-\item \textbf{Composite Risk (R = 3.1):} $0.4 \times 4 + 0.5 \times 4 - 0.1 \times 3 = 1.6 + 2.0 - 0.3 = 3.3$ (High Priority)
+\item \textbf{Composite (L/I) = 4.0; Detectability D = 3}: $0.4 \times 4 + 0.6 \times 4 = 1.6 + 2.4 = 4.0$ (D reported separately)
 \end{itemize}
 
 \subsubsection{Risk Category SC-3: Logic Flaw Vulnerabilities}
@@ -371,7 +381,7 @@ Our analysis of smart contract vulnerabilities follows the systematic five-step 
 
 \item \textbf{Detectability (D = 1):} Very Hard. Logic flaws are the most challenging vulnerability class to detect as they require deep understanding of intended business logic versus implemented behavior.
 
-\item \textbf{Composite Risk (R = 3.8):} $0.4 \times 3 + 0.5 \times 5 - 0.1 \times 1 = 1.2 + 2.5 - 0.1 = 3.6$ (Critical Priority)
+\item \textbf{Composite (L/I) = 4.2; Detectability D = 1}: $0.4 \times 3 + 0.6 \times 5 = 1.2 + 3.0 = 4.2$ (D reported separately)
 \end{itemize}
 \begin{itemize}
 \item \textbf{Preconditions (P)}: Necessary conditions for vulnerability exploitation, including vulnerable contract logic, deployment exposure, value criticality, and absence of security controls.

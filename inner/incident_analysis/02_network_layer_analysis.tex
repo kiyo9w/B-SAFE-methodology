@@ -1,2 +1,55 @@
 \subsection{Network Layer Security Analysis}
 \label{sec:results_network}
+
+\paragraph{Executive Summary}
+Network-layer attacks distort or isolate a node's view of the chain or partition the network, enabling double-spends or denial of service. Enterprise-grade mitigations emphasize diverse peering, route security monitoring, and anchoring to trusted nodes.
+
+\subsubsection{Risk Category NET-2: BGP Hijack / Route Manipulation}
+
+\paragraph{Formal Risk Specification}
+\begin{itemize}
+    \item \textbf{Preconditions (P):}
+    \begin{itemize}
+        \item \textbf{P1: Upstream Routing Control:} Attacker controls or compromises an Autonomous System capable of announcing false routes.
+        \item \textbf{P2: Limited Peer Diversity:} Target nodes rely on a small set of upstreams without out-of-band verification.
+    \end{itemize}
+    \item \textbf{Threatened Invariants (I):}
+    \begin{itemize}
+        \item \textbf{INV-7 (Network View Integrity):} Victim receives a partitioned or stale view of the chain.
+        \item \textbf{INV-8 (Permissionless Propagation):} Victim's blocks/transactions fail to propagate to honest peers.
+    \end{itemize}
+    \item \textbf{Canonical Attack Sequence (S):}
+    \begin{enumerate}
+        \item Attacker originates malicious BGP announcements to attract traffic for target prefixes.
+        \item Victim nodes' connections are silently rerouted or blackholed.
+        \item Attacker enables targeted isolation, facilitating double-spends or DoS.
+    \end{enumerate}
+\end{itemize}
+
+\paragraph{Defense Mechanism Analysis}
+\begin{itemize}
+    \item \textbf{Prevention Controls:}
+    \begin{itemize}
+        \item \textbf{C1.1 (RPKI and Route Filtering):} Enforce RPKI and strict prefix filtering with upstream providers.
+        \item \textbf{C1.2 (Peer Diversity):} Maintain multi-homed connectivity across diverse ASNs and geographies.
+    \end{itemize}
+    \item \textbf{Detection Controls:}
+    \begin{itemize}
+        \item \textbf{C3.1 (Route Anomaly Monitoring):} Monitor BGP announcements and traceroutes; alert on path changes.
+    \end{itemize}
+\end{itemize}
+
+\paragraph{Empirical Incident Analysis}
+Targeted BGP manipulations have affected major platforms historically; while rare, the impact is high for exchanges and large validators. Route anomalies correlate with short-lived partitions that increase double-spend risk on exchanges that credit deposits with low confirmations.
+
+\paragraph{Risk Quantification}
+\begin{itemize}
+    \item \textbf{Likelihood (L = 2)}; \textbf{Impact (I = 4)}; \textbf{Detectability (D = 3)}; \textbf{Composite (R = 2.5)} ($0.4\times2 + 0.5\times4 - 0.1\times3 = 0.8 + 2.0 - 0.3$).
+\end{itemize}
+
+\paragraph{Enterprise Checklist Mapping}
+\begin{itemize}
+    \item \textbf{Architecture/Platform}: Multi-homing and geographic/ASN diversity for critical nodes.
+    \item \textbf{Security}: RPKI, route monitoring, and trusted anchoring peers.
+    \item \textbf{Operations}: Deposit confirmation policies resilient to short-lived partitions.
+\end{itemize}

@@ -17,11 +17,11 @@ The composite risk score \( R \) is calculated using a weighted formula based on
 \begin{equation}
     \text{Risk Score} = (w_L \times L) + (w_I \times I) - (w_D \times D)
 \end{equation}
-For this framework, we use the weights \(w_L=0.4\), \(w_I=0.5\), and \(w_D=0.1\), which prioritizes impact over likelihood while factoring in the difficulty of detection. This schema enables systematic incident classification and comparative analysis across different attack categories.
+We adopt a qualitative-first stance for risk prioritization, aligning with NIST/ISO practice that treats risk primarily as a function of likelihood and impact. Detectability is modeled as a \textit{control-gap attribute} considered alongside (not subtracted from) the composite score. Where quantitative scoring is needed, we use a simple weighted sum of likelihood and impact; detectability is reported separately to guide monitoring and response investments. Sensitivity analysis examines ranking stability under weight variation.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.4\textwidth]{../figure/fig3.png}
-\caption{Visual representation of the (P, I, S, C, M) schema applied to SC-1 Reentrancy Attack, showing how preconditions, invariants, attack sequence, controls, and metrics are systematically mapped to create a comprehensive risk specification.}
+\caption{Visual representation of the (P, I, S, C, M) schema applied to SC-1 Reentrancy Attack. Right: illustrative sensitivity of composite risk to weight variation demonstrates prioritization stability when \(w_I\) remains dominant.}
 \label{fig:schema_blueprint}
 \end{figure}

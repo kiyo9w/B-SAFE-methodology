@@ -1,15 +1,322 @@
 \subsection{DeFi Protocol Layer Security Analysis}
 \label{sec:results_defi_protocol}
 
-% TODO: Team member to populate this section with:
-% - PRO-1: Flash Loan Attack Analysis
-% - PRO-2: Oracle Manipulation Analysis
-% - PRO-3: Protocol Governance Analysis
-% - Each following the standardized (P, I, S, C, M) framework
+\paragraph{Executive Summary}
+Protocol-layer failures often stem from oracle fragility, composability, and temporal assumptions, amplified by flash loans and MEV. High-value controls: multi-source oracles with robust windows, temporal guards, circuit breakers, and cross-market surveillance; for governance, prudent key custody and timelocks.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.4\textwidth]{../figure/Fig10.png}
-\caption{DeFi protocol dependency network showing protocol nodes sized by TVL and edges representing oracle, bridge, and AMM dependencies. The network visualization reveals the complex interdependencies that can amplify security risks across the DeFi ecosystem.}
-\label{fig:defi_network_dependencies}
-\end{figure}
+\subsubsection{Risk Category PRO-1: Flash Loan Enabled Attacks}
+
+\paragraph{Formal Risk Specification}
+
+\begin{itemize}
+    \item \textbf{Preconditions (P):}
+    \begin{itemize}
+        \item \textbf{P1: Atomic Flash Loan Availability:} There is an atomic flash loan service that allows borrowing large amounts of uncollateralized assets and repaying them in the same transaction, for example Aave, dYdX.
+        \item \textbf{P2: Sufficient On-chain Liquidity / Exploitable DEX reserves:} There is enough liquidity on the AMM/DEX for an attacker to cause significant price impact with one or a few large swaps.
+        \item \textbf{P3: Vulnerable Protocol Logic:} The protocol decides important operations (mint/borrow/withdraw) based on spot price or calculations that do not take slippage/TWAP into account. (e.g.,\ vaults/tranches that calculate “share price” based on spot pools).
+        \item \textbf{P4: High Composability / Cross-contract interactions in a single transaction:} Protocol allows multiple contracts (DEX, oracle, vault) to be called in the same transaction without temporal guards.
+        \item \textbf{P5: Inadequate emergency controls or monitoring:} Lack of circuit breakers, pause mechanisms or real-time anomaly detection systems.
+    \end{itemize}
+
+    \item \textbf{Threatened System Invariants (I):}
+    \begin{itemize}
+        \item \textbf{INV-ACCT (Conservation of Value / Accounting):} The total value reported by the protocol (TVL, pool share value) must be equal to the actual number of tokens on the contract and related external assets. (Sample predicate: $\mathrm{TotalValueReported}(t) = \Sigma\, \mathrm{tokenBalances}(\mathrm{contract}, t) + \mathrm{ExternalAssets}(t)$). Violation occurs when attacker withdraws more than the actual value.
+        \item \textbf{INV-COLL (No-Negative\_Equity / Collateralization):} For all loans $L$: $\mathrm{collateralValue}(L,t) \geq \mathrm{liquidationThreshold} \times \mathrm{borrowedValue}(L,t)$. Flash loans can cause collateralValue to be temporarily inflated/depreciated due to price manipulation in the same transaction.
+        \item \textbf{INV-PRICE (Price Stability / Oracle Consistency):} The Oracle/price feed used for risk decision must be within $\Delta\%$ of the multi-source reference on window $W$. (Temporal invariant: $G(|\mathrm{OraclePrice}(t) - \mathrm{RefPrice}(t)|/\mathrm{RefPrice}(t) \leq \Delta)$).
+        \item \textbf{INV-TEMP (Temporal / Atomicity):} Sensitive operations (deposit $\rightarrow$ borrow $\rightarrow$ withdraw) cannot be completed within the same block/transaction if they are based on spot price assumptions (formalized: $G(\text{if deposit}(tx) \wedge \text{borrow}(tx) \text{ within same block then invalid})$).
+        \item \textbf{INV-SLIP (Liquidity / slippage Bound):} A swap volume $v$ must not cause the pool price to fluctuate beyond a level that the protocol does not account for; the protocol must evaluate the slippage bound $f(v)$ when using spot prices.
+        \item \textbf{INV-COMP (Composability Invariant):} When A reads the state/price from B, it must ensure that B cannot be manipulated in the same transaction to invalidate A's invariant.
+    \end{itemize}
+
+    \item \textbf{Canonical Attack Sequence (S):}
+    \begin{enumerate}
+        \item \textbf{Borrow (flash loan):} Attacker borrows a large amount of token X (no collateral required) in the same transaction.
+        \item \textbf{Manipulate / Use Liquidity:} Use X to swap/pump tokens on AMM, manipulate data sources (DEX reserves, oracle inputs).
+        \item \textbf{Trigger Vulnerable Logic:} Call protocol function (mint/borrow/withdraw) using manipulated value/collateral.
+        \item \textbf{Extract Value:} Withdraw/appropriate assets beyond valid value (withdraw, drain pool).
+        \item \textbf{Repay:} Pay flash loan in the same transaction; attacker gets net profit. (Key: all steps above happen atomically -- no time for arbitrage or oracle to update response).
+    \end{enumerate}
+\end{itemize}
+
+\paragraph{Enterprise Checklist Mapping}
+\begin{itemize}
+    \item \textbf{Architecture}: Multi-source aggregated oracles; TWAP windows sized to liquidity.
+    \item \textbf{Security}: Temporal guards; circuit breakers; anomaly detection integrations.
+    \item \textbf{Operations}: Governance timelocks and emergency procedures for parameter changes.
+\end{itemize}
+
+\paragraph{Defense Mechanism Analysis}
+
+\begin{itemize}
+    \item \textbf{Prevention Controls:}
+    \begin{itemize}
+        \item \textbf{P-C1 (Time-weighted/Windowed Pricing):}
+            \begin{itemize}
+                \item \textit{Mechanism:} Use TWAP (time-weighted average price) or windowed aggregation instead of spot price for every significant decision (collateral valuation, minting).
+                \item \textit{Parameters:} Window's length $W$ (for example 5--30 minutes), sample granularity (for example, per block or per $N$ seconds).
+                \item \textit{Trade-offs:} Reduces risk of nuclear attack but increases price latency $\rightarrow$ impacts UX/latency; does not protect against slow manipulation.
+            \end{itemize}
+        \item \textbf{P-C2 (Same-Block/Temporal Guards):}
+            \begin{itemize}
+                \item \textit{Mechanism:} Forbid/block risky operation pairs in the same block (e.g.,\ forbid deposit $\rightarrow$ borrow in same block) or require explicit multi-tx flows for sensitive ops.
+                \item \textit{Parameters:} noSameBlock flag / modifier; minimal block gap $g$ (e.g.,\ $\geq 1$ block).
+                \item \textit{Trade-offs:} Prevents atomic exploits but reduces composability, increasing friction for users (some legitimate use-cases are affected).
+            \end{itemize}
+        \item \textbf{P-C3 (Formalized Invariants \& Pre-deployment Verification):}
+            \begin{itemize}
+                \item \textit{Mechanism:} Declare invariants as assertions (predicates/temporal logic) and apply formal verification / SMT / static analysis to ensure invariants are not broken by atomic paths.
+                \item \textit{Parameters:} Coverage targets (e.g.,\ assertion coverage \%), formal toolchain (Certora/SMT/Z3), test scenarios (flash-loan attack patterns).
+                \item \textit{Trade-offs:} High cost and time; requires expertise; additional runtime controls still needed.
+            \end{itemize}
+    \end{itemize}
+
+    \item \textbf{Mitigation Controls:}
+    \begin{itemize}
+        \item \textbf{M-C1 (Circuit Breakers / Emergency Pause):}
+            \begin{itemize}
+                \item \textit{Mechanism:} Automatically pause (or allow operator pause) sensitive functions (borrowing/withdraw) when abnormal metrics (oracle jump, swap volume spike) are detected.
+                \item \textit{Parameters:} Trigger thresholds: $\Delta_{oracle}$ (max allowed price jump), $\alpha$ (swap volume $> \alpha \times \text{poolLiquidity}$), pause duration $T_{pause}$.
+                \item \textit{Trade-offs:} Effectively reduces damage immediately but creates centralization and requires ops/governance to resume.
+            \end{itemize}
+        \item \textbf{M-C2 (Dynamic Fees / Slippage Limiting):}
+            \begin{itemize}
+                \item \textit{Mechanism:} Apply dynamic fee multiplier or slippage limit when volume/speed exceeds threshold, reducing attack profit.
+                \item \textit{Parameters:} Fee multiplier $f_m$ (e.g.,\ $\times 2$ -- $\times 10$), max slippage \% enforced, volatility window.
+                \item \textit{Trade-offs:} May reduce legitimate activity during volatile periods; attacker can still pay fees if profit is high.
+            \end{itemize}
+        \item \textbf{M-C3 (Value-Dependent Multi-Tx Settlement / Adaptive Confirmations):}
+            \begin{itemize}
+                \item \textit{Mechanism:} Value-sensitive rules: large value withdrawals/moves require additional confirmations/time delay or multi-step confirmation (e.g.,\ on-chain timelock).
+                \item \textit{Parameters:} confirmation count $c = \alpha \cdot \log_2(\text{value}/\$1000)+\beta$ (tuneable), governance timelock $\Delta_{gov}$.
+                \item \textit{Trade-offs:} Increases transaction costs, may reduce UX; increases recovery time/cash-flow.
+            \end{itemize}
+    \end{itemize}
+
+    \item \textbf{Detection Controls:}
+    \begin{itemize}
+        \item \textbf{D-C1 (Real-time Transaction Pattern Monitoring/Flash-loan Signatures):}
+            \begin{itemize}
+                \item \textit{Mechanism:} On-chain monitoring bots detect single-tx large borrow $\rightarrow$ swap $\rightarrow$ withdraw $\rightarrow$ repay patterns, abnormal swap sizes vs poolLiquidity, rapid state shifts.
+                \item \textit{Parameters:} Thresholds $v > \alpha \times \text{poolLiquidity}$, pattern match rules, sampling window.
+                \item \textit{Effectiveness:} Early detection but no blocking of mined transaction; need automation for quick response (pause).
+            \end{itemize}
+        \item \textbf{D-C2 (Cross-Source Price Divergence Alerts):}
+            \begin{itemize}
+                \item \textit{Mechanism:} Compare prices between multiple oracles/DEXs/CEXs; raise alarm if divergence $> \Delta$ within window $W$.
+                \item \textit{Parameters:} Source set size $n$ (recommend $\geq 3$), deviation threshold $\Delta\%$, sampling cadence.
+                \item \textit{Effectiveness:} Effective in detecting manipulation on single feed; false positives when the market is volatile.
+            \end{itemize}
+        \item \textbf{D-C3 (Pre-Execution Simulation \& Mempool Analysis):}
+            \begin{itemize}
+                \item \textit{Mechanism:} Simulate mempool transaction sequences/use pre-execution analysis in relayer/frontends to evaluate potential price impacts before broadcast; flag risky transaction.
+                \item \textit{Parameters:} Simulation depth, acceptable latency budget, integration point (frontend/relayer/node).
+                \item \textit{Effectiveness:} Cannot prevent miner-included transactions; adds latency \& infra cost; miners/MEV actors can bypass.
+            \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\paragraph{Empirical Incident Analysis}
+
+\begin{itemize}
+    \item \textbf{Case Study PRO-1.1: bZx Flash-loan Exploit (Feb 2020)}
+    \begin{itemize}
+        \item \textbf{Incident Classification:}
+            \begin{itemize}
+                \item \textit{Precondition Analysis:} P1\checkmark (flash loans used), P2\checkmark (sufficient liquidity on Uniswap for price impact), P3\checkmark (bZx relied on pricing logic vulnerable to slippage), P4\checkmark (composability exploited).
+                \item \textit{Sequence \& violation:} Attacker took a large flash loan, manipulated price on an AMM and exploited bZx's margin/payout logic in the same transaction, violating INV-COLL and INV-ACCT.
+            \end{itemize}
+        \item \textbf{Quantitative Impact Assessment:}
+            \begin{itemize}
+                \item \textit{Direct Losses:} Reported series of bZx incidents produced losses in the order of hundreds of thousands to millions across multiple events (initial Feb 2020 incidents documented in press/postmortem).
+                \item \textit{Systemic Effects:} Reputation damage, protocol freezes and emergency fixes; triggered community emphasis on TWAP and temporal guards.
+            \end{itemize}
+        \item \textbf{Counterfactual Analysis:}
+            \begin{itemize}
+                \item \textit{Prevention:} If bZx had used TWAP or temporal guards (disallow same-block borrow/use), the atomic exploit vector would have been closed.
+                \item \textit{Mitigation:} A circuit breaker triggered by anomalous swap volumes or price jumps could have halted withdrawals.
+                \item \textit{Detection:} On-chain monitoring (catching large single-transaction swap signatures) would have raised alerts earlier.
+            \end{itemize}
+    \end{itemize}
+        \item \textbf{Case Study PRO-1.2: Harvest Finance Exploit (Oct 2020)}
+    \begin{itemize}
+        \item \textbf{Incident Classification:}
+            \begin{itemize}
+                \item \textit{Precondition Analysis:} P1\checkmark (attacker used flash interactions), P2\checkmark (certain Curve pools/underlying liquidity allowed manipulation), P3\checkmark (Harvest's share-price computation trusted pool state without conservative slippage accounting).
+                \item \textit{Sequence \& violation:} Attacker used large flash-loan swaps to distort pool ratios feeding Harvest vaults, then withdrew inflated USD value $\rightarrow$ violated INV-ACCT and INV-SLIP.
+            \end{itemize}
+        \item \textbf{Quantitative Impact Assessment:}
+            \begin{itemize}
+                \item \textit{Direct Losses:} $\approx$\$24M (widely reported), attacker used multi-swap pattern to extract value.
+            \end{itemize}
+        \item \textbf{Counterfactual Analysis:}
+            \begin{itemize}
+                \item \textit{Prevention:} Use of TWAP or multi-source valuation for vault share pricing would have prevented instantaneous spot manipulation.
+                \item \textit{Mitigation:} Dynamic slippage limits and auto-pause on abnormal swaps would have limited extracted value.
+                \item \textit{Detection:} Pattern detectors recognizing single-tx, high-volume swap sequences could have triggered emergency pause.
+            \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsection{Risk Category PRO-2: Oracle/Price-Feed Manipulation}
+
+\paragraph{Formal Risk Specification}
+
+\begin{itemize}
+    \item \textbf{Preconditions (P):}
+        \begin{itemize}
+            \item \textbf{P1: Reliance on manipulable price/data feeds:} The protocol relies on one or more price/signal sources that can be influenced (e.g.,\ prices from a DEX spot pair, a CEX API, or a centralized oracle).
+            \item \textbf{P2: Low liquidity or cheap manipulation vector on feed sources:} Data sources (AMM pools, orderbooks, CEX snapshots) have low liquidity depth enough for attackers (with their own capital or flash-loans) to manipulate prices.
+            \item \textbf{P3: Immediate use of raw feed for high-value operations:} Protocol uses the raw feed price to perform actions with high financial consequences (e.g.,\ margin opening, collateral calculation, lending) without sanity checks / smoothing.
+            \item \textbf{P4: Lack of multi-source aggregation/fallback:} Lack of multi-source aggregation/median/fallback when one source deviates.
+            \item \textbf{P5: Insufficient monitoring or automated halting mechanisms:} Lack of cross-market surveillance, divergence alarms, or the ability to automatically halt when price deviates significantly.
+        \end{itemize}
+
+    \item \textbf{Threatened System Invariants (I):}
+        \begin{itemize}
+            \item \textbf{INV-PRICE (Oracle Price Accuracy):} At any time $t$ in window $W$, the oracle price must be within $\Delta\%$ of the multi-source reference price set (predicate: $|\text{OraclePrice}(t) - \text{RefMedianPrice}(t)|/\text{RefMedianPrice}(t) \leq \Delta$). Violation occurs when the oracle offers a price that is superior to the market.
+            \item \textbf{INV-COLL (Collateralization / No-Negative-Equity):} For each position/loan $L$, $\text{collateralValue}(L,t) \geq \text{liquidationThreshold} \times \text{borrowedValue}(L,t)$. If the oracle quotes the wrong price (too high or too low), this invariant can be broken, leading to bad debt / insolvency.
+            \item \textbf{INV-ARB (Arbitrage-Free / No-Spurious-Arbitrage):} The oracle should not create large price differences compared to other markets, which would create conditions for empty profit arbitrage (which an attacker could exploit to drain liquidity).
+            \item \textbf{INV-LIVENESS (Protocol Solvency/Asset Liveness):} The protocol must maintain solvency and avoid falling into a negative-reserve state; oracle manipulation can trigger system losses and break this invariant.
+        \end{itemize}
+
+    \item \textbf{Canonical Attack Sequence (S):}
+        \begin{enumerate}
+            \item \textbf{Upstream price manipulation:} Attacker buys/sells in large quantities or in batches to change the price at the data source (e.g.,\ pump MNGO on CEXs/DEXs or manipulate AMM pairs).
+            \item \textbf{Oracle read:} Protocol reads manipulated price (receives spot price / TWAP recent price if window is small).
+            \item \textbf{Exploit protocol logic:} Based on the wrong price, attacker opens position, borrows, mints, or withdraws assets (some protocols allow withdrawing or opening margin immediately according to feed price).
+            \item \textbf{Unwind/profit:} Attacker takes profit, can revert the market after withdrawing; protocol bears bad debt / reduces TVL.
+        \end{enumerate}
+\end{itemize}
+
+\paragraph{Defense Mechanism Analysis}
+\begin{itemize}
+    \item \textbf{Prevention Controls:}
+        \begin{itemize}
+            \item \textbf{P-C1 (Multi-source aggregated oracles):}
+                \begin{itemize}
+                    \item \textit{Mechanism:} Take data from $\geq 3$ independent sources (Chainlink, DEX TWAPs, CEX snapshots) and use an aggregator (median or trimmed mean) to calculate a reference price before using it for risk decisions.
+                    \item \textit{Parameters:} Number of sources $n \geq 3$; aggregation method (median / trimmed mean); refresh cadence $\tau$ (e.g.,\ 1--30s).
+                    \item \textit{Trade-offs:} Reduces the concurrency risk of single-source manipulation but increases oracle costs, update latency, and operational complexity.
+                \end{itemize}
+            \item \textbf{P-C2 (Time-weighted averaging with robust windows):}
+                \begin{itemize}
+                    \item \textit{Mechanism:} Use TWAP / geometric mean over a carefully chosen window $W$ to smooth transient spikes. Note that the window dimension needs to be large enough to avoid flash-manipulation.
+                    \item \textit{Parameters:} Window $W$ (recommend tuneable, e.g.,\ 5m--60m depending asset liquidity); sampling granularity; outlier removal policy.
+                    \item \textit{Trade-offs:} Reduces spike risk but may slow rational response to price moves; recent research also warns that short TWAPs can be manipulated with multiple txs (flash/slow attacks) so appropriate window sizes are needed.
+                \end{itemize}
+            \item \textbf{P-C3 (Oracle sanity checks / bounded update policy):}
+                \begin{itemize}
+                    \item \textit{Mechanism:} Before accepting an update, check $|\text{newPrice} - \text{lastGoodPrice}| \leq \text{maxJumpPerc}$. If exceeded, reject or mark for manual/fallback.
+                    \item \textit{Parameters:} maxJumpPerc (e.g.,\ 10--30\% depending on asset volatility); fallback policy (use previous price, median of other sources, or pause).
+                    \item \textit{Trade-offs:} Prevent large instantaneous jumps; Can block legitimate volatile markets (false positives), need careful tuning per-asset.
+                \end{itemize}
+        \end{itemize}
+
+    \item \textbf{Mitigation Controls:}
+        \begin{itemize}
+            \item \textbf{M-C1 (Circuit breakers / automated halting of sensitive ops):}
+                \begin{itemize}
+                    \item \textit{Mechanism:} When divergence oracle vs reference $>$ threshold, automatically pause borrowing/withdrawals or freeze high-value actions.
+                    \item \textit{Parameters:} Divergence threshold $\Delta\%$, minimum window $W$ to confirm anomaly, pause duration $T_{pause}$.
+                    \item \textit{Trade-offs:} Minimize immediate losses but create a centralized control point (governance/operator needed to resume) and may disrupt legitimate markets.
+                \end{itemize}
+            \item \textbf{M-C2 (Dynamic margin / emergency collateralization adjustments):}
+                \begin{itemize}
+                    \item \textit{Mechanism:} When abnormal feed is detected, increase margin requirements or force tighter liquidation parameters to protect the system.
+                    \item \textit{Parameters:} Margin multiplier $m$ (e.g.,\ $\times 1.2$ -- $\times 2$), emergency liquidation fee/priority.
+                    \item \textit{Trade-offs:} Limit risk but may liquidate valid user positions during real volatility.
+                \end{itemize}
+            \item \textbf{M-C3 (Insurance funds \& debt-absorption mechanisms):}
+                \begin{itemize}
+                    \item \textit{Mechanism:} Maintain protocol reserves to absorb bad debt; implement debt auctions/liquidator incentivization to handle bad debt.
+                    \item \textit{Parameters:} Insurance size as \%TVL (e.g.,\ 0.5--5\%); auction parameters.
+                    \item \textit{Trade-offs:} Capital-intensive, creates maintenance costs; does not prevent exploits but minimizes impact on depositors.
+                \end{itemize}
+        \end{itemize}
+    \item \textbf{Detection Controls:}
+        \begin{itemize}
+            \item \textbf{D-C1 (Cross-market surveillance \& divergence alerts):}
+                \begin{itemize}
+                    \item \textit{Mechanism:} Continuously compare feed prices with CEX/DEX sources; raise alert if $|p_{feed} - p_{refMedian}| > \Delta$ within window $W$.
+                    \item \textit{Parameters:} Source set size $n$, deviation threshold $\Delta\%$, sampling cadence.
+                    \item \textit{Trade-offs:} Early detection of manipulation on single feed; false positives in volatile markets.
+                \end{itemize}
+            \item \textbf{D-C2 (Orderbook \& on-chain trading pattern anomaly detection):}
+                \begin{itemize}
+                    \item \textit{Mechanism:} Monitor orderbook depth, sudden large buys/sells, and sequences of on-chain swaps that correlate with oracle updates; alert and optionally throttle affected operations.
+                    \item \textit{Parameters:} Volume multipliers $\alpha$ (e.g.,\ $> \times 10$ typical depth), imbalance metrics.
+                    \item \textit{Trade-offs:} Effectively detects market manipulation; requires access to orderbook data and infra.
+                \end{itemize}
+            \item \textbf{D-C3 (Pre-action checks for high-value ops):}
+                \begin{itemize}
+                    \item \textit{Mechanism:} For operations above threshold value, require operator review, multisig confirmation, or delay before execution if price volatility is high.
+                    \item \textit{Parameters:} Value threshold $V_t$ for gating; review window $T_r$.
+                    \item \textit{Trade-offs:} Increases safety for high-value ops but slows down normal operations and may cause centralization.
+                \end{itemize}
+        \end{itemize}
+\end{itemize}
+
+\paragraph{Empirical Incident Analysis}
+\begin{itemize}
+    \item \textbf{Case Study PRO-2.1: Mango Markets (Oct 2022)}
+        \begin{itemize}
+            \item \textbf{Incident Classification:}
+                \begin{itemize}
+                    \item \textit{Precondition Analysis:} Mango depends on price feeds and cross-market data; The attacker performed cross-market manipulation, buying large amounts of MNGO on many exchanges, causing the oracle-reported price to spike.
+                    \item \textit{Sequence \& violation:} Attacker pumped MNGO price across exchanges (within $\approx$10 minutes) $\rightarrow$ Mango oracle reported inflated collateral values $\rightarrow$ attacker borrowed $\approx$\$116M causing protocol insolvency; violations: INV-PRICE, INV-COLL, INV-LIVENESS.
+                \end{itemize}
+            \item \textbf{Quantitative Impact Assessment:}
+                \begin{itemize}
+                    \item \textit{Direct Losses:} Reported outflows/negative balance $\approx$ \$116--118M (numbers reported across analyses, attacker later returned some funds / legal outcomes changed later).
+                    \item \textit{Indirect/systemic effects:} Sharp TVL decline on Solana; regulatory / forensic investigation; long-term reputational cost for Mango and on-chain margin trading.
+                \end{itemize}
+            \item \textbf{Counterfactual Analysis:}
+                \begin{itemize}
+                    \item \textit{Prevention:} If Mango had used robust multi-source aggregation + TWAP (longer window) and oracle sanity checks, the short aggressive pump would not have immediately inflated collateral value.
+                    \item \textit{Mitigation:} An automated circuit breaker on large divergence or requirement for multi-tx confirmation for high-value borrows could have limited extraction.
+                    \item \textit{Detection:} Cross-market surveillance that flagged the 2,300\% spike within minutes could have triggered emergency pause before borrow completion.
+                \end{itemize}
+        \end{itemize}
+    \item \textbf{Case Study PRO-2.2: Inverse Finance (Apr 2022)}
+        \begin{itemize}
+            \item \textbf{Incident Classification:}
+                \begin{itemize}
+                    \item \textit{Precondition Analysis:} Inverse used a TWAP type oracle (Keep3r / SushiSwap pair) that was manipulable with relatively low capital; attacker injected funds into SushiSwap to inflate INV price as seen by oracle.
+                    \item \textit{Sequence \& violation:} Manipulate INV/ETH pair on SushiSwap $\rightarrow$ oracle reported inflated INV $\rightarrow$ attacker borrowed $\sim$\$15.6M across assets; violations: INV-PRICE, INV-COLL.
+                \end{itemize}
+            \item \textbf{Quantitative Impact Assessment:}
+                \begin{itemize}
+                    \item \textit{Direct Losses:} Reported $\approx$ \$15.6M drained. 
+                    \item \textit{Indirect effects:} Spotlight on fragility of DEX-based and short-window TWAP oracles; protocol response included incident response planning and oracle redesign.
+                \end{itemize}
+            \item \textbf{Counterfactual Analysis:}
+                \begin{itemize}
+                    \item \textit{Prevention:} Aggregating multiple sources (not relying predominantly on a single DEX pair) and increasing TWAP window or adding jump bounds would have raised cost of manipulation beyond attacker's capital.
+                    \item \textit{Mitigation:} Auto-pause on large divergence and insurance buffers could have reduced net losses.
+                    \item \textit{Detection:} On-chain anomaly detection for the SushiSwap trades used in manipulation would have allowed faster operator intervention.
+                \end{itemize}
+        \end{itemize}
+\end{itemize}
+
+\subsubsection{Risk Quantification}
+
+Using our systematic scoring framework:
+
+\begin{itemize}
+    \item \textbf{PRO-FLASH-LOAN}
+    \begin{itemize}
+        \item \textbf{Likelihood (L = 4):} High. Flash loans are popular and many protocols still use spot price / lack temporal guards; many real world exploits.
+        \item \textbf{Impact (I = 4):} High. Losses range from several hundred thousand to tens of millions of dollars; can destroy the protocol's TVL.
+        \item \textbf{Detectability (D = 2):} Difficult. Atomic exploits are single-tx, difficult to detect before the tx is mined; detection usually happens post-process or requires a dedicated detection system.
+        \item \textbf{Composite (L/I) = 4.0; D = 2}: $0.4 \times 4 + 0.6 \times 4 = 1.6 + 2.4 = 4.0$ (D reported separately)
+    \end{itemize}
+    
+    \item \textbf{PRO-ORACLE/PRICE-FEED}
+    \begin{itemize}
+        \item \textbf{Likelihood (L = 4):} High. Oracle manipulation incidents are frequent where protocols rely on manipulable feeds; industry reports show a rise in oracle manipulation cases.
+        \item \textbf{Impact (I = 5):} High. Historical incidents (Mango $\approx$\$116M, aggregate hundreds of millions across events) demonstrate systemic potential for catastrophic loss.
+        \item \textbf{Detectability (D = 2):} Difficult. Manipulation can be rapid and precede detection; cross-market surveillance helps but may still be too late for instantaneous exploits.
+        \item \textbf{Composite (L/I) = 4.6; D = 2}: $0.4 \times 4 + 0.6 \times 5 = 1.6 + 3.0 = 4.6$ (D reported separately)
+    \end{itemize}
+\end{itemize}
