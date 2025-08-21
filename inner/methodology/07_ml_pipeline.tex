@@ -1,3 +1,14 @@
+\end{multicols}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{../figure/methodology/pipeline.jpg}
+    \caption{The architecture of our model for blockchain security framework.}
+    \label{fig:pipeline_architecture}
+\end{figure}
+
+\begin{multicols}{2}
+
 \subsection{Automated Pipeline: LLM-Assisted Extraction and ML Prediction}
 \label{sec:ml_pipeline}
 
@@ -20,6 +31,14 @@ An LLM ingests enterprise documents (whitepapers, internal runbooks, API docs) a
 \textit{Note:} The technical footprint is stored with provenance pointers to the source snippets used by the LLM.
 
 \subsubsection{Stage 2: ML Prediction (XGBoost)}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{../figure/methodology/machine_learning.png}
+    \caption{The architecture of machine learning models.}
+    \label{fig:machine_learning}
+\end{figure}
+
 We train two XGBoost models using the labeled incident dataset and the extracted technical footprints, and we report held-out validation performance:
 \begin{itemize}
     \item \textbf{Risk Dimension Regressor}: Multi-target regression predicting Likelihood (L), Impact (I), Detectability (D), each on 1--5 scales. Targets derive from manual grading performed during data curation.
